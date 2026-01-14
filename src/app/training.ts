@@ -9,11 +9,14 @@ export interface IUser {
 // 7. Создать интерфейс, который расширяется интерфейсом User с задания №5 и имеет свои дополнительные поля 
 interface IEmployee extends IUser {
   position: string;
-  status: Status;
+  status: EmployeeStatus;
 }
 
+type EmployeeStatus = 'active' | 'inactive' | 'fired';
 type Status = 'loading' | 'success' | 'error';
 type TextFormat = 'uppercase' | 'lowercase' | 'capitalize';
+
+let employeeStatus: EmployeeStatus;
 
 // 4. Создать переменную status, которая может быть только: "loading", "success", "error".
 let status: Status;
@@ -60,22 +63,22 @@ const users: IEmployee[] = [
     name: 'Jon',
     surname: 'Whitmore',
     position: 'Frontend',
-    status: 'success'
+    status: 'inactive'
   },
   {
     id: 2,
     name: 'Ethan',
     surname: 'Bennett',
     position: 'Backend',
-    status: 'error'
+    status: 'active'
   },
   {
     id: 3,
     name: 'Lucas',
     surname: 'Carter',
     position: 'Frontend',
-    status: 'loading'
+    status: 'fired'
   }
 ]
 
-const filteredUsersByStatus = users.filter(user => user.status === 'success')
+const filteredUsersByStatus = users.filter(user => user.status === 'fired')
