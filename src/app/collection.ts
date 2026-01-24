@@ -15,12 +15,12 @@ export class Collection<T> {
   }
 
   remove(index: number): void {
-    const filtered = this.items.filter((v: T, i: number) => i != index);
+    const filtered = this.items.filter((v, i) => i != index);
     this.items = filtered;
   }
 
   replace(index: number, newItem: T): void {
-    if (this.items.at(index)) {
+    if (index >= 0 && index < this.items.length) {
       this.items[index] = newItem;
     }
   }
