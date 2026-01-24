@@ -15,7 +15,7 @@ export class Collection<T> {
   }
 
   remove(index: number): void {
-    const filtered = this.items.filter((v, i) => i != index);
+    const filtered = this.items.filter((v: T, i: number) => i != index);
     this.items = filtered;
   }
 
