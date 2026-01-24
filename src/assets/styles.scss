@@ -1,0 +1,41 @@
+@use './fonts';
+@use './normalize';
+
+* {
+  font-family: 'Nunito Sans';
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --white-color: #FDFDFD;
+  --green-color: #1A3E3E;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-24 {
+  font-size: 24px;
+}
+
+.fs-32 {
+  font-size: 32px;
+}
+
+.fs-50 {
+  font-size: 5px;
+}
+
+.bold {
+  font-weight: 600;
+}
