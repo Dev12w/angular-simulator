@@ -12,28 +12,28 @@ import './training';
 
 export class AppComponent {
 
-  lastVisitDateKey = 'lastVisitDate';
-  visitCounterKey = 'visitCounter';
+  lAST_VISIT_DATE_KEY = 'lastVisitDate';
+  VISIT_COUNTER_KEY = 'visitCounter';
+  
+  companyName: string = 'Румтибет';
 
   constructor() {
     this.saveLastVisitDate();
     this.incrementVisitCounter();
   }
 
-  companyName: string = 'Румтибет';
-
-  saveLastVisitDate() {
-    const date = new Date();
-    localStorage.setItem(this.lastVisitDateKey, date.toISOString());
+  saveLastVisitDate(): void {
+    const date: Date = new Date();
+    localStorage.setItem(this.lAST_VISIT_DATE_KEY, date.toISOString());
   }
 
-  incrementVisitCounter() {
-    const visitCounter = Number(localStorage.getItem(this.visitCounterKey)) || 0;
-    localStorage.setItem(this.visitCounterKey, `${visitCounter + 1}`);
+  incrementVisitCounter(): void {
+    const visitCounter: number = Number(localStorage.getItem(this.VISIT_COUNTER_KEY)) || 0;
+    localStorage.setItem(this.VISIT_COUNTER_KEY, `${visitCounter + 1}`);
   }
 
   isMainColor(color: Color): boolean {
-    return (color === Color.BLUE || color === Color.GREEN || color === Color.RED);
+    return [Color.BLUE, Color.GREEN, Color.RED].includes(color);
   }
 
 }

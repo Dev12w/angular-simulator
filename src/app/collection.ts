@@ -1,6 +1,10 @@
 export class Collection<T> {
+  
+  private items: T[];
 
-  constructor(private items: T[]) { }
+  constructor(items: T[]) {
+    this.items = items;
+  }
 
   getItems(): T[] {
     return this.items;
@@ -14,9 +18,9 @@ export class Collection<T> {
     this.items = [];
   }
 
-  remove(index: number): void {
-    const filtered = this.items.filter((v, i) => i != index);
-    this.items = filtered;
+  removeByIndex(index: number): void {
+    const filteredItems: T[] = this.items.filter((v: T, i: number): boolean => i !== index);
+    this.items = filteredItems;
   }
 
   replace(index: number, newItem: T): void {
@@ -27,12 +31,12 @@ export class Collection<T> {
 
 }
 
-interface Product {
+interface IProduct {
   id: number;
   name: string;
 }
 
-const productCollection = new Collection<Product>([
+const productCollection = new Collection<IProduct>([
   {
     id: 1,
     name: 'Apple'
@@ -53,12 +57,12 @@ const productCollection = new Collection<Product>([
 
 productCollection.getItem(0);
 productCollection.replace(2, { id: 5, name: 'Huawey' });
-productCollection.remove(1);
+productCollection.removeByIndex(1);
 productCollection.clear();
 
-const col1 = new Collection(['Apple', 'Samsung', 'Honor', 'Xiaomi']);
+const col1 = new Collection<string>(['Apple', 'Samsung', 'Honor', 'Xiaomi']);
 
 col1.getItem(0);
 col1.replace(2, 'Honor Replaced');
-col1.remove(1);
+col1.removeByIndex(1);
 col1.clear();
