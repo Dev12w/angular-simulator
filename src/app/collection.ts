@@ -1,5 +1,5 @@
 export class Collection<T> {
-  
+
   private items: T[];
 
   constructor(items: T[]) {
@@ -30,39 +30,3 @@ export class Collection<T> {
   }
 
 }
-
-interface IProduct {
-  id: number;
-  name: string;
-}
-
-const productCollection = new Collection<IProduct>([
-  {
-    id: 1,
-    name: 'Apple'
-  },
-  {
-    id: 2,
-    name: 'Samsung'
-  },
-  {
-    id: 3,
-    name: 'Honor'
-  },
-  {
-    id: 4,
-    name: 'Xiaomi'
-  },
-]);
-
-productCollection.getItem(0);
-productCollection.replace(2, { id: 5, name: 'Huawey' });
-productCollection.removeByIndex(1);
-productCollection.clear();
-
-const col1 = new Collection<string>(['Apple', 'Samsung', 'Honor', 'Xiaomi']);
-
-col1.getItem(0);
-col1.replace(2, 'Honor Replaced');
-col1.removeByIndex(1);
-col1.clear();
