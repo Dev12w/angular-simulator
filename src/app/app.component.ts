@@ -9,11 +9,10 @@ import './training';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-
 export class AppComponent {
 
-  LAST_VISIT_DATE_KEY = 'lastVisitDate';
-  VISIT_COUNTER_KEY = 'visitCounter';
+  LAST_VISIT_DATE_KEY: string = 'lastVisitDate';
+  VISIT_COUNTER_KEY: string = 'visitCounter';
 
   companyName: string = 'Румтибет';
 
@@ -39,7 +38,7 @@ export class AppComponent {
 
   incrementVisitCounter(): void {
     const saveCounterVisit: number = Number(localStorage.getItem(this.VISIT_COUNTER_KEY)) || 0;
-    localStorage.setItem(this.VISIT_COUNTER_KEY, `${saveCounterVisit + 1}`);
+    localStorage.setItem(this.VISIT_COUNTER_KEY, `${ saveCounterVisit + 1 }`);
   }
 
   isMainColor(color: Color): boolean {
