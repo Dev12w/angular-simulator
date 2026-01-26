@@ -3,7 +3,6 @@ import { Color } from '.././enums/Color';
 import { Collection } from './collection';
 import './training';
 
-
 @Component({
   selector: 'app-root',
   imports: [],
@@ -21,45 +20,16 @@ export class AppComponent {
   constructor() {
     this.saveLastVisitDate();
     this.incrementVisitCounter();
-    this.testCollection();
+    this.completeCollection();
   }
 
-  testCollection() {
-    interface IProduct {
-      id: number;
-      name: string;
-    }
-
-    const productCollection: Collection<IProduct> = new Collection<IProduct>([
-      {
-        id: 1,
-        name: 'Apple'
-      },
-      {
-        id: 2,
-        name: 'Samsung'
-      },
-      {
-        id: 3,
-        name: 'Honor'
-      },
-      {
-        id: 4,
-        name: 'Xiaomi'
-      },
-    ]);
-
-    productCollection.getItem(0);
-    productCollection.replace(2, { id: 5, name: 'Huawey' });
-    productCollection.removeByIndex(1);
-    productCollection.clear();
-
-    const col1 = new Collection<string>(['Apple', 'Samsung', 'Honor', 'Xiaomi']);
-
-    col1.getItem(0);
-    col1.replace(2, 'Honor Replaced');
-    col1.removeByIndex(1);
-    col1.clear();
+  completeCollection(): void {
+    const phoneBrands = new Collection<string>(['Apple', 'Samsung', 'Honor', 'Xiaomi']);
+  
+    phoneBrands.getItem(0);
+    phoneBrands.replace(2, 'Honor Replaced');
+    phoneBrands.removeByIndex(1);
+    phoneBrands.clear();
   }
 
   saveLastVisitDate(): void {
@@ -68,8 +38,8 @@ export class AppComponent {
   }
 
   incrementVisitCounter(): void {
-    const visitCounter: number = Number(localStorage.getItem(this.VISIT_COUNTER_KEY)) || 0;
-    localStorage.setItem(this.VISIT_COUNTER_KEY, `${visitCounter + 1}`);
+    const saveCounterVisit: number = Number(localStorage.getItem(this.VISIT_COUNTER_KEY)) || 0;
+    localStorage.setItem(this.VISIT_COUNTER_KEY, `${saveCounterVisit + 1}`);
   }
 
   isMainColor(color: Color): boolean {
