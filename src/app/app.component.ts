@@ -18,12 +18,12 @@ export class AppComponent {
 
   constructor() {
     this.saveLastVisitDate();
-    this.incrementVisitCounter();
+    this.saveCounterVisit();
     this.completeCollection();
   }
 
   completeCollection(): void {
-    const phoneBrands = new Collection<string>(['Apple', 'Samsung', 'Honor', 'Xiaomi']);
+    const phoneBrands: Collection<string> = new Collection<string>(['Apple', 'Samsung', 'Honor', 'Xiaomi']);
   
     phoneBrands.getItem(0);
     phoneBrands.replace(2, 'Honor Replaced');
@@ -36,9 +36,9 @@ export class AppComponent {
     localStorage.setItem(this.LAST_VISIT_DATE_KEY, date.toISOString());
   }
 
-  incrementVisitCounter(): void {
-    const saveCounterVisit: number = Number(localStorage.getItem(this.VISIT_COUNTER_KEY)) || 0;
-    localStorage.setItem(this.VISIT_COUNTER_KEY, `${ saveCounterVisit + 1 }`);
+  saveCounterVisit(): void {
+    const visitCounter: number = Number(localStorage.getItem(this.VISIT_COUNTER_KEY)) || 0;
+    localStorage.setItem(this.VISIT_COUNTER_KEY, `${ visitCounter + 1 }`);
   }
 
   isMainColor(color: Color): boolean {
