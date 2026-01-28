@@ -18,13 +18,13 @@ export class AppComponent {
 
   constructor() {
     this.saveLastVisitDate();
-    this.saveCounterVisit();
+    this.saveVisitCounter();
     this.completeCollection();
   }
 
   completeCollection(): void {
     const phoneBrands: Collection<string> = new Collection<string>(['Apple', 'Samsung', 'Honor', 'Xiaomi']);
-  
+
     phoneBrands.getItem(0);
     phoneBrands.replace(2, 'Honor Replaced');
     phoneBrands.removeByIndex(1);
@@ -36,7 +36,7 @@ export class AppComponent {
     localStorage.setItem(this.LAST_VISIT_DATE_KEY, date.toISOString());
   }
 
-  saveCounterVisit(): void {
+  saveVisitCounter(): void {
     const visitCounter: number = Number(localStorage.getItem(this.VISIT_COUNTER_KEY)) || 0;
     localStorage.setItem(this.VISIT_COUNTER_KEY, `${ visitCounter + 1 }`);
   }
