@@ -1,25 +1,68 @@
-import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Color } from '.././enums/Color';
 import { Collection } from './collection';
+import { CommonModule } from '@angular/common';
 import './training';
+import { OFFERS, type IOffer } from './offers';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
 
-  LAST_VISIT_DATE_KEY: string = 'lastVisitDate';
-  VISIT_COUNTER_KEY: string = 'visitCounter';
+  offers: IOffer[] = OFFERS;
+
+  readonly LAST_VISIT_DATE_KEY: string = 'lastVisitDate';
+  readonly VISIT_COUNTER_KEY: string = 'visitCounter';
 
   companyName: string = 'Румтибет';
+  city: string = '';
+  date: string = '';
+  participants: string = '';
+  count: number = 0;
+  currentDate: Date = new Date;
+  showFirst: boolean = true;
+  dynamicOutputText: string | number = ''
+  isLoading: boolean = true;
 
   constructor() {
     this.saveLastVisitDate();
     this.saveVisitCounter();
     this.completeCollection();
+    this.updatingCurrentTime();
+    this.loadData();
+  }
+
+  loadData(): void {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
+  }
+
+  toggleContent(): void {
+    this.showFirst = !this.showFirst;
+  }
+
+  private updatingCurrentTime(): void {
+    setInterval(() => {
+      this.currentDate = new Date;
+    }, 1000)
+  }
+
+  increment(): void {
+    this.count = this.count + 1;
+  }
+
+  decrement(): void {
+    this.count = this.count > 0 ? this.count - 1 : 0;
+  }
+
+  isFormValid(): boolean {
+    return !!(this.city && this.date && this.participants);
   }
 
   completeCollection(): void {
@@ -38,7 +81,7 @@ export class AppComponent {
 
   saveVisitCounter(): void {
     const visitCounter: number = Number(localStorage.getItem(this.VISIT_COUNTER_KEY)) || 0;
-    localStorage.setItem(this.VISIT_COUNTER_KEY, `${ visitCounter + 1 }`);
+    localStorage.setItem(this.VISIT_COUNTER_KEY, `${visitCounter + 1}`);
   }
 
   isMainColor(color: Color): boolean {
