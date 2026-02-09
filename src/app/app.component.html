@@ -24,12 +24,12 @@
         </nav>
       </div>
       <div class="header-date-counter">
-        @if(showFirst){
+        @if(showContent){
         <div class="header-date">
           <span>{{ currentDate | date:'dd.MM.yy HH:mm:ss' }}</span>
         </div>
         }
-        @if(!showFirst) {
+        @if(!showContent) {
         <div class="header-couter">
           <button (click)="increment()" class="couter-btn">+</button>
           <span>{{ count }}</span>
@@ -37,7 +37,7 @@
         </div>
         }
         <button (click)="toggleContent()" class="header-toggle-btn">
-          {{ showFirst ? 'Показать кликер' : 'Показать дату' }}
+          {{ showContent ? 'Показать кликер' : 'Показать дату' }}
         </button>
       </div>
       <div class="header-search-wrapper fs-24">

@@ -25,7 +25,7 @@ export class AppComponent {
   participants: string = '';
   count: number = 0;
   currentDate: Date = new Date;
-  showFirst: boolean = true;
+  showContent: boolean = true;
   dynamicOutputText: string | number = '';
   isLoading: boolean = true;
 
@@ -44,7 +44,7 @@ export class AppComponent {
   }
 
   toggleContent(): void {
-    this.showFirst = !this.showFirst;
+    this.showContent = !this.showContent;
   }
 
   private updatingCurrentTime(): void {
