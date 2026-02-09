@@ -4,7 +4,6 @@ export interface IOffer {
   alt: string;
   title: string;
   text: string;
-  extraClass: string;
 }
 
 export const OFFERS: IOffer[] = [
@@ -14,7 +13,7 @@ export const OFFERS: IOffer[] = [
     alt: 'guide-icon',
     title: 'Опытный гид',
     text: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-    extraClass: ''
+   
   },
   {
     id: 2,
@@ -22,7 +21,6 @@ export const OFFERS: IOffer[] = [
     alt: 'security-icon',
     title: 'Безопасный поход',
     text: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-    extraClass: 'security-icon'
   },
   {
     id: 3,
@@ -30,6 +28,5 @@ export const OFFERS: IOffer[] = [
     alt: 'price-icon',
     title: 'Лояльные цены',
     text: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-    extraClass: 'price-icon'
   }
 ];

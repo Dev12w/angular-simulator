@@ -1,5 +1,5 @@
 import { FormsModule } from '@angular/forms';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { Color } from '.././enums/Color';
 import { Collection } from './collection';
 import { CommonModule } from '@angular/common';
@@ -26,7 +26,7 @@ export class AppComponent {
   count: number = 0;
   currentDate: Date = new Date;
   showFirst: boolean = true;
-  dynamicOutputText: string | number = ''
+  dynamicOutputText: string | number = '';
   isLoading: boolean = true;
 
   constructor() {
