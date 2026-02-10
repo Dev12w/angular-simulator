@@ -25,7 +25,7 @@
         <div class="header-date-counter">
           @if(currentVisibleHeaderWidget == 'date') {
             <div class="header-date">
-              <span>{{ currentDate.toLocaleString().replace(',', '') }}</span>
+              <span>{{ currentDate.toLocaleString() }}</span>
             </div>
           }
           @if(currentVisibleHeaderWidget == 'counter') {
