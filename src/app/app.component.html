@@ -3,151 +3,139 @@
   <span class="loading-text fs-32 bold">Загрузка данных...</span>
 </div>
 }
-
 @if (!isLoading) {
-<div class="loader-container" [hidden]="isLoading">
-  <header class="header">
-    <div class="header-content">
-      <div class="header-nav-wrapper">
-        <div class="header-logo-container">
-          <div class="logo"></div>
-          <span class="logo-text fs-16 bold">{{ companyName }}</span>
-        </div>
-        <nav class="header-menu fs-18 bold">
-          <a href="#">Главная</a>
-          <a href="#">Про гида</a>
-          <a href="#">Программа тура</a>
-          <a href="#">Стоимость</a>
-          <a href="#">Блог</a>
-          <a href="#">Контакты</a>
-          <button class="btn-consultation">Консультация</button>
-        </nav>
-      </div>
-      <div class="header-date-counter">
-        @if(showContent){
-        <div class="header-date">
-          <span>{{ currentDate | date:'dd.MM.yy HH:mm:ss' }}</span>
-        </div>
-        }
-        @if(!showContent) {
-        <div class="header-couter">
-          <button (click)="increment()" class="couter-btn">+</button>
-          <span>{{ count }}</span>
-          <button (click)="decrement()" class="couter-btn">-</button>
-        </div>
-        }
-        <button (click)="toggleContent()" class="header-toggle-btn">
-          {{ showContent ? 'Показать кликер' : 'Показать дату' }}
-        </button>
-      </div>
-      <div class="header-search-wrapper fs-24">
-        <h1 class="header-title">
-          Насладись прогулкой в горах<br> с командой единомышленников
-        </h1>
-        <div class="header-tour-search">
-          <div class="header-location-search">
-            <select [(ngModel)]="city" name="city" class="header-option-text">
-              <option value="" disabled selected hidden>Выберите город</option>
-              <option value="msk">Москва</option>
-              <option value="spb">Санкт-Петербург</option>
-            </select>
-            <span class="location-search-text fs-18">выберите из списка</span>
+  <div class="loader-container">
+    <header class="header">
+      <div class="header-content">
+        <div class="header-nav-wrapper">
+          <div class="header-logo-container">
+            <div class="logo"></div>
+            <span class="logo-text fs-16 bold">{{ companyName }}</span>
           </div>
-          <div class="header-location-search">
-            <select [(ngModel)]="date" name="date" class="header-option-text">
-              <option value="" disabled selected hidden>Дата похода</option>
-              <option value="2026-02-10">10 февраля</option>
-              <option value="2026-02-17">17 февраля</option>
-              <option value="2026-02-24">24 февраля</option>
-            </select>
-            <span class="location-search-text fs-18">укажите диапазон</span>
-          </div>
-          <div class="header-location-search">
-            <select [(ngModel)]="participants" name="participants" class="header-option-text">
-              <option value="" disabled selected hidden>Участники</option>
-              <option value="one-person">1 человек</option>
-              <option value="two-people">2 человека</option>
-            </select>
-            <span class="location-search-text fs-18">выберите из списка</span>
-          </div>
-          <div class="header-location-search">
-            <button [disabled]="!isFormValid()" name="isFormComplete" class="btn-program-find fs-18 bold">
-              Найти программу
-            </button>
-          </div>
+          <nav class="header-menu fs-18 bold">
+            <a id="main-link" href="#">Главная</a>
+            <a id="about-guide-link" href="#">Про гида</a>
+            <a id="tour-program-link" href="#">Программа тура</a>
+            <a id="pricing-link" href="#">Стоимость</a>
+            <a id="blog-link" href="#">Блог</a>
+            <a id="contacts-link" href="#">Контакты</a>
+            <button class="btn-consultation">Консультация</button>
+          </nav>
         </div>
-        <div>
-          <input [(ngModel)]="dynamicOutputText" type="text">
-          <span>{{ dynamicOutputText }}</span>
-        </div>
-      </div>
-    </div>
-  </header>
-  <section class="trip">
-    <div class="trip-container">
-      <aside class="trip-video">
-        <div class="trip-video-bg"></div>
-        <div class="trip-video-overlay">
-          <div class="trip-wrapper-btn">
-            <button class="trip-play-btn"></button>
-          </div>
-        </div>
-      </aside>
-      <article class="trip-content">
-        <span class="trip-lable fs-24">о нашем походе</span>
-        <h1 class="trip-title fs-32 bold">Исследуйте все горные массивы мира вместе с нами</h1>
-        <p class="trip-story fs-18">
-          Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад.
-          Ричард
-          МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в
-          Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.
-        </p>
-        <button class="trip-tour-button fs-16 bold">Программа тура</button>
-      </article>
-    </div>
-  </section>
-  <section class="offers">
-    <div class="offers-container">
-      <article class="offers-content">
-        <span class="offers-label fs-24">наше предложение</span>
-        <h1 class="offers-title fs-32">Лучшие программы для тебя</h1>
-        <p class="offers-description fs-18">
-          Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад.
-          Ричард
-          МакКлинток, профессор латыни из колледжа.
-        </p>
-        <ul class="offers-features">
-          @for(offer of offers; track offer.id) {
-          <li class="offers-feature">
-            <div class="offers-wrapper-icon">
-              <img [src]="offer.icon" alt="guide-icon">
+        <div class="header-date-counter">
+          @if(currentVisibleHeaderWidget == 'date') {
+            <div class="header-date">
+              <span>{{ currentDate.toLocaleString().replace(',', '') }}</span>
             </div>
-            <div class="offers-wrapper">
-              <h3 class="offers-feature-title fs-18">{{ offer.title }}</h3>
-              <p class="offers-feature-text fs-14">
-                {{ offer.text }}
-              </p>
-            </div>
-          </li>
           }
-        </ul>
-        <button class="offers-price-btn fs-16">Стоимость программ</button>
-      </article>
-      <aside class="offers-gallery">
-        <div class="offers-gallery-wrapper">
-          <img src="images/hand-coffee.png" alt="hand-coffee">
+          @if(currentVisibleHeaderWidget == 'counter') {
+            <div class="header-counter">
+              <button (click)="incrementCount()" class="counter-btn">+</button>
+              <span>{{ count }}</span>
+              <button (click)="decrementCount()" class="counter-btn">-</button>
+            </div>
+          }
+          <button (click)="toggleHeaderWidget()" class="header-toggle-btn">
+            {{ currentVisibleHeaderWidget == 'date' ? 'Показать кликер' : 'Показать дату' }}
+          </button>
         </div>
-        <div class="offers-gallery-wrapper">
-          <img src="images/canyon.png" alt="canyon">
+        <div class="header-search-wrapper fs-24">
+          <h1 class="header-title">
+            Насладись прогулкой в горах <br> с командой единомышленников
+          </h1>
+          <div class="header-tour-search">
+            <div class="header-location-search">
+              <select [(ngModel)]="city" name="city" class="header-option-text">
+                <option value="" disabled selected hidden>Выберите город</option>
+                <option value="msk">Москва</option>
+                <option value="spb">Санкт-Петербург</option>
+              </select>
+              <span class="location-search-text fs-18">выберите из списка</span>
+            </div>
+            <div class="header-location-search">
+              <select [(ngModel)]="date" name="date" class="header-option-text">
+                <option value="" disabled selected hidden>Дата похода</option>
+                <option value="2026-02-10">10 февраля</option>
+                <option value="2026-02-17">17 февраля</option>
+                <option value="2026-02-24">24 февраля</option>
+              </select>
+              <span class="location-search-text fs-18">укажите диапазон</span>
+            </div>
+            <div class="header-location-search">
+              <select [(ngModel)]="participants" name="participants" class="header-option-text">
+                <option value="" disabled selected hidden>Участники</option>
+                <option value="one-person">1 человек</option>
+                <option value="two-people">2 человека</option>
+              </select>
+              <span class="location-search-text fs-18">выберите из списка</span>
+            </div>
+            <div class="header-location-search">
+              <button [disabled]="!isFormValid()" name="isFormComplete" class="btn-program-find fs-18 bold">
+                Найти программу
+              </button>
+            </div>
+          </div>
+          <div>
+            <input [(ngModel)]="liveInputValue" type="text" placeholder="Живой импут">
+            <span>{{ liveInputValue }}</span>
+          </div>
         </div>
-        <div class="offers-gallery-wrapper">
-          <img src="images/snowy-mountains.png" alt="snowy-mountains">
+      </div>
+    </header>
+    <section class="trip">
+      <div class="trip-container">
+        <div class="trip-video">
+          <div class="trip-video-bg"></div>
+          <div class="trip-video-overlay">
+            <div class="trip-wrapper-btn">
+              <button class="trip-play-btn"></button>
+            </div>
+          </div>
         </div>
-        <div class="offers-gallery-wrapper">
-          <img src="images/mountains-river.png" alt="mountains-river">
+        <div class="trip-content">
+          <span class="trip-lable fs-24">о нашем походе</span>
+          <h1 class="trip-title fs-32 bold">Исследуйте все горные массивы мира вместе с нами</h1>
+          <p class="trip-story fs-18">
+            Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад.
+            Ричард
+            МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в
+            Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.
+          </p>
+          <button class="trip-tour-button fs-16 bold">Программа тура</button>
         </div>
-      </aside>
-    </div>
-  </section>
-</div>
+      </div>
+    </section>
+    <section class="offers">
+      <div class="offers-container">
+        <div class="offers-content">
+          <span class="offers-label fs-24">наше предложение</span>
+          <h1 class="offers-title fs-32">Лучшие программы для тебя</h1>
+          <p class="offers-description fs-18">
+            Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад.
+            Ричард
+            МакКлинток, профессор латыни из колледжа.
+          </p>
+          <ul class="offers-features">
+            @for(offer of offers; track offer.id) {
+              <li class="offers-feature">
+                <div class="offers-wrapper-icon">
+                  <img [src]="'images/' + offer.icon + '.svg'" [alt]="offer.alt">
+                </div>
+                <div class="offers-wrapper">
+                  <h3 class="offers-feature-title fs-18">{{ offer.title }}</h3>
+                  <p class="offers-feature-text fs-14">{{ offer.text }}</p>
+                </div>
+              </li>
+            }
+          </ul>
+          <button class="offers-price-btn fs-16">Стоимость программ</button>
+        </div>
+        <div class="offers-gallery">
+          @for(img of gallery; track img.id) {
+            <img [src]="'images/' + img.image + '.png'" [alt]="img.alt">
+          }
+        </div>
+      </div>
+    </section>
+  </div>
 }

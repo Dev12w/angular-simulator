@@ -1,30 +1,23 @@
-export interface IOffer {
-  id: number;
-  icon: string;
-  alt: string;
-  title: string;
-  text: string;
-}
+import type { IOffer } from './interfaces/IOffer'
 
-export const OFFERS: IOffer[] = [
+export const offers: IOffer[] = [
   {
     id: 1,
-    icon: 'images/guide-icon.png',
+    icon: 'guide-icon',
     alt: 'guide-icon',
     title: 'Опытный гид',
     text: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-   
   },
   {
     id: 2,
-    icon: 'images/security-icon.png',
+    icon: 'security-icon',
     alt: 'security-icon',
     title: 'Безопасный поход',
     text: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
   },
   {
     id: 3,
-    icon: 'images/price-icon.png',
+    icon: 'price-icon',
     alt: 'price-icon',
     title: 'Лояльные цены',
     text: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',

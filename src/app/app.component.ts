@@ -3,8 +3,10 @@ import { Component } from '@angular/core';
 import { Color } from '.././enums/Color';
 import { Collection } from './collection';
 import { CommonModule } from '@angular/common';
-import './training';
-import { OFFERS, type IOffer } from './offers';
+import { offers } from './offers';
+import { IOffer } from './interfaces/IOffer';
+import { galleryImages } from './gallery-images';
+import { IPicture } from './interfaces/IPicture';
 
 @Component({
   selector: 'app-root',
@@ -14,50 +16,47 @@ import { OFFERS, type IOffer } from './offers';
 })
 export class AppComponent {
 
-  offers: IOffer[] = OFFERS;
+  offers: IOffer[] = offers;
+  gallery: IPicture[] = galleryImages;
 
-  readonly LAST_VISIT_DATE_KEY: string = 'lastVisitDate';
-  readonly VISIT_COUNTER_KEY: string = 'visitCounter';
+  readonly LAST_VISIT_DATE_KEY: string = 'last-visit-date';
+  readonly VISIT_COUNTER_KEY: string = 'visit-counter';
 
   companyName: string = 'Румтибет';
   city: string = '';
   date: string = '';
   participants: string = '';
   count: number = 0;
-  currentDate: Date = new Date;
-  showContent: boolean = true;
-  dynamicOutputText: string | number = '';
+  currentDate: Date = new Date();
+  currentVisibleHeaderWidget: 'date' | 'counter' = 'date';
+  liveInputValue!: string;
   isLoading: boolean = true;
 
   constructor() {
     this.saveLastVisitDate();
     this.saveVisitCounter();
     this.completeCollection();
-    this.updatingCurrentTime();
-    this.loadData();
+    this.initCurrentDate();
+    this.simulateLoading();
   }
 
-  loadData(): void {
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 2000);
+  simulateLoading(): void {
+    setTimeout(() => this.isLoading = false, 1000);
   }
 
-  toggleContent(): void {
-    this.showContent = !this.showContent;
+  toggleHeaderWidget(): void {
+    this.currentVisibleHeaderWidget = this.currentVisibleHeaderWidget == 'date' ? 'counter' : 'date';
   }
 
-  private updatingCurrentTime(): void {
-    setInterval(() => {
-      this.currentDate = new Date;
-    }, 1000)
+  private initCurrentDate(): void {
+    setInterval(() => this.currentDate = new Date(), 1000);
   }
 
-  increment(): void {
+  incrementCount(): void {
     this.count = this.count + 1;
   }
 
-  decrement(): void {
+  decrementCount(): void {
     this.count = this.count > 0 ? this.count - 1 : 0;
   }
 
@@ -80,8 +79,8 @@ export class AppComponent {
   }
 
   saveVisitCounter(): void {
-    const visitCounter: number = Number(localStorage.getItem(this.VISIT_COUNTER_KEY)) || 0;
-    localStorage.setItem(this.VISIT_COUNTER_KEY, `${visitCounter + 1}`);
+    const visitCounter: number = Number(localStorage.getItem(this.VISIT_COUNTER_KEY) || 0);
+    localStorage.setItem(this.VISIT_COUNTER_KEY, `${ visitCounter + 1 }`);
   }
 
   isMainColor(color: Color): boolean {
