@@ -1,9 +1,9 @@
 @if(isLoading){
-<div>
-  <span class="loading-text fs-32 bold">Загрузка данных...</span>
-</div>
+  <div>
+    <span class="loading-text fs-32 bold">Загрузка данных...</span>
+  </div>
 }
-@if (!isLoading) {
+@if (!isLoading){
   <div class="loader-container">
     <header class="header">
       <div class="header-content">
@@ -23,12 +23,12 @@
           </nav>
         </div>
         <div class="header-date-counter">
-          @if(currentVisibleHeaderWidget == 'date') {
+          @if(currentHeaderWidget){
             <div class="header-date">
               <span>{{ currentDate.toLocaleString() }}</span>
             </div>
           }
-          @if(currentVisibleHeaderWidget == 'counter') {
+          @if(currentHeaderWidget){
             <div class="header-counter">
               <button (click)="incrementCount()" class="counter-btn">+</button>
               <span>{{ count }}</span>
@@ -36,7 +36,7 @@
             </div>
           }
           <button (click)="toggleHeaderWidget()" class="header-toggle-btn">
-            {{ currentVisibleHeaderWidget == 'date' ? 'Показать кликер' : 'Показать дату' }}
+            {{ currentHeaderWidget ? 'Показать кликер' : 'Показать дату' }}
           </button>
         </div>
         <div class="header-search-wrapper fs-24">
@@ -116,10 +116,10 @@
             МакКлинток, профессор латыни из колледжа.
           </p>
           <ul class="offers-features">
-            @for(offer of offers; track offer.id) {
+            @for(offer of offers; track offer.id){
               <li class="offers-feature">
                 <div class="offers-wrapper-icon">
-                  <img [src]="'images/' + offer.icon + '.svg'" [alt]="offer.alt">
+                  <img [src]="'images/' + offer.icon + '.svg'">
                 </div>
                 <div class="offers-wrapper">
                   <h3 class="offers-feature-title fs-18">{{ offer.title }}</h3>
@@ -131,8 +131,8 @@
           <button class="offers-price-btn fs-16">Стоимость программ</button>
         </div>
         <div class="offers-gallery">
-          @for(img of gallery; track img.id) {
-            <img [src]="'images/' + img.image + '.png'" [alt]="img.alt">
+          @for(picture of gallery; track picture.id){
+            <img [src]="'images/' + picture.image + '.png'">
           }
         </div>
       </div>

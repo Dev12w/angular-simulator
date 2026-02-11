@@ -28,7 +28,7 @@ export class AppComponent {
   participants: string = '';
   count: number = 0;
   currentDate: Date = new Date();
-  currentVisibleHeaderWidget: 'date' | 'counter' = 'date';
+  currentHeaderWidget: boolean = true;
   liveInputValue!: string;
   isLoading: boolean = true;
 
@@ -45,7 +45,7 @@ export class AppComponent {
   }
 
   toggleHeaderWidget(): void {
-    this.currentVisibleHeaderWidget = this.currentVisibleHeaderWidget == 'date' ? 'counter' : 'date';
+    this.currentHeaderWidget = !this.currentHeaderWidget;
   }
 
   private initCurrentDate(): void {
