@@ -1,4 +1,4 @@
-import type { IPicture } from './interfaces/IPicture';
+import { IPicture } from './interfaces/IPicture';
 
 export const galleryImages: IPicture[] = [
   {

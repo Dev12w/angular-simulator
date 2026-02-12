@@ -28,8 +28,8 @@ export class AppComponent {
   participants: string = '';
   count: number = 0;
   currentDate: Date = new Date();
-  currentHeaderWidget: boolean = true;
-  liveInputValue!: string;
+  currentHeaderWidget: 'date' | 'counter' = 'date';
+  liveInputValue: string = '';
   isLoading: boolean = true;
 
   constructor() {
@@ -44,8 +44,8 @@ export class AppComponent {
     setTimeout(() => this.isLoading = false, 1000);
   }
 
-  toggleHeaderWidget(): void {
-    this.currentHeaderWidget = !this.currentHeaderWidget;
+  setHeaderWidget(widget: typeof this.currentHeaderWidget): void {
+    this.currentHeaderWidget = widget;
   }
 
   private initCurrentDate(): void {

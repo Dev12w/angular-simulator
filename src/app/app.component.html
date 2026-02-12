@@ -1,9 +1,9 @@
-@if(isLoading){
+@if (isLoading) {
   <div>
     <span class="loading-text fs-32 bold">Загрузка данных...</span>
   </div>
 }
-@if (!isLoading){
+@if (!isLoading) {
   <div class="loader-container">
     <header class="header">
       <div class="header-content">
@@ -23,20 +23,20 @@
           </nav>
         </div>
         <div class="header-date-counter">
-          @if(currentHeaderWidget){
+          @if (currentHeaderWidget == 'date') {
             <div class="header-date">
               <span>{{ currentDate.toLocaleString() }}</span>
             </div>
           }
-          @if(currentHeaderWidget){
+          @if (currentHeaderWidget == 'counter') {
             <div class="header-counter">
-              <button (click)="incrementCount()" class="counter-btn">+</button>
-              <span>{{ count }}</span>
               <button (click)="decrementCount()" class="counter-btn">-</button>
+              <span>{{ count }}</span>
+              <button (click)="incrementCount()" class="counter-btn">+</button>
             </div>
           }
-          <button (click)="toggleHeaderWidget()" class="header-toggle-btn">
-            {{ currentHeaderWidget ? 'Показать кликер' : 'Показать дату' }}
+          <button (click)="setHeaderWidget(currentHeaderWidget == 'date' ? 'counter' : 'date')" class="header-toggle-btn">
+            {{ currentHeaderWidget == 'date' ? 'Показать кликер' : 'Показать дату' }}
           </button>
         </div>
         <div class="header-search-wrapper fs-24">
@@ -116,10 +116,10 @@
             МакКлинток, профессор латыни из колледжа.
           </p>
           <ul class="offers-features">
-            @for(offer of offers; track offer.id){
+            @for (offer of offers; track offer.id) {
               <li class="offers-feature">
                 <div class="offers-wrapper-icon">
-                  <img [src]="'images/' + offer.icon + '.svg'">
+                  <img [src]="'images/' + offer.icon + '.svg'" [alt]="offer.icon">
                 </div>
                 <div class="offers-wrapper">
                   <h3 class="offers-feature-title fs-18">{{ offer.title }}</h3>
@@ -131,8 +131,8 @@
           <button class="offers-price-btn fs-16">Стоимость программ</button>
         </div>
         <div class="offers-gallery">
-          @for(picture of gallery; track picture.id){
-            <img [src]="'images/' + picture.image + '.png'">
+          @for (picture of gallery; track picture.id) {
+            <img [src]="'images/' + picture.image + '.png'" [alt]="picture.image">
           }
         </div>
       </div>
