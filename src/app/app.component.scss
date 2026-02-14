@@ -1,3 +1,8 @@
+.loading-text {
+  display: block;
+  text-align: center;
+}
+
 .header {
   color: var(--white-color);
   display: flex;
@@ -71,6 +76,35 @@
   }
 }
 
+.header-date-counter {
+  display: flex;
+  justify-content: end;
+  height: 100%;
+
+  .header-toggle-btn {
+    width: 157px;
+    height: 44px;
+    background: var(--green-color);
+    color: var(--white-color);
+    border: 1px solid var(--green-color);
+    border-radius: 5px;
+    margin-left: 20px;
+
+    &:hover {
+      background: #265555;
+    }
+
+    &::after {
+      background: #358888;
+    }
+  }
+
+  .counter-btn {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 .header-title {
   max-width: 920px;
   font-weight: 300;
@@ -112,6 +146,10 @@
   display: block;
 }
 
+.header-option-text option {
+  color: var(--black-color);
+}
+
 .btn-program-find {
   width: 220px;
   height: 52px;
@@ -122,5 +160,205 @@
 
   &:hover {
     background: #cac9c9;
+  }
+
+  &:disabled {
+    background: #cac9c9;
+  }
+}
+
+.trip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 726px;
+  background: var(--white-color);
+}
+
+.trip-container {
+  display: flex;
+  width: 1180px;
+  height: 526px;
+}
+
+.trip-video {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .trip-video-bg {
+    position: absolute;
+    z-index: 1;
+    width: 350px;
+    height: 400px;
+    background: url("../../public/images/bg-imountains-video.png");
+    background-repeat: no-repeat;
+  }
+
+  .trip-video-overlay {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    width: 350px;
+    height: 400px;
+    background: url("../../public/images/bg-trip-video.png");
+    background-repeat: no-repeat;
+    top: 24%;
+    left: 132px;
+
+    .trip-wrapper-btn {
+      background: rgba(253, 253, 253, 0.6);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+
+      &:hover {
+        background: var(--white-color);
+      }
+    }
+
+    .trip-play-btn {
+      display: flex;
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: 50%;
+      background: url("../../public/images/play-video-icon.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+    }
+  }
+}
+
+.trip-content {
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding-right: 20px;
+
+  .trip-lable {
+    color: var(--yellow-color);
+  }
+
+  .trip-title {
+    margin-top: 8px;
+    margin-bottom: 40px;
+    color: var(--black-color);
+  }
+
+  .trip-story {
+    line-height: 150%;
+  }
+
+  .trip-tour-button {
+    width: 200px;
+    height: 52px;
+    border-radius: 6px;
+    background: var(--green-color);
+    color: var(--white-color);
+    margin-top: 55px;
+    margin-bottom: 64px;
+  }
+}
+
+.offers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 771px;
+  background: var(--beige-color);
+
+  .offers-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1180px;
+    gap: 80px;
+  }
+
+  .offers-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+
+  .offers-title {
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+
+  .offers-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 24px;
+    margin-top: 40px;
+
+    &:hover {
+      outline: 1px solid var(--green-color);
+    }
+  }
+
+  .offers-wrapper-icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+    padding-top: 10px;
+  }
+
+  .offers-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .offers-label {
+    color: var(--yellow-color)
+  }
+
+  .offers-description {
+    line-height: 150%;
+  }
+
+  .offers-feature-text {
+    line-height: 20px;
+  }
+
+  .offers-price-btn {
+    width: 236px;
+    height: 52px;
+    background: var(--green-color);
+    color: var(--white-color);
+    letter-spacing: 1.2%;
+    border: 1px solid var(--green-color);
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+
+  .offers-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .offers-gallery-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
   }
 }
