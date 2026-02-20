@@ -19,8 +19,7 @@ export class Collection<T> {
   }
 
   removeByIndex(index: number): void {
-    const filteredItems: T[] = this.items.filter((v: T, i: number): boolean => i !== index);
-    this.items = filteredItems;
+    this.items = this.items.filter((v: T, i: number): boolean => i !== index);
   }
 
   replace(index: number, newItem: T): void {

@@ -1,26 +1,39 @@
 import { FormsModule } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Color } from '../enums/Color';
 import { Collection } from './collection';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgTemplateOutlet} from '@angular/common';
 import { offers } from './offers';
 import { IOffer } from './interfaces/IOffer';
 import { galleryImages } from './gallery-images';
 import { IPicture } from './interfaces/IPicture';
+import { ICard } from './interfaces/ICard';
+import { popularCards } from './popular-cards'
+import { travelCards } from './travel-cards';
+import { MessageService } from './services/message.service';
+import { MessageType } from '../enums/MessageType';
+import { LocalStorageService } from './services/local-storage.service';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, NgTemplateOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
 
+  messageService: MessageService = inject(MessageService);
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
+
   offers: IOffer[] = offers;
   gallery: IPicture[] = galleryImages;
+  populars: ICard[] = popularCards;
+  travels: ICard[] = travelCards;
 
   readonly LAST_VISIT_DATE_KEY: string = 'last-visit-date';
   readonly VISIT_COUNTER_KEY: string = 'visit-counter';
+
+  protected readonly messageType = MessageType;
 
   companyName: string = 'Румтибет';
   city: string = '';
@@ -75,12 +88,12 @@ export class AppComponent {
 
   saveLastVisitDate(): void {
     const date: Date = new Date();
-    localStorage.setItem(this.LAST_VISIT_DATE_KEY, date.toISOString());
+    this.localStorageService.setItem<string>(this.LAST_VISIT_DATE_KEY, date.toISOString());
   }
 
   saveVisitCounter(): void {
-    const visitCounter: number = Number(localStorage.getItem(this.VISIT_COUNTER_KEY) || 0);
-    localStorage.setItem(this.VISIT_COUNTER_KEY, `${ visitCounter + 1 }`);
+    const visitCounter: number = Number(this.localStorageService.getItem<string>(this.VISIT_COUNTER_KEY) || 0);
+    this.localStorageService.setItem<string>(this.VISIT_COUNTER_KEY, `${ visitCounter + 1 }`);
   }
 
   isMainColor(color: Color): boolean {

@@ -11,9 +11,11 @@
 :root {
   --white-color: #FDFDFD;
   --green-color: #1A3E3E;
+  --light-green-color: #317171;
   --yellow-color: #F2BE22;
   --black-color: #18121E;
   --beige-color: #F3F5F4;
+  --dark-blue-color: #0F172AD9;
 }
 
 .fs-14 {
@@ -32,6 +34,10 @@
   font-size: 24px;
 }
 
+.fs-20 {
+  font-size: 20px;
+}
+
 .fs-32 {
   font-size: 32px;
 }
@@ -41,5 +47,25 @@
 }
 
 .bold {
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.extra-bold {
+  font-weight: 800;
+}
+
+.lh-20 {
+  line-height: 20px;
+}
+
+.lh-32 {
+  line-height: 32px;
+}
+
+.yellow-color {
+  color: var(--yellow-color);
+}
+
+.white-color {
+  color: var(--white-color);
 }
