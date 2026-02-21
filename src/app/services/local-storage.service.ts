@@ -10,8 +10,8 @@ export class LocalStorageService {
   }
 
   getItem<T>(key: string): T | null {
-    let value = localStorage.getItem(key);
-    return value === null ? null : JSON.parse(value);
+    let value: string | null = localStorage.getItem(key);
+    return value ? JSON.parse(value) : null;
   }
 
   removeItem(key: string): void {

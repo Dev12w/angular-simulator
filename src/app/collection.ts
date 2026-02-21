@@ -19,7 +19,7 @@ export class Collection<T> {
   }
 
   removeByIndex(index: number): void {
-    this.items = this.items.filter((v: T, i: number): boolean => i !== index);
+    this.items = this.items.filter((value: T, i: number) => i !== index);
   }
 
   replace(index: number, newItem: T): void {

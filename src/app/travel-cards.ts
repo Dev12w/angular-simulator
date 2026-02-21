@@ -33,4 +33,4 @@ export const travelCards: ICard[] = [
     date: '01/04/2023',
     link: 'читать статью'
   }
-]
+];

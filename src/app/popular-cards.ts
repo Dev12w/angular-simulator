@@ -28,4 +28,4 @@ export const popularCards: ICard[] = [
     price: 230,
     description: 'для тех, кто забоится о себе'
   }
-]
+];

@@ -33,7 +33,7 @@ export class AppComponent {
   readonly LAST_VISIT_DATE_KEY: string = 'last-visit-date';
   readonly VISIT_COUNTER_KEY: string = 'visit-counter';
 
-  protected readonly messageType = MessageType;
+  messageType: typeof MessageType = MessageType;
 
   companyName: string = 'Румтибет';
   city: string = '';
