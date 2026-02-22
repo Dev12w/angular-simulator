@@ -11,8 +11,9 @@ import { ICard } from './interfaces/ICard';
 import { popularCards } from './popular-cards'
 import { travelCards } from './travel-cards';
 import { MessageService } from './services/message.service';
-import { MessageType } from '../enums/MessageType';
+import { MessageType } from '../enums/Message-type';
 import { LocalStorageService } from './services/local-storage.service';
+import { WidgetType } from '../types/widget-type';
 
 @Component({
   selector: 'app-root',
@@ -41,7 +42,7 @@ export class AppComponent {
   participants: string = '';
   count: number = 0;
   currentDate: Date = new Date();
-  currentHeaderWidget: 'date' | 'counter' = 'date';
+  currentHeaderWidget!: WidgetType;
   liveInputValue!: string;
   isLoading: boolean = true;
 
@@ -57,7 +58,7 @@ export class AppComponent {
     setTimeout(() => this.isLoading = false, 1000);
   }
 
-  setHeaderWidget(widget: 'date' | 'counter'): void {
+  setHeaderWidget(widget: WidgetType): void {
     this.currentHeaderWidget = widget;
   }
 

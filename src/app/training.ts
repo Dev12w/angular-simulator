@@ -1,24 +1,11 @@
-export interface IUser {
-  id: number;
-  name: string;
-  surname: string;
-  age?: number;
-}
+import { IEmployee } from '../app/interfaces/IEmployee';
+import { EmployeeStatusType } from '../types/employee-type';
+import { StatusType } from '../types/status-type';
+import { TextFormatType } from '../types/text-format-type';
 
-interface IEmployee extends IUser {
-  position: string;
-  status: EmployeeStatus;
-}
-
-type EmployeeStatus = 'active' | 'inactive' | 'fired';
-type Status = 'loading' | 'success' | 'error';
-type TextFormat = 'uppercase' | 'lowercase' | 'capitalize';
-
-let employeeStatus: EmployeeStatus;
-
-let status: Status;
-
-let textFormat: TextFormat;
+let employeeStatus: EmployeeStatusType;
+let status: StatusType;
+let textFormat: TextFormatType;
 
 const sum = (a: number, b: number): number => {
   return a + b;
@@ -26,7 +13,7 @@ const sum = (a: number, b: number): number => {
 
 sum(2, 4);
 
-const formatText = (text: string, format: TextFormat): string => {
+const formatText = (text: string, format: TextFormatType): string => {
   switch (format) {
     case 'uppercase':
       return text.toUpperCase();
