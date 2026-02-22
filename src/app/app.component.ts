@@ -2,7 +2,7 @@ import { FormsModule } from '@angular/forms';
 import { Component, inject } from '@angular/core';
 import { Color } from '../enums/Color';
 import { Collection } from './collection';
-import {CommonModule, NgTemplateOutlet} from '@angular/common';
+import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { offers } from './offers';
 import { IOffer } from './interfaces/IOffer';
 import { galleryImages } from './gallery-images';
@@ -11,7 +11,7 @@ import { ICard } from './interfaces/ICard';
 import { popularCards } from './popular-cards'
 import { travelCards } from './travel-cards';
 import { MessageService } from './services/message.service';
-import { MessageType } from '../enums/Message-type';
+import { MessageType } from '../enums/message-type';
 import { LocalStorageService } from './services/local-storage.service';
 import { WidgetType } from '../types/widget-type';
 

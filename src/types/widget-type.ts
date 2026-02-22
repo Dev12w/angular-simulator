@@ -1,1 +1,1 @@
-  export type WidgetType = 'date' | 'counter';
+export type WidgetType = 'date' | 'counter';
