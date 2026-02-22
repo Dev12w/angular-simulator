@@ -8,7 +8,7 @@ import { IOffer } from './interfaces/IOffer';
 import { galleryImages } from './gallery-images';
 import { IPicture } from './interfaces/IPicture';
 import { ICard } from './interfaces/ICard';
-import { popularCards } from './popular-cards'
+import { popularCards } from './popular-cards';
 import { travelCards } from './travel-cards';
 import { MessageService } from './services/message.service';
 import { MessageType } from '../enums/message-type';
