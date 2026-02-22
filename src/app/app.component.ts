@@ -11,9 +11,9 @@ import { ICard } from './interfaces/ICard';
 import { popularCards } from './popular-cards';
 import { travelCards } from './travel-cards';
 import { MessageService } from './services/message.service';
-import { MessageType } from '../enums/message-type';
+import { Message } from '../enums/Message';
 import { LocalStorageService } from './services/local-storage.service';
-import { WidgetType } from '../types/widget-type';
+import { Widget } from '../types/Widget';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +34,7 @@ export class AppComponent {
   readonly LAST_VISIT_DATE_KEY: string = 'last-visit-date';
   readonly VISIT_COUNTER_KEY: string = 'visit-counter';
 
-  messageType: typeof MessageType = MessageType;
+  messageType: typeof Message = Message;
 
   companyName: string = 'Румтибет';
   city: string = '';
@@ -42,7 +42,7 @@ export class AppComponent {
   participants: string = '';
   count: number = 0;
   currentDate: Date = new Date();
-  currentHeaderWidget!: WidgetType;
+  currentHeaderWidget: Widget = 'date';
   liveInputValue!: string;
   isLoading: boolean = true;
 
@@ -58,7 +58,7 @@ export class AppComponent {
     setTimeout(() => this.isLoading = false, 1000);
   }
 
-  setHeaderWidget(widget: WidgetType): void {
+  setHeaderWidget(widget: Widget): void {
     this.currentHeaderWidget = widget;
   }
 

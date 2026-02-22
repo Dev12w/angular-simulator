@@ -1,1 +1,0 @@
-export type EmployeeStatusType = 'active' | 'inactive' | 'fired';

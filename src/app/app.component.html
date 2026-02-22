@@ -19,7 +19,7 @@
               <a id="pricing-link" href="#">Стоимость</a>
               <a id="blog-link" href="#">Блог</a>
               <a id="contacts-link" href="#">Контакты</a>
-              <button class="btn-consultation">Консультация</button>
+              <button class="btn-consultation" id="submit-consultation-btn">Консультация</button>
             </nav>
           </div>
           <div class="header-date-counter">
@@ -30,12 +30,12 @@
             }
             @if (currentHeaderWidget == 'counter') {
               <div class="header-counter">
-                <button (click)="decrementCount()" class="counter-btn">-</button>
+                <button (click)="decrementCount()" class="counter-btn" id="decrement-count-btn">-</button>
                 <span>{{ count }}</span>
-                <button (click)="incrementCount()" class="counter-btn">+</button>
+                <button (click)="incrementCount()" class="counter-btn" id="increment-count-btn">+</button>
               </div>
             }
-            <button (click)="setHeaderWidget(currentHeaderWidget == 'date' ? 'counter' : 'date')" class="header-toggle-btn">
+            <button (click)="setHeaderWidget(currentHeaderWidget == 'date' ? 'counter' : 'date')" class="header-toggle-btn" id="widget-toggle-btn">
               {{ currentHeaderWidget == 'date' ? 'Показать кликер' : 'Показать дату' }}
             </button>
           </div>
@@ -46,7 +46,7 @@
           </h1>
           <div class="header-tour-search">
             <div class="header-location-search">
-              <select [(ngModel)]="city" name="city" class="header-option-text">
+              <select [(ngModel)]="city" name="city" class="header-option-text" id="option-city">
                 <option value="" disabled selected hidden>Выберите город</option>
                 <option value="msk">Москва</option>
                 <option value="spb">Санкт-Петербург</option>
@@ -54,7 +54,7 @@
               <span class="location-search-text">выберите из списка</span>
             </div>
             <div class="header-location-search">
-              <select [(ngModel)]="date" name="date" class="header-option-text">
+              <select [(ngModel)]="date" name="date" class="header-option-text" id="option-date">
                 <option value="" disabled selected hidden>Дата похода</option>
                 <option value="2026-02-10">10 февраля</option>
                 <option value="2026-02-17">17 февраля</option>
@@ -63,7 +63,7 @@
               <span class="location-search-text">укажите диапазон</span>
             </div>
             <div class="header-location-search">
-              <select [(ngModel)]="participants" name="participants" class="header-option-text">
+              <select [(ngModel)]="participants" name="participants" class="header-option-text" id="option-participants">
                 <option value="" disabled selected hidden>Участники</option>
                 <option value="one-person">1 человек</option>
                 <option value="two-people">2 человека</option>
@@ -71,13 +71,13 @@
               <span class="location-search-text">выберите из списка</span>
             </div>
             <div class="header-location-search">
-              <button [disabled]="!isFormValid()" name="isFormComplete" class="btn-program-find fs-18">
+              <button [disabled]="!isFormValid()" name="isFormComplete" class="btn-program-find fs-18" id="submit-form-btn">
                 Найти программу
               </button>
             </div>
           </div>
           <div>
-            <input [(ngModel)]="liveInputValue" type="text" placeholder="Живой импут">
+            <input [(ngModel)]="liveInputValue" type="text" placeholder="Живой импут" id="live-input-value" >
             <span>{{ liveInputValue }}</span>
           </div>
         </div>
@@ -89,7 +89,7 @@
           <div class="trip-video-bg"></div>
           <div class="trip-video-overlay">
             <div class="trip-wrapper-btn">
-              <button class="trip-play-btn"></button>
+              <button class="trip-play-btn" id="video-play-btn"></button>
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@
             Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в
             Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.
           </p>
-          <button class="trip-tour-button fs-16 bold" (click)="messageService.addMessage({ type: messageType.SUCCESS, content: 'Программа тура' })">
+          <button class="trip-tour-button fs-16 bold" id="submit-tour-btn" (click)="messageService.addMessage({ type: messageType.SUCCESS, content: 'Программа тура' })">
             Программа тура
           </button>
         </div>
@@ -130,7 +130,7 @@
               </li>
             }
           </ul>
-          <button class="offers-price-btn fs-16" (click)="messageService.addMessage({ type: messageType.WARNING, content: 'Стоимость программ' })">
+          <button class="offers-price-btn fs-16" id="submit-price-btn" (click)="messageService.addMessage({ type: messageType.WARNING, content: 'Стоимость программ' })">
             Стоимость программ
           </button>
         </div>
@@ -171,7 +171,7 @@
             </div>
           }
         </div>
-        <button class="popular-rating-btn fs-16 bold" (click)="messageService.addMessage({ type: messageType.INFO, content: 'Рейтинг направлений' })">
+        <button class="popular-rating-btn fs-16 bold" id="submit-rating-btn" (click)="messageService.addMessage({ type: messageType.INFO, content: 'Рейтинг направлений' })">
           Рейтинг направлений
         </button>
       </div>
@@ -197,16 +197,16 @@
             </div>
           }
         </div>
-        <button class="travel-card-btn fs-16 bold" (click)="messageService.addMessage({ type: messageType.ERROR, content: 'Другие материалы' })">
+        <button class="travel-card-btn fs-16 bold" id="submit-materials-btn" (click)="messageService.addMessage({ type: messageType.ERROR, content: 'Другие материалы' })">
           Другие материалы
         </button>
       </div>
     </section>
-    <div class="messages-container">
-      @for (message of messageService.messages; track $index) {
-        <ng-container [ngTemplateOutlet]="messageTemplate" [ngTemplateOutletContext]="{ message: message }"/>
-      }
-    </div>
+  </div>
+  <div class="messages-container">
+    @for (message of messageService.messages; track $index) {
+      <ng-container [ngTemplateOutlet]="messageTemplate" [ngTemplateOutletContext]="{ message: message }"/>
+    }
   </div>
 }
 
@@ -217,6 +217,6 @@
       <div class="fs-16 bold white-color">{{ message.type }}</div>
       <div class="fs-14 white-color">{{ message.content }}</div>
     </div>
-    <button (click)="messageService.closeMessage(message)" class="message-close-btn"></button>
+    <button (click)="messageService.closeMessage(message)" class="message-close-btn" id="message-close-btn"></button>
   </div>
 </ng-template>

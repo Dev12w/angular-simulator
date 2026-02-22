@@ -1,11 +1,11 @@
 import { IEmployee } from '../app/interfaces/IEmployee';
-import { EmployeeStatusType } from '../types/employee-type';
-import { StatusType } from '../types/status-type';
-import { TextFormatType } from '../types/text-format-type';
+import { EmployeeStatus } from '../types/EmployeeStatus';
+import { Status } from '../types/Status';
+import { TextFormat } from '../types/TextFormat';
 
-let employeeStatus: EmployeeStatusType;
-let status: StatusType;
-let textFormat: TextFormatType;
+let employeeStatus: EmployeeStatus;
+let status: Status;
+let textFormat: TextFormat;
 
 const sum = (a: number, b: number): number => {
   return a + b;
@@ -13,7 +13,7 @@ const sum = (a: number, b: number): number => {
 
 sum(2, 4);
 
-const formatText = (text: string, format: TextFormatType): string => {
+const formatText = (text: string, format: TextFormat): string => {
   switch (format) {
     case 'uppercase':
       return text.toUpperCase();
