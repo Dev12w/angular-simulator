@@ -1,3 +1,5 @@
+@use ".././assets/_mixin.scss" as *;
+
 .loading-text {
   display: block;
   text-align: center;
@@ -7,10 +9,9 @@
   color: var(--white-color);
   display: flex;
   justify-content: center;
-  background: url('../../public/images/bg-imountains.png');
   width: 100%;
   height: 985px;
-  background-repeat: no-repeat;
+  background: url('../../public/images/bg-imountains.png') no-repeat;
   background-size: cover;
 }
 
@@ -34,11 +35,10 @@
   flex-direction: column;
 
   .logo {
-    background: url('../../public/images/logo-imountains.svg');
     display: flex;
     width: 137px;
     height: 50px;
-    background-repeat: no-repeat;
+    background: url('../../public/images/logo-imountains.svg') no-repeat;
   }
 
   .logo-text {
@@ -63,40 +63,23 @@
 }
 
 .btn-consultation {
-  width: 157px;
-  height: 44px;
-  background: var(--green-color);
-  color: var(--white-color);
-  border: 1px solid var(--green-color);
-  border-radius: 5px;
-  margin-left: 20px;
+  @include button-base;
 
-  &:hover {
-    background: #265555;
-  }
+  width: 157px;
+  margin-left: 20px;
 }
 
 .header-date-counter {
   display: flex;
+  align-items: center;
   justify-content: end;
-  height: 100%;
+  min-height: 100px;
 
   .header-toggle-btn {
+    @include button-base;
+
     width: 157px;
-    height: 44px;
-    background: var(--green-color);
-    color: var(--white-color);
-    border: 1px solid var(--green-color);
-    border-radius: 5px;
     margin-left: 20px;
-
-    &:hover {
-      background: #265555;
-    }
-
-    &::after {
-      background: #358888;
-    }
   }
 
   .counter-btn {
@@ -110,6 +93,7 @@
   font-weight: 300;
   text-transform: uppercase;
   line-height: 70px;
+  font-size: 47px;
 }
 
 .header-tour-search {
@@ -138,7 +122,6 @@
     border: 2px solid var(--white-color);
     margin-bottom: 13px;
     padding-left: 10px;
-    font-size: 18px;
   }
 }
 
@@ -153,7 +136,7 @@
 .btn-program-find {
   width: 220px;
   height: 52px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid var(--white-color);
   margin-bottom: 33px;
   background: var(--white-color);
@@ -192,8 +175,7 @@
     z-index: 1;
     width: 350px;
     height: 400px;
-    background: url("../../public/images/bg-imountains-video.png");
-    background-repeat: no-repeat;
+    background: url('../../public/images/bg-imountains-video.png') no-repeat;
   }
 
   .trip-video-overlay {
@@ -204,8 +186,7 @@
     z-index: 2;
     width: 350px;
     height: 400px;
-    background: url("../../public/images/bg-trip-video.png");
-    background-repeat: no-repeat;
+    background: url('../../public/images/bg-trip-video.png') no-repeat;
     top: 24%;
     left: 132px;
 
@@ -226,9 +207,7 @@
       height: 50px;
       border: none;
       border-radius: 50%;
-      background: url("../../public/images/play-video-icon.svg");
-      background-repeat: no-repeat;
-      background-position: center;
+      background: url('../../public/images/play-video-icon.svg') no-repeat center;
       cursor: pointer;
     }
   }
@@ -242,10 +221,6 @@
   height: 100%;
   padding-right: 20px;
 
-  .trip-lable {
-    color: var(--yellow-color);
-  }
-
   .trip-title {
     margin-top: 8px;
     margin-bottom: 40px;
@@ -257,11 +232,9 @@
   }
 
   .trip-tour-button {
+    @include button-base;
+
     width: 200px;
-    height: 52px;
-    border-radius: 6px;
-    background: var(--green-color);
-    color: var(--white-color);
     margin-top: 55px;
     margin-bottom: 64px;
   }
@@ -320,10 +293,6 @@
     flex-direction: column;
   }
 
-  .offers-label {
-    color: var(--yellow-color)
-  }
-
   .offers-description {
     line-height: 150%;
   }
@@ -333,13 +302,9 @@
   }
 
   .offers-price-btn {
+    @include button-base;
+
     width: 236px;
-    height: 52px;
-    background: var(--green-color);
-    color: var(--white-color);
-    letter-spacing: 1.2%;
-    border: 1px solid var(--green-color);
-    border-radius: 5px;
     margin-top: 20px;
   }
 
@@ -350,7 +315,6 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    display: flex;
     flex-wrap: wrap;
     gap: 10px;
   }
@@ -360,5 +324,215 @@
     align-items: center;
     margin: 0;
     padding: 0;
+  }
+}
+
+.popular {
+  display: flex;
+  justify-content: center;
+  height: 893px;
+  background: var(--white-color);
+
+  .popular-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1180px;
+  }
+
+  .popular-rating-btn {
+    @include button-base;
+
+    width: 244px;
+    margin-top: 50px;
+  }
+
+  .popular-title {
+    margin-bottom: 50px;
+  }
+
+  .popular-card {
+    display: flex;
+    gap: 20px;
+
+    .popular-wrapper-card {
+      width: 380px;
+      display: flex;
+      position: relative;
+    }
+
+    .popular-card-image {
+      width: 380px;
+      height: 500px;
+      position: relative;
+    }
+
+    .popular-card-rating {
+      display: flex;
+      justify-content: end;
+      align-content: center;
+      align-items: center;
+      padding-right: 8px;
+      z-index: 2;
+      top: 50px;
+      right: 0;
+      position: absolute;
+      background: rgba(253, 253, 253, 0.4);
+      gap: 8px;
+      width: 65px;
+      height: 32px;
+      box-shadow-blur: 4px;
+    }
+
+    .popular-card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: rgba(255, 255, 255, 0.38);
+      width: 100%;
+      height: 90px;
+      color: var(--white-color);
+
+      .popular-card-wrapper {
+        padding-left: 25px;
+      }
+
+      .popular-card-wrapper-price {
+        padding-right: 25px;
+      }
+
+      .popular-card-price {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.38);
+        width: 86px;
+        height: 40px;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+.travel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1036px;
+  background: var(--beige-color);
+
+  .travel-title {
+    padding-bottom: 40px;
+    padding-top: 8px;
+  }
+
+  .travel-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .travels-cards-content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1180px;
+    height: 648px;
+    gap: 20px;
+  }
+
+  .travel-card-container {
+    display: flex;
+    width: 548px;
+    height: 280px;
+    background: var(--white-color);
+    border-radius: 7px;
+    gap: 24px;
+    padding: 16px;
+  }
+
+  .travel-card-information {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    .travel-card-title {
+      padding-top: 16px;
+      padding-bottom: 28px;
+    }
+
+    .travel-card-date {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 16px;
+    }
+
+    .travel-link-read {
+      text-decoration: none;
+      color: var(--green-color)
+    }
+  }
+
+  .travel-card-btn {
+    @include button-base;
+
+    width: 220px;
+    margin-top: 50px;
+  }
+}
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 6;
+  top: 15px;
+  right: 0;
+  gap: 10px;
+}
+
+.message-container {
+  display: flex;
+  width: 332px;
+  min-height: 52px;
+  background: var(--dark-blue-color);
+  border-radius: 10px;
+  border: 2px solid var(--white-color);
+  outline: 2px solid var(--dark-blue-color);
+  padding: 7px;
+  align-items: center;
+
+  &.error {
+    background: #7e0303;
+  }
+
+  &.warning {
+    background: #bf9500;
+  }
+
+  .message-icon-wrapper {
+    background: url("../.././public/images/message-envelope-icon.svg") no-repeat center center;
+    width: 60px;
+    height: 60px;
+  }
+
+  .message-text-wrapper {
+    word-break: break-all;
+    flex: 1;
+  }
+
+  .message-close-btn {
+    background: url("../.././public/images/message-close-icon.svg") no-repeat center;
+    width: 25px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px transparent solid;
+    cursor: pointer;
   }
 }

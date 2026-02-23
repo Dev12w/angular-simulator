@@ -1,0 +1,16 @@
+@use './fonts';
+@use './normalize';
+
+@mixin button-base {
+  height: 52px;
+  background: var(--green-color);
+  border-radius: 5px;
+  color: var(--white-color);
+  cursor: pointer;
+
+  &:active {
+    background: var(--light-green-color);
+    outline: 1px solid var(--light-green-color);
+    border: none;
+  }
+}
