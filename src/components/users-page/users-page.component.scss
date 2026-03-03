@@ -1,0 +1,14 @@
+@use "../../assets/styles" as *;
+
+.users-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1000px;
+  outline: 10px solid var(--green-color);
+  margin: 50px;
+
+  & h1 {
+    font-size: 50px;
+  }
+}

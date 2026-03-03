@@ -1,0 +1,11 @@
+.not-found-page {
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  outline: 10px solid var(--red-color);
+  margin: 50px;
+
+  & h1 {
+    font-size: 35px;
+  }
+}

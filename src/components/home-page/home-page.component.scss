@@ -1,5 +1,5 @@
-@use ".././assets/styles.scss" as *;
-@use ".././assets/_mixin.scss" as *;
+@use "../../assets/styles" as *;
+@use "../../assets/mixin" as *;
 
 .trip {
   display: flex;
@@ -26,7 +26,7 @@
     z-index: 1;
     width: 350px;
     height: 400px;
-    background: url('../../public/images/bg-imountains-video.png') no-repeat;
+    background: url('../../../public/images/bg-imountains-video.png') no-repeat;
   }
 
   .trip-video-overlay {
@@ -37,7 +37,7 @@
     z-index: 2;
     width: 350px;
     height: 400px;
-    background: url('../../public/images/bg-trip-video.png') no-repeat;
+    background: url('../../../public/images/bg-trip-video.png') no-repeat;
     top: 24%;
     left: 132px;
 
@@ -58,7 +58,7 @@
       height: 50px;
       border: none;
       border-radius: 50%;
-      background: url('../../public/images/play-video-icon.svg') no-repeat center;
+      background: url('../../../public/images/play-video-icon.svg') no-repeat center;
       cursor: pointer;
     }
   }
@@ -340,5 +340,40 @@
 
     width: 220px;
     margin-top: 50px;
+  }
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  height: 1011px;
+  background: var(--white-color);
+
+  .gallery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 85px;
+
+    & h3 {
+      margin-top: 10px;
+      margin-bottom: 40px;
+    }
+
+    .gallery-images {
+      display: flex;
+      flex-wrap: wrap;
+      width: 1180px;
+      height: 526px;
+      gap: 18px;
+      border-radius: 7px;
+    }
+
+    .gallery-btn {
+      @include button-base;
+
+      width: 178px;
+      margin-top: 50px;
+    }
   }
 }

@@ -1,5 +1,0 @@
-<div class="messages-container">
-  @for (message of messageService.messages; track $index) {
-    <ng-container [ngTemplateOutlet]="messageTemplate" [ngTemplateOutletContext]="{ message: message }"/>
-  }
-</div>

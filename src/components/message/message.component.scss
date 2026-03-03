@@ -1,4 +1,4 @@
-@use ".././assets/styles.scss" as *;
+@use "../../assets/styles" as *;
 
 
 .messages-container {
@@ -31,7 +31,7 @@
   }
 
   .message-icon-wrapper {
-    background: url("../.././public/images/message-envelope-icon.svg") no-repeat center center;
+    background: url("../../../public/images/message-envelope-icon.svg") no-repeat center center;
     width: 60px;
     height: 60px;
   }
@@ -42,7 +42,7 @@
   }
 
   .message-close-btn {
-    background: url("../.././public/images/message-close-icon.svg") no-repeat center;
+    background: url("../../../public/images/message-close-icon.svg") no-repeat center;
     width: 25px;
     height: 20px;
     border-radius: 50%;
