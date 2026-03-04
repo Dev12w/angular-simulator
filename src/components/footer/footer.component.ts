@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IPicture } from "../../app/interfaces/IPicture";
 
 @Component({
   selector: 'app-footer',
