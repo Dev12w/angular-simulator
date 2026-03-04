@@ -14,7 +14,7 @@
       <p class="trip-story fs-18">
         Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.
       </p>
-      <button class="trip-tour-button fs-16 bold" id="submit-tour-btn" (click)="messageService.addMessage({ type: messageType.SUCCESS, content: 'Программа тура' })">
+      <button class="trip-tour-button fs-16 bold" id="submit-tour-btn" (click)="messageService.showSuccess('Программа тура')">
         Программа тура
       </button>
     </div>
@@ -47,7 +47,7 @@
       </button>
     </div>
     <div class="offers-gallery">
-      @for (picture of gallery; track picture.id) {
+      @for (picture of galleryImages; track picture.id) {
         <img [src]="'images/' + picture.image + '.png'" [alt]="picture.image">
       }
     </div>
@@ -75,7 +75,7 @@
               </h3>
               <span class="popular-card-description fs-14">
                     {{ popular.description }}
-                  </span>
+              </span>
             </div>
             <div class="popular-card-wrapper-price fs-20 bold">
               <span class="popular-card-price">{{ popular.price }} &#x24;</span>
@@ -120,16 +120,14 @@
 </section>
 
 <section class="gallery">
-  <div class="gallery-content">
+  <div class="gallery-container">
     <span class="fs-24 yellow-color">фото-отчет</span>
     <h3 class="gallery-title fs-32 extra-bold">Делимся впечатлениями</h3>
-    <div class="gallery-wrapper">
-      @for (picture of gallery; track picture.id) {
-        @if (picture.photo) {
-          <div>
-            <img [src]="'images/' + picture.photo + '.png'" [alt]="picture.photo">
-          </div>
-        }
+    <div class="gallery-images">
+      @for (picture of galleryPictures; track picture.id) {
+        <div>
+          <img [src]="'images/' + picture.image + '.png'" [alt]="picture.image">
+        </div>
       }
     </div>
     <button class="gallery-btn" id="submit-gallery-btn">Наш pinterest</button>

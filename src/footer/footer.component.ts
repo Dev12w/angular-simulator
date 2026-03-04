@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { IPicture } from "../app/interfaces/IPicture";
+import { galleryIcons } from "../app/gallery-icons";
 
 @Component({
   selector: 'app-footer',
@@ -8,4 +10,5 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  galleryIcons: IPicture[] = galleryIcons;
 }

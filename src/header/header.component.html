@@ -1,81 +1,84 @@
- <header class="header">
-      <div class="header-nav-container">
-        <div class="header-nav-wrapper">
-          <div class="header-logo-container">
-            <div class="logo"></div>
-            <span class="logo-text fs-16 bold">{{ companyName }}</span>
-          </div>
-          <nav class="header-menu fs-18 bold">
-            <a id="main-link" href="#">Главная</a>
-            <a id="about-guide-link" href="#">Про гида</a>
-            <a id="tour-program-link" href="#">Программа тура</a>
-            <a id="pricing-link" href="#">Стоимость</a>
-            <a id="blog-link" href="#">Блог</a>
-            <a id="contacts-link" href="#">Контакты</a>
-            <button class="btn-consultation" id="submit-consultation-btn">Консультация</button>
-          </nav>
+<header class="header">
+  <div class="header-nav-container">
+    <div class="header-nav-wrapper">
+      <div class="header-logo-container">
+        <div class="logo"></div>
+        <span class="logo-text fs-16 bold">{{ companyName }}</span>
+      </div>
+      <nav class="header-menu fs-18 bold">
+        @for (item of navigationItems; track item.path) {
+          <a 
+            [routerLink]="item.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+          >
+            {{ item.label }}
+          </a>
+        }
+        <button class="btn-consultation" id="submit-consultation-btn">Консультация</button>
+      </nav>
+    </div>
+    <div class="header-date-counter">
+      @if (currentHeaderWidget == 'date') {
+        <div class="header-date">
+          <span>{{ currentDate.toLocaleString() }}</span>
         </div>
-        <div class="header-date-counter">
-          @if (currentHeaderWidget == 'date') {
-            <div class="header-date">
-              <span>{{ currentDate.toLocaleString() }}</span>
-            </div>
-          }
-          @if (currentHeaderWidget == 'counter') {
-            <div class="header-counter">
-              <button (click)="decrementCount()" class="counter-btn" id="decrement-count-btn">-</button>
-              <span>{{ count }}</span>
-              <button (click)="incrementCount()" class="counter-btn" id="increment-count-btn">+</button>
-            </div>
-          }
-          <button (click)="setHeaderWidget(currentHeaderWidget == 'date' ? 'counter' : 'date')" class="header-toggle-btn" id="widget-toggle-btn">
-            {{ currentHeaderWidget == 'date' ? 'Показать кликер' : 'Показать дату' }}
+      }
+      @if (currentHeaderWidget == 'counter') {
+        <div class="header-counter">
+          <button (click)="decrementCount()" class="counter-btn" id="decrement-count-btn">-</button>
+          <span>{{ count }}</span>
+          <button (click)="incrementCount()" class="counter-btn" id="increment-count-btn">+</button>
+        </div>
+      }
+      <button (click)="setHeaderWidget(currentHeaderWidget == 'date' ? 'counter' : 'date')" class="header-toggle-btn" id="widget-toggle-btn">
+        {{ currentHeaderWidget == 'date' ? 'Показать кликер' : 'Показать дату' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="header-content">
+    <div class="header-search-wrapper">
+      <h1 class="header-title">
+        Насладись прогулкой в горах <br> с командой единомышленников
+      </h1>
+      <div class="header-tour-search">
+        <div class="header-location-search">
+          <select [(ngModel)]="city" name="city" class="header-option-text" id="option-city">
+            <option value="" disabled selected hidden>Выберите город</option>
+            <option value="msk">Москва</option>
+            <option value="spb">Санкт-Петербург</option>
+          </select>
+          <span class="location-search-text">выберите из списка</span>
+        </div>
+        <div class="header-location-search">
+          <select [(ngModel)]="date" name="date" class="header-option-text" id="option-date">
+            <option value="" disabled selected hidden>Дата похода</option>
+            <option value="2026-02-10">10 февраля</option>
+            <option value="2026-02-17">17 февраля</option>
+            <option value="2026-02-24">24 февраля</option>
+          </select>
+          <span class="location-search-text">укажите диапазон</span>
+        </div>
+        <div class="header-location-search">
+          <select [(ngModel)]="participants" name="participants" class="header-option-text" id="option-participants">
+            <option value="" disabled selected hidden>Участники</option>
+            <option value="one-person">1 человек</option>
+            <option value="two-people">2 человека</option>
+          </select>
+          <span class="location-search-text">выберите из списка</span>
+        </div>
+        <div class="header-location-search">
+          <button [disabled]="!isFormValid()" name="isFormComplete" class="btn-program-find fs-18" id="submit-form-btn">
+            Найти программу
           </button>
         </div>
       </div>
-
-      <div class="header-content">
-        <div class="header-search-wrapper">
-          <h1 class="header-title">
-            Насладись прогулкой в горах <br> с командой единомышленников
-          </h1>
-          <div class="header-tour-search">
-            <div class="header-location-search">
-              <select [(ngModel)]="city" name="city" class="header-option-text" id="option-city">
-                <option value="" disabled selected hidden>Выберите город</option>
-                <option value="msk">Москва</option>
-                <option value="spb">Санкт-Петербург</option>
-              </select>
-              <span class="location-search-text">выберите из списка</span>
-            </div>
-            <div class="header-location-search">
-              <select [(ngModel)]="date" name="date" class="header-option-text" id="option-date">
-                <option value="" disabled selected hidden>Дата похода</option>
-                <option value="2026-02-10">10 февраля</option>
-                <option value="2026-02-17">17 февраля</option>
-                <option value="2026-02-24">24 февраля</option>
-              </select>
-              <span class="location-search-text">укажите диапазон</span>
-            </div>
-            <div class="header-location-search">
-              <select [(ngModel)]="participants" name="participants" class="header-option-text" id="option-participants">
-                <option value="" disabled selected hidden>Участники</option>
-                <option value="one-person">1 человек</option>
-                <option value="two-people">2 человека</option>
-              </select>
-              <span class="location-search-text">выберите из списка</span>
-            </div>
-            <div class="header-location-search">
-              <button [disabled]="!isFormValid()" name="isFormComplete" class="btn-program-find fs-18" id="submit-form-btn">
-                Найти программу
-              </button>
-            </div>
-          </div>
-          <div>
-            <input [(ngModel)]="liveInputValue" type="text" placeholder="Живой импут" id="live-input-value">
-            <span>{{ liveInputValue }}</span>
-          </div>
-        </div>
+      <div>
+        <input [(ngModel)]="liveInputValue" type="text" placeholder="Живой инпут" id="live-input-value">
+        <span>{{ liveInputValue }}</span>
       </div>
-    </header>
+    </div>
+  </div>
+</header>
 

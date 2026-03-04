@@ -1,5 +1,14 @@
-import { Component } from '@angular/core';
-// import { Message } from '../message/message.component'
+import { Component, inject } from '@angular/core';
+import { galleryImages } from "../app/gallery-images";
+import { IPicture } from "../app/interfaces/IPicture";
+import { MessageService } from "../app/services/message.service";
+import { Message } from "../enums/Message";
+import { popularCards } from "../app/popular-cards";
+import { ICard } from "../app/interfaces/ICard";
+import { travelCards } from "../app/travel-cards";
+import { pictures } from "../app/pictures";
+import { IOffer } from "../app/interfaces/IOffer";
+import { offers } from '../app/offers';
 
 @Component({
   selector: 'app-home-page',
@@ -9,5 +18,12 @@ import { Component } from '@angular/core';
 })
 export class HomePageComponent {
 
+  messageService: MessageService = inject(MessageService);
+  pictures: IPicture[] = pictures;
+  galleryImages: IPicture[] = galleryImages;
 
+  messageType: typeof Message = Message;
+  offers: IOffer[] = offers;
+  populars: ICard[] = popularCards;
+  travels: ICard[] = travelCards;
 }

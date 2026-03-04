@@ -8,7 +8,7 @@ export class MessageService {
 
   messages: IMessage[] = [];
 
-  addMessage(message: IMessage): void {
+  private addMessage(message: IMessage): void {
     this.messages = [message, ...this.messages];
 
     setTimeout(() => this.closeMessage(message), 5000);
