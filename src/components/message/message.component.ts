@@ -13,6 +13,4 @@ export class MessageComponent {
 
   messageService: MessageService = inject(MessageService);
 
-  messageType: typeof Message = Message;
-
 }

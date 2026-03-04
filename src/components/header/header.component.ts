@@ -4,17 +4,14 @@ import { FormsModule } from "@angular/forms";
 import { Widget } from "../../types/Widget";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { INavigationLink } from "../../app/interfaces/INavigationLink";
-import { navigationLink } from "../../app/navigation-links";
 
 @Component({
   selector: 'app-header',
-  imports: [FormsModule, CommonModule, RouterLink, RouterLinkActive],
+  imports: [FormsModule, CommonModule, RouterLinkActive, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-
-  navLinks: INavigationLink[] = navigationLink;
 
   companyName: string = 'Румтибет';
   participants: string = '';
@@ -28,6 +25,17 @@ export class HeaderComponent {
   constructor() {
     this.initCurrentDate();
   }
+
+  navigationLink: INavigationLink[] = [
+  {
+    name: 'Главная',
+    path: ''
+  },
+  {
+    name: 'Пользователи',
+    path: 'users'
+  }
+];
 
   setHeaderWidget(widget: Widget): void {
     this.currentHeaderWidget = widget;
@@ -49,5 +57,4 @@ export class HeaderComponent {
     setInterval(() => this.currentDate = new Date(), 1000);
   }
 
-  protected readonly RouterLink = RouterLink;
 }

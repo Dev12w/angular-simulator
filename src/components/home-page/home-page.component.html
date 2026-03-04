@@ -124,7 +124,7 @@
     <span class="fs-24 yellow-color">фото-отчет</span>
     <h3 class="gallery-title fs-32 extra-bold">Делимся впечатлениями</h3>
     <div class="gallery-images">
-      @for (picture of galleryPictures; track picture.id) {
+      @for (picture of pictures; track picture.id) {
         <div>
           <img [src]="'images/' + picture.image + '.png'" [alt]="picture.image">
         </div>

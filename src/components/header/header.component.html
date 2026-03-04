@@ -6,8 +6,8 @@
         <span class="logo-text fs-16 bold">{{ companyName }}</span>
       </div>
       <nav class="header-menu fs-18 bold">
-        @for (link of navLinks; track link.path) {
-          <a [routerLink]="link.path" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: link.path === '' }">
+        @for (link of navigationLink; track link.path) {
+          <a [id]="link.path" [routerLink]="link.path" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: link.path === '' }">
             {{ link.name }}
           </a>
         }

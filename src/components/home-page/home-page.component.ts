@@ -6,11 +6,9 @@ import { Message } from "../../enums/Message";
 import { popularCards } from "../../app/popular-cards";
 import { ICard } from "../../app/interfaces/ICard";
 import { travelCards } from "../../app/travel-cards";
-import { galleryPictures } from "../../app/gallary-pictures";
+import { pictures } from "../../app/pictures";
 import { IOffer } from "../../app/interfaces/IOffer";
 import { offers } from '../../app/offers';
-
-// import { Message } from '../message/message.component'
 
 @Component({
   selector: 'app-home-page',
@@ -21,13 +19,11 @@ import { offers } from '../../app/offers';
 export class HomePageComponent {
 
   messageService: MessageService = inject(MessageService);
-  galleryPictures: IPicture[] = galleryPictures;
+
+  pictures: IPicture[] = pictures;
   galleryImages: IPicture[] = galleryImages;
-
-  messageType: typeof Message = Message;
   offers: IOffer[] = offers;
-
-
   populars: ICard[] = popularCards;
   travels: ICard[] = travelCards;
+
 }

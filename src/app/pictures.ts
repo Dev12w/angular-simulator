@@ -1,6 +1,6 @@
 import { IPicture } from './interfaces/IPicture';
 
-export const galleryPictures: IPicture[] = [
+export const pictures: IPicture[] = [
   {
     id: 1,
     image: 'photographer'
