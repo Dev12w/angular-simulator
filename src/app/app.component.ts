@@ -2,80 +2,37 @@ import { FormsModule } from '@angular/forms';
 import { Component, inject } from '@angular/core';
 import { Color } from '../enums/Color';
 import { Collection } from './collection';
-import { CommonModule, NgTemplateOutlet } from '@angular/common';
-import { offers } from './offers';
-import { IOffer } from './interfaces/IOffer';
-import { galleryImages } from './gallery-images';
-import { IPicture } from './interfaces/IPicture';
-import { ICard } from './interfaces/ICard';
-import { popularCards } from './popular-cards';
-import { travelCards } from './travel-cards';
-import { MessageService } from './services/message.service';
-import { Message } from '../enums/Message';
+import { CommonModule } from '@angular/common';
 import { LocalStorageService } from './services/local-storage.service';
-import { Widget } from '../types/Widget';
+import { HeaderComponent } from "../components/header/header.component";
+import { FooterComponent } from "../components/footer/footer.component";
+import { MessageComponent } from "../components/message/message.component";
+import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, CommonModule, NgTemplateOutlet],
+  imports: [FormsModule, CommonModule, HeaderComponent, FooterComponent, MessageComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
 
-  messageService: MessageService = inject(MessageService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-
-  offers: IOffer[] = offers;
-  gallery: IPicture[] = galleryImages;
-  populars: ICard[] = popularCards;
-  travels: ICard[] = travelCards;
 
   readonly LAST_VISIT_DATE_KEY: string = 'last-visit-date';
   readonly VISIT_COUNTER_KEY: string = 'visit-counter';
 
-  messageType: typeof Message = Message;
-
-  companyName: string = 'Румтибет';
-  city: string = '';
-  date: string = '';
-  participants: string = '';
-  count: number = 0;
-  currentDate: Date = new Date();
-  currentHeaderWidget: Widget = 'date';
-  liveInputValue!: string;
   isLoading: boolean = true;
 
   constructor() {
     this.saveLastVisitDate();
     this.saveVisitCounter();
     this.completeCollection();
-    this.initCurrentDate();
     this.simulateLoading();
   }
 
   simulateLoading(): void {
     setTimeout(() => this.isLoading = false, 1000);
-  }
-
-  setHeaderWidget(widget: Widget): void {
-    this.currentHeaderWidget = widget;
-  }
-
-  private initCurrentDate(): void {
-    setInterval(() => this.currentDate = new Date(), 1000);
-  }
-
-  incrementCount(): void {
-    this.count = this.count + 1;
-  }
-
-  decrementCount(): void {
-    this.count = this.count > 0 ? this.count - 1 : 0;
-  }
-
-  isFormValid(): boolean {
-    return !!(this.city && this.date && this.participants);
   }
 
   completeCollection(): void {

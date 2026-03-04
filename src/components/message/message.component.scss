@@ -1,0 +1,52 @@
+@use "../../assets/styles" as *;
+
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 6;
+  top: 15px;
+  right: 0;
+  gap: 10px;
+}
+
+.message-container {
+  display: flex;
+  width: 332px;
+  min-height: 52px;
+  background: var(--dark-blue-color);
+  border-radius: 10px;
+  border: 2px solid var(--white-color);
+  outline: 2px solid var(--dark-blue-color);
+  padding: 7px;
+  align-items: center;
+
+  &.error {
+    background: #7e0303;
+  }
+
+  &.warning {
+    background: #bf9500;
+  }
+
+  .message-icon-wrapper {
+    background: url("../../../public/images/message-envelope-icon.svg") no-repeat center center;
+    width: 60px;
+    height: 60px;
+  }
+
+  .message-text-wrapper {
+    word-break: break-all;
+    flex: 1;
+  }
+
+  .message-close-btn {
+    background: url("../../../public/images/message-close-icon.svg") no-repeat center;
+    width: 25px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px transparent solid;
+    cursor: pointer;
+  }
+}
