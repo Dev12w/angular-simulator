@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { galleryImages } from "../../app/gallery-images";
 import { IPicture } from "../../app/interfaces/IPicture";
 import { MessageService } from "../../app/services/message.service";
-import { Message } from "../../enums/Message";
 import { popularCards } from "../../app/popular-cards";
 import { ICard } from "../../app/interfaces/ICard";
 import { travelCards } from "../../app/travel-cards";

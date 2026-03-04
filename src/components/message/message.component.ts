@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { Message } from "../../enums/Message";
 import { NgTemplateOutlet } from "@angular/common";
 import { MessageService } from "../../app/services/message.service";
 
