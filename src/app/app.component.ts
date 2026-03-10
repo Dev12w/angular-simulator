@@ -94,7 +94,7 @@ export class AppComponent {
 
   saveVisitCounter(): void {
     const visitCounter: number = Number(this.localStorageService.getItem<string>(this.VISIT_COUNTER_KEY) || 0);
-    this.localStorageService.setItem<string>(this.VISIT_COUNTER_KEY, `${ visitCounter + 1 }`);
+    this.localStorageService.setItem<string>(this.VISIT_COUNTER_KEY, `${visitCounter + 1}`);
   }
 
   isMainColor(color: Color): boolean {
