@@ -16,5 +16,5 @@ export const galleryImages: IPicture[] = [
   {
     id: 4,
     image: 'mountains-river',
-  }
-]
+  },
+];

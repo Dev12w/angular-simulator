@@ -69,3 +69,16 @@
 .white-color {
   color: var(--white-color);
 }
+
+.black-color {
+  color: var(--black-color);
+}
+
+.underline {
+    text-decoration: underline 1px solid;
+    text-decoration-skip-ink: none;
+}
+
+.no-underline {
+  text-decoration: none
+}

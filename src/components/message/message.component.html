@@ -1,0 +1,16 @@
+<div class="messages-container">
+  @for (message of messageService.messages; track $index) {
+    <ng-container [ngTemplateOutlet]="messageTemplate" [ngTemplateOutletContext]="{ message: message }"/>
+  }
+</div>
+
+<ng-template #messageTemplate let-message="message">
+  <div [class]="'message-container ' + message.type">
+    <div class="message-icon-wrapper"></div>
+    <div class="message-text-wrapper">
+      <div class="fs-16 bold white-color">{{ message.type }}</div>
+      <div class="fs-14 white-color">{{ message.content }}</div>
+    </div>
+    <button (click)="messageService.closeMessage(message)" class="message-close-btn" id="message-close-btn"></button>
+  </div>
+</ng-template>
