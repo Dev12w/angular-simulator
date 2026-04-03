@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { LoaderService } from '../../app/services/loader.service';
 import { UserService } from '../../app/services/user.service';
 import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs';
+import { IUser } from '../../app/interfaces/IUser';
 
 @Component({
   selector: 'app-users-page',
@@ -11,8 +12,12 @@ import { AsyncPipe } from '@angular/common';
 })
 export class UsersPageComponent {
 
-  loaderService: LoaderService = inject(LoaderService);
-  userService = inject(UserService);
-  users$ = this.userService.loadUsers();
+  userService: UserService = inject(UserService);
+  users$: Observable<IUser[]> = this.userService.users$;
 
+  constructor() {
+
+    this.userService.loadUsers();
+
+  }
 }

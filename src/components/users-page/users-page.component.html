@@ -1,6 +1,6 @@
 <section class="users-page">
   <div class="users-card-container">
-    @for(user of users$ | async; track user.id) {
+    @for (user of users$ | async; track user.id) {
       <div class="card-container">
         <span class="card-user-name">{{ user.name }}</span>
         <span class="card-user-surname">{{'&#64;' + user.username }}</span>
