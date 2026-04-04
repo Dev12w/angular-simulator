@@ -21,20 +21,20 @@ export class UserService {
     this.usersSubject.next(users);
   }
 
-  getValue(): IUser[] {
-    return this.usersSubject.value;
+  getUsers(): IUser[] {
+    return this.usersSubject.getValue();
   }
 
-  loadUsers(): void {
+  loadUsers(): Observable<IUser[]> {
     this.loaderService.showLoader();
-    this.userApiService.getUsers().pipe(
-      tap((users: IUser[]) => this.setUsers(users)),
-      finalize(() => this.loaderService.hideLoader()),
-      catchError(() => {
-        this.messageService.showError('Нет пользователей для отображения');
-        return of([]);
-      })
-    ).subscribe();
+    return this.userApiService.getUsers()
+      .pipe(
+        finalize(() => this.loaderService.hideLoader()),
+        catchError(() => {
+          this.messageService.showError('Нет пользователей для отображения');
+          return of([]);
+        })
+      );
   }
 
 }
