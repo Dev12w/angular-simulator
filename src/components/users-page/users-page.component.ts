@@ -10,7 +10,7 @@ import { IUser } from '../../app/interfaces/IUser';
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',
 })
-class UsersPageComponent {
+export class UsersPageComponent {
 
   userService: UserService = inject(UserService);
   users$: Observable<IUser[]> = this.userService.users$;
