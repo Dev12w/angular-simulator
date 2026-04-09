@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
 import { IMessage } from '../interfaces/IMessage';
 import { Message } from "../../enums/Message";
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessageService {
 
-  messages: IMessage[] = [];
+  private messagesSubject: BehaviorSubject<IMessage[]> = new BehaviorSubject<IMessage[]>([]);
+  messages$: Observable<IMessage[]> = this.messagesSubject.asObservable();
 
   private addMessage(message: IMessage): void {
-    this.messages = [message, ...this.messages];
-
+    this.messagesSubject.next([message, ...this.messagesSubject.getValue()]);
     setTimeout(() => this.closeMessage(message), 5000);
   }
 
   closeMessage(message: IMessage): void {
-    this.messages = this.messages.filter((currentMessage: IMessage) => currentMessage !== message);
+    const messages: IMessage[] = this.messagesSubject.getValue()
+      .filter((currentMessage: IMessage) => currentMessage !== message);
+    this.messagesSubject.next(messages);
   }
 
   showWarn(content: string): void {
