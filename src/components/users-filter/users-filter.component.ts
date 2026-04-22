@@ -26,7 +26,7 @@ export class UsersFilterComponent implements OnInit {
       takeUntilDestroyed(this.destroyRef),
     ).subscribe((value: string | null) => {
       this.filter.emit(value ?? '');
-    })
+    });
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { UserService } from '../../app/services/user.service';
 import { AsyncPipe } from '@angular/common';
-import { BehaviorSubject, combineLatest, debounceTime, distinctUntilChanged, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable, tap } from 'rxjs';
 import { IUser } from '../../app/interfaces/IUser';
 import { UserCardComponent } from '../user-card/user-card.component';
 import { UserCreateComponent } from '../user-create/user-create.component';
