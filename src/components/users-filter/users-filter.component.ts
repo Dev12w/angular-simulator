@@ -16,17 +16,17 @@ export class UsersFilterComponent implements OnInit {
   @Input() debounceMs: number = 300;
   @Output() filter: EventEmitter<string> = new EventEmitter<string>();
 
-  filterText: FormControl<string | null> = new FormControl<string>('');
+  filterFormControl: FormControl<string | null> = new FormControl<string>('');
   private destroyRef: DestroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    this.filterText.valueChanges.pipe(
+    this.filterFormControl.valueChanges.pipe(
       debounceTime(this.debounceMs),
       distinctUntilChanged(),
+      map((value: string | null) => value ?? ''),
+      tap((value: string) => this.filter.emit(value)),
       takeUntilDestroyed(this.destroyRef),
-    ).subscribe((value: string | null) => {
-      this.filter.emit(value ?? '');
-    });
+    ).subscribe();
   }
 
 }

@@ -19,19 +19,28 @@ export class UserService {
   private usersSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
   users$: Observable<IUser[]> = this.usersSubject.asObservable();
 
-  private usersKey = 'users';
+  private USERS_KEY: string = 'users';
 
   setUsers(users: IUser[]): void {
     this.usersSubject.next(users);
-    this.localStorageService.setItem(this.usersKey, users);
+    this.localStorageService.setItem(this.USERS_KEY, users);
   }
 
   getUsers(): IUser[] {
     return this.usersSubject.getValue();
   }
 
+  deleteUser(user: IUser): void {
+    const filteredUsers: IUser[] = this.getUsers().filter((userItem: IUser) => userItem.id != user.id);
+    this.setUsers(filteredUsers);
+  }
+
+  createUser(user: IUser): void {
+    this.setUsers([user, ...this.getUsers()]);
+  }
+
   loadUsers(): Observable<IUser[]> {
-    const usersFromLocalStorage: IUser[] | null = this.localStorageService.getItem<IUser[]>(this.usersKey);
+    const usersFromLocalStorage: IUser[] | null = this.localStorageService.getItem<IUser[]>(this.USERS_KEY);
     if (usersFromLocalStorage && usersFromLocalStorage.length > 0) {
       return of(usersFromLocalStorage);
     }

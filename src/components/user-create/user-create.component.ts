@@ -16,7 +16,7 @@ export class UserCreateComponent {
 
   form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]),
-    lastname: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
+    username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
     email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(100)]),
     phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(25)]),
     website: new FormControl('', [Validators.maxLength(100)]),
@@ -37,7 +37,7 @@ export class UserCreateComponent {
     }),
   });
 
-  handleSubmit($event: any): void {
+  handleSubmit(): void {
     const newUser: IUser = {
       id: Date.now(),
       ...this.form.value,

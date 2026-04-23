@@ -1,5 +1,5 @@
 <section class="users-page">
-  <app-users-filter [debounceMs]="300" (filter)="filterText$.next($event)"/>
+  <app-users-filter [debounceMs]="300" (filter)="filterTextSubject.next($event)"/>
   <div class="users-card-container">
     @for (user of filteredUsers$ | async; track user.id) {
       <app-user-card [user]="user" (deleteUser)="handleDeleteUser($event)"/>

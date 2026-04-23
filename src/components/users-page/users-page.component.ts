@@ -17,13 +17,12 @@ export class UsersPageComponent {
 
   userService: UserService = inject(UserService);
 
-  filterText$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  filterTextSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  filteredUsers$: Observable<IUser[]> = combineLatest([this.userService.users$, this.filterText$]).pipe(
-    map(([users, filterText]) => {
+  filteredUsers$: Observable<IUser[]> = combineLatest([this.userService.users$, this.filterTextSubject]).pipe(
+    map(([users, filterText]: [IUser[], string]) => {
       filterText = filterText.trim().toLowerCase();
-      const filteredUsers: IUser[] = users.filter((user: IUser) => user.name.toLowerCase().includes(filterText));
-      return filteredUsers;
+      return users.filter((user: IUser) => user.name.toLowerCase().includes(filterText));
     })
   );
 
@@ -35,12 +34,11 @@ export class UsersPageComponent {
   }
 
   handleDeleteUser(user: IUser): void {
-    const filteredUsers: IUser[] = this.userService.getUsers().filter((userItem: IUser) => userItem.id != user.id);
-    this.userService.setUsers(filteredUsers);
+    this.userService.deleteUser(user);
   }
 
   handleCreateUser(user: IUser): void {
-    this.userService.setUsers([user, ...this.userService.getUsers()]);
+    this.userService.createUser(user);
   }
 
 }
