@@ -1,0 +1,86 @@
+<form [formGroup]="form" (ngSubmit)="handleSubmit()" class="create-user-form">
+  <h2 class="form-title">Создание пользователя</h2>
+
+  <label class="form-label">
+    <span>Имя</span>
+    <input id="name" type="text" formControlName="name"/>
+  </label>
+
+  <label class="form-label">
+    <span>Фамилия</span>
+    <input id="username" type="text" formControlName="username"/>
+  </label>
+
+  <label class="form-label">
+    <span>Почта</span>
+    <input id="email" type="text" formControlName="email"/>
+    <small class="field-error">Некорректный email</small>
+  </label>
+
+  <label class="form-label">
+    <span>Телефон</span>
+    <input id="phone" type="text" formControlName="phone"/>
+    <small class="field-error">Разрешены цифры и символы +()-</small>
+  </label>
+
+  <label class="form-label">
+    <span>Сайт</span>
+    <input id="website" type="text" formControlName="website"/>
+    <small class="field-error">Пример: site.com</small>
+  </label>
+
+  <div formGroupName="address">
+    <label class="form-label">
+      <span>Город</span>
+      <input id="city" type="text" formControlName="city"/>
+    </label>
+
+    <label class="form-label">
+      <span>Улица</span>
+      <input id="street" type="text" formControlName="street"/>
+    </label>
+
+    <label class="form-label">
+      <span>Офис</span>
+      <input id="suite" type="text" formControlName="suite"/>
+    </label>
+
+    <label class="form-label">
+      <span>Индекс</span>
+      <input id="zipcode" type="text" formControlName="zipcode"/>
+    </label>
+
+    <div formGroupName="geo">
+      <label class="form-label">
+        <span>Широта</span>
+        <input id="lat" type="text" formControlName="lat"/>
+      </label>
+
+      <label class="form-label">
+        <span>Долгота</span>
+        <input id="lng" type="text" formControlName="lng"/>
+      </label>
+    </div>
+  </div>
+
+  <div formGroupName="company">
+    <label class="form-label">
+      <span>Компания</span>
+      <input id="company-name" type="text" formControlName="name"/>
+    </label>
+
+    <label class="form-label">
+      <span>Миссия</span>
+      <input id="catch-phrase" type="text" formControlName="catchPhrase"/>
+    </label>
+
+    <label class="form-label">
+      <span>Специализация</span>
+      <input id="bs" type="text" formControlName="bs"/>
+    </label>
+  </div>
+
+  <button id="submit-btn" class="form-submit-btn" type="submit" [disabled]="form.invalid">
+    Создать пользователя
+  </button>
+</form>
