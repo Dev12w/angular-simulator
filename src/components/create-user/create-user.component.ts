@@ -3,14 +3,14 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { IUser } from '../../app/interfaces/IUser';
 
 @Component({
-  selector: 'app-user-create',
+  selector: 'app-create-user',
   imports: [
     ReactiveFormsModule
   ],
-  templateUrl: './user-create.component.html',
-  styleUrl: './user-create.component.scss',
+  templateUrl: './create-user.component.html',
+  styleUrl: './create-user.component.scss',
 })
-export class UserCreateComponent {
+export class CreateUserComponent {
 
   @Output() createUser: EventEmitter<IUser> = new EventEmitter<IUser>();
 

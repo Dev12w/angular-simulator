@@ -4,12 +4,12 @@ import { AsyncPipe } from '@angular/common';
 import { BehaviorSubject, combineLatest, map, Observable, tap } from 'rxjs';
 import { IUser } from '../../app/interfaces/IUser';
 import { UserCardComponent } from '../user-card/user-card.component';
-import { UserCreateComponent } from '../user-create/user-create.component';
+import { CreateUserComponent } from '../create-user/create-user.component';
 import { UsersFilterComponent } from '../users-filter/users-filter.component';
 
 @Component({
   selector: 'app-users-page',
-  imports: [AsyncPipe, UserCardComponent, UserCreateComponent, UsersFilterComponent],
+  imports: [AsyncPipe, UserCardComponent, CreateUserComponent, UsersFilterComponent],
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',
 })
