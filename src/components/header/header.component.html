@@ -5,6 +5,13 @@
         <div class="logo"></div>
         <span class="logo-text fs-16 bold">{{ companyName }}</span>
       </div>
+      <div class="card flex justify-center">
+        <p-selectButton [options]="themeOptions" [allowEmpty]="false" [(ngModel)]="currentTheme" (onChange)="themeService.setTheme($event.value)" optionLabel="name" />
+        <div class="card flex justify-center">
+          <p-toggleswitch [(ngModel)]="isDarkMode" (onChange)="themeService.changeDarkMode($event.checked)"/>
+          DarkMode
+        </div>
+      </div>
       <nav class="header-menu fs-18 bold">
         @for (link of navigationLink; track link.path) {
           <a [id]="link.path" [routerLink]="link.path" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: link.path === '' }">

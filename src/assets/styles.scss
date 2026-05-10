@@ -9,8 +9,8 @@
 }
 
 :root {
-   --white-color: #FDFDFD;
-  --green-color: #1A3E3E;
+  --primary-color: var(--p-primary-color);
+  --white-color: #FDFDFD;
   --light-green-color: #317171;
   --yellow-color: #F2BE22;
   --black-color: #18121E;
@@ -20,6 +20,13 @@
   --blue-color: #F3F5F4;
   --grey-color: #E2E8F0;
   --slate-gray-color: #667C7C;
+
+  --color-surface-base: var(--p-content-background);
+  --color-surface-subtle: var(--p-surface-400);
+  --color-button-primary-bg: var(--p-primary-color);
+  --color-button-primary-bg-hover: var(--p-button-primary-hover-background);
+  --color-button-primary-bg-active: var(--p-button-primary-active-background);
+  --color-button-primary-text: var(--p-button-primary-color);
 }
 
 .fs-14 {
@@ -42,9 +49,14 @@
   font-size: 20px;
 }
 
+.fs-28 {
+  font-size: 28px;
+}
+
 .fs-32 {
   font-size: 32px;
 }
+
 
 .fs-50 {
   font-size: 5px;
@@ -79,8 +91,8 @@
 }
 
 .underline {
-    text-decoration: underline 1px solid;
-    text-decoration-skip-ink: none;
+  text-decoration: underline 1px solid;
+  text-decoration-skip-ink: none;
 }
 
 .no-underline {

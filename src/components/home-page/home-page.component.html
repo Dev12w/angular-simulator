@@ -4,7 +4,9 @@
       <div class="trip-video-bg"></div>
       <div class="trip-video-overlay">
         <div class="trip-wrapper-btn">
-          <button class="trip-play-btn" id="video-play-btn"></button>
+          <button class="trip-play-btn" id="video-play-btn">
+            <fa-icon [icon]="play"/>
+          </button>
         </div>
       </div>
     </div>
@@ -33,7 +35,7 @@
         @for (offer of offers; track offer.id) {
           <li class="offers-feature">
             <div class="offers-wrapper-icon">
-              <img [src]="'images/' + offer.icon + '.svg'" [alt]="offer.icon">
+              <fa-icon [icon]="offer.icon" class="fs-32 black-color"/>
             </div>
             <div class="offers-wrapper">
               <h3 class="offers-feature-title fs-18">{{ offer.title }}</h3>
@@ -57,14 +59,14 @@
 <section class="popular">
   <div class="popular-content">
     <span class="fs-24 yellow-color">по версии отдыхающих</span>
-    <h3 class="popular-title fs-32 extra-bold ">Популярные направления</h3>
+    <h3 class="popular-title fs-32 extra-bold black-color">Популярные направления</h3>
     <div class="popular-card">
       @for (popular of populars; track popular.id) {
         <div class="popular-wrapper-card">
           <div class="popular-card-image">
             <img [src]="'images/' + popular.image + '.png'" [alt]="popular.image">
             <div class="popular-card-rating">
-              <img [src]="'images/' + popular.icon + '.svg'" [alt]="popular.icon">
+              <fa-icon [icon]="popular.icon" class="yellow-color"/>
               {{ popular.rating }}
             </div>
           </div>
@@ -93,7 +95,7 @@
 <section class="travel">
   <div class="travel-content">
     <span class="travels-top-text fs-24 yellow-color">делимся впечатлениями</span>
-    <h3 class="travel-title fs-32 extra-bold">Блог о путешествиях</h3>
+    <h3 class="travel-title fs-32 extra-bold black-color">Блог о путешествиях</h3>
     <div class="travels-cards-content">
       @for (travel of travels; track travel) {
         <div class="travel-card-container">
@@ -102,8 +104,8 @@
           }
           <div class="travel-card-information">
             <div class="travel-card-wrapper">
-              <h3 class="travel-card-title fs-24 lh-32 bold">{{ travel.title }}</h3>
-              <p class="travel-card-description fs-14 lh-20">{{ travel.description }}</p>
+              <h3 class="travel-card-title fs-24 lh-32 bold black-color">{{ travel.title }}</h3>
+              <p class="travel-card-description fs-14 lh-20 black-color">{{ travel.description }}</p>
             </div>
             <div class="travel-card-date">
               <span class="travel-date yellow-color">{{ travel.date }}</span>
@@ -122,7 +124,7 @@
 <section class="gallery">
   <div class="gallery-container">
     <span class="fs-24 yellow-color">фото-отчет</span>
-    <h3 class="gallery-title fs-32 extra-bold">Делимся впечатлениями</h3>
+    <h3 class="gallery-title fs-32 extra-bold black-color">Делимся впечатлениями</h3>
     <div class="gallery-images">
       @for (picture of pictures; track picture.id) {
         <div>

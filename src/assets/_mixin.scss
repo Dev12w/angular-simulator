@@ -3,14 +3,14 @@
 
 @mixin button-base {
   height: 52px;
-  background: var(--green-color);
   border-radius: 5px;
-  color: var(--white-color);
   cursor: pointer;
+  background: var(--color-button-primary-bg);
+  color: var(--color-button-primary-text);
 
   &:active {
-    background: var(--light-green-color);
-    outline: 1px solid var(--light-green-color);
+    background: var(--color-button-primary-bg-hover);
+    outline: 1px solid var(--color-button-primary-bg);
     border: none;
   }
 }
