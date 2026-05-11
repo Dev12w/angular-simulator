@@ -7,7 +7,7 @@ import { SelectButton } from 'primeng/selectbutton';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { ThemeService } from '../../app/services/theme.service';
 import { tap } from 'rxjs';
-import { navigationLink } from '../../app/navigationLink';
+import { navigationLink } from '../../app/navigation-link';
 import { INavigationLink } from '../../app/interfaces/INavigationLink';
 import { themes } from '../../app/themes';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
