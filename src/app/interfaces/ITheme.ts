@@ -1,6 +1,6 @@
 import { Preset } from '@primeuix/themes/types';
 
 export interface ITheme {
-  name: string,
-  preset: Preset
+  name: string;
+  preset: Preset;
 }

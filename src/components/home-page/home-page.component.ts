@@ -9,7 +9,6 @@ import { pictures } from "../../app/pictures";
 import { IOffer } from "../../app/interfaces/IOffer";
 import { offers } from '../../app/offers';
 import { FaIconComponent, IconDefinition } from '@fortawesome/angular-fontawesome';
-// import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -29,7 +28,6 @@ export class HomePageComponent {
   offers: IOffer[] = offers;
   populars: ICard[] = popularCards;
   travels: ICard[] = travelCards;
-  // star: IconDefinition = faStar;
   play: IconDefinition = faPlay;
 
 }
