@@ -3,7 +3,26 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 import { usePreset } from '@primeuix/themes';
 import { ITheme } from '../interfaces/ITheme';
-import { defaultTheme, themes } from '../themes';
+import Aura from '@primeuix/themes/aura';
+import Lara from '@primeuix/themes/lara';
+import Nora from '@primeuix/themes/nora';
+
+export const themes: ITheme[] = [
+  {
+    name: 'Aura',
+    preset: Aura
+  },
+  {
+    name: 'Lara',
+    preset: Lara
+  },
+  {
+    name: 'Nora',
+    preset: Nora
+  },
+];
+
+export const defaultTheme: ITheme = themes[0];
 
 @Injectable({
   providedIn: 'root',
@@ -26,10 +45,8 @@ export class ThemeService {
     const isDarkMode: boolean = this.localStorageService.getItem<boolean>(this.THEME_MODE_KEY) ?? false;
     const theme: ITheme = themes.find((theme: ITheme) => theme.name === themeName) ?? defaultTheme;
 
-    setTimeout(() => {
-      this.setTheme(theme);
-      this.setDarkMode(isDarkMode);
-    }, 0);
+    this.setTheme(theme);
+    this.setDarkMode(isDarkMode);
   }
 
   setTheme(theme: ITheme): void {

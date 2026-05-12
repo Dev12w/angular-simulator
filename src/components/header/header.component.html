@@ -6,9 +6,9 @@
         <span class="logo-text fs-16 bold">{{ companyName }}</span>
       </div>
       <div class="card flex justify-center">
-        <p-selectButton [options]="themeOptions" [allowEmpty]="false" [(ngModel)]="currentTheme" (onChange)="themeService.setTheme($event.value)" optionLabel="name" />
+        <p-selectButton [options]="themeOptions" [allowEmpty]="false" [ngModel]="themeService.theme$ | async" (onChange)="themeService.setTheme($event.value)" optionLabel="name" />
         <div class="card flex justify-center">
-          <p-toggleswitch [(ngModel)]="isDarkMode" (onChange)="themeService.changeDarkMode($event.checked)"/>
+          <p-toggleswitch [ngModel]="themeService.isDarkMode$ | async" (onChange)="themeService.setDarkMode($event.checked)"/>
           DarkMode
         </div>
       </div>
