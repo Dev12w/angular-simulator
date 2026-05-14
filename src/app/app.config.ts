@@ -3,13 +3,19 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
 import { Preset } from '@primeuix/themes/types';
-import { ITheme } from './interfaces/ITheme';
-import { defaultTheme, themes } from './services/theme.service';
+import { Theme } from '../types/Theme';
+import Aura from '@primeuix/themes/aura';
+import Lara from '@primeuix/themes/lara';
+import Nora from '@primeuix/themes/nora';
 
 function getCurrentThemePreset(): Preset {
   const themeName: string = localStorage.getItem('theme') ?? '';
-  const theme: ITheme = themes.find((theme: ITheme) => theme.name === themeName) ?? defaultTheme;
-  return theme.preset;
+
+  return {
+    [Theme.AURA]: Aura,
+    [Theme.LARA]: Lara,
+    [Theme.NORA]: Nora
+  }[themeName] ?? Aura;
 }
 
 export const appConfig: ApplicationConfig = {

@@ -5,8 +5,7 @@ import { Widget } from '../../types/Widget';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SelectButton } from 'primeng/selectbutton';
 import { ToggleSwitch } from 'primeng/toggleswitch';
-import { themes, ThemeService } from '../../app/services/theme.service';
-import { navigationLink } from '../../app/navigation-link';
+import { ThemeService } from '../../app/services/theme.service';
 import { INavigationLink } from '../../app/interfaces/INavigationLink';
 import { ITheme } from '../../app/interfaces/ITheme';
 
@@ -20,8 +19,7 @@ export class HeaderComponent {
 
   themeService: ThemeService = inject(ThemeService);
 
-  navigationLink: INavigationLink[] = navigationLink;
-  themeOptions: ITheme[] = themes;
+  themeOptions: ITheme[] = this.themeService.themes;
 
   companyName: string = 'Румтибет';
   participants: string = '';
@@ -35,6 +33,17 @@ export class HeaderComponent {
   constructor() {
     this.initCurrentDate();
   }
+
+  navigationLink: INavigationLink[] = [
+    {
+      name: 'Главная',
+      path: ''
+    },
+    {
+      name: 'Пользователи',
+      path: 'users'
+    }
+  ];
 
   setHeaderWidget(widget: Widget): void {
     this.currentHeaderWidget = widget;
