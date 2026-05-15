@@ -1,17 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from "@angular/forms";
-import { Widget } from "../../types/Widget";
-import { RouterLink, RouterLinkActive } from "@angular/router";
-import { INavigationLink } from "../../app/interfaces/INavigationLink";
+import { FormsModule } from '@angular/forms';
+import { Widget } from '../../types/Widget';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { SelectButton } from 'primeng/selectbutton';
+import { ToggleSwitch } from 'primeng/toggleswitch';
+import { ThemeService } from '../../app/services/theme.service';
+import { INavigationLink } from '../../app/interfaces/INavigationLink';
+import { ITheme } from '../../app/interfaces/ITheme';
 
 @Component({
   selector: 'app-header',
-  imports: [FormsModule, CommonModule, RouterLinkActive, RouterLink],
+  imports: [FormsModule, CommonModule, RouterLinkActive, RouterLink, SelectButton, ToggleSwitch],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+
+  themeService: ThemeService = inject(ThemeService);
+
+  themeOptions: ITheme[] = this.themeService.themes;
 
   companyName: string = 'Румтибет';
   participants: string = '';
@@ -27,15 +35,15 @@ export class HeaderComponent {
   }
 
   navigationLink: INavigationLink[] = [
-  {
-    name: 'Главная',
-    path: ''
-  },
-  {
-    name: 'Пользователи',
-    path: 'users'
-  }
-];
+    {
+      name: 'Главная',
+      path: ''
+    },
+    {
+      name: 'Пользователи',
+      path: 'users'
+    }
+  ];
 
   setHeaderWidget(widget: Widget): void {
     this.currentHeaderWidget = widget;

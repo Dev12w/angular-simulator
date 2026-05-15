@@ -4,11 +4,11 @@ import { Color } from '../enums/Color';
 import { Collection } from './collection';
 import { CommonModule } from '@angular/common';
 import { LocalStorageService } from './services/local-storage.service';
-import { HeaderComponent } from "../components/header/header.component";
-import { FooterComponent } from "../components/footer/footer.component";
-import { MessageComponent } from "../components/message/message.component";
-import { RouterOutlet } from "@angular/router";
-import { LoaderComponent } from "../components/loader/loader.component";
+import { HeaderComponent } from '../components/header/header.component';
+import { FooterComponent } from '../components/footer/footer.component';
+import { MessageComponent } from '../components/message/message.component';
+import { RouterOutlet } from '@angular/router';
+import { LoaderComponent } from '../components/loader/loader.component';
 
 @Component({
   selector: 'app-root',
@@ -18,10 +18,10 @@ import { LoaderComponent } from "../components/loader/loader.component";
 })
 export class AppComponent {
 
-  private localStorageService: LocalStorageService = inject(LocalStorageService);
-
   readonly LAST_VISIT_DATE_KEY: string = 'last-visit-date';
   readonly VISIT_COUNTER_KEY: string = 'visit-counter';
+
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   isLoading: boolean = true;
 

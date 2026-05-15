@@ -7,7 +7,7 @@
   align-items: center;
   width: 100%;
   height: 726px;
-  background: var(--white-color);
+  background: var(--color-surface-base);
 }
 
 .trip-container {
@@ -48,17 +48,18 @@
       height: 50px;
 
       &:hover {
-        background: var(--white-color);
+        background: var(--color-surface-base);
       }
     }
 
     .trip-play-btn {
       display: flex;
+      justify-content: center;
+      align-items: center;
       width: 50px;
       height: 50px;
       border: none;
       border-radius: 50%;
-      background: url('../../../public/images/play-video-icon.svg') no-repeat center;
       cursor: pointer;
     }
   }
@@ -80,6 +81,7 @@
 
   .trip-story {
     line-height: 150%;
+    color: var(--black-color)
   }
 
   .trip-tour-button {
@@ -97,7 +99,7 @@
   align-items: center;
   width: 100%;
   height: 771px;
-  background: var(--beige-color);
+  background: var(--color-surface-subtle);
 
   .offers-container {
     display: flex;
@@ -117,6 +119,7 @@
   .offers-title {
     margin-top: 10px;
     margin-bottom: 30px;
+    color: var(--black-color);
   }
 
   .offers-feature {
@@ -127,7 +130,7 @@
     margin-top: 40px;
 
     &:hover {
-      outline: 1px solid var(--green-color);
+      outline: 1px solid var(--primary-color);
     }
   }
 
@@ -146,10 +149,12 @@
 
   .offers-description {
     line-height: 150%;
+    color: var(--black-color);
   }
 
   .offers-feature-text {
     line-height: 20px;
+    color: var(--black-color);
   }
 
   .offers-price-btn {
@@ -182,7 +187,7 @@
   display: flex;
   justify-content: center;
   height: 893px;
-  background: var(--white-color);
+  background: var(--color-surface-base);
 
   .popular-content {
     display: flex;
@@ -274,7 +279,7 @@
   justify-content: center;
   align-items: center;
   height: 1036px;
-  background: var(--beige-color);
+  background: var(--color-surface-subtle);
 
   .travel-title {
     padding-bottom: 40px;
@@ -300,7 +305,7 @@
     display: flex;
     width: 548px;
     height: 280px;
-    background: var(--white-color);
+    background: var(--color-surface-base);
     border-radius: 7px;
     gap: 24px;
     padding: 16px;
@@ -331,7 +336,7 @@
 
     .travel-link-read {
       text-decoration: none;
-      color: var(--green-color)
+      color: var(--primary-color)
     }
   }
 
@@ -347,7 +352,7 @@
   display: flex;
   justify-content: center;
   height: 1011px;
-  background: var(--white-color);
+  background: var(--color-surface-base);
 
   .gallery-container {
     display: flex;

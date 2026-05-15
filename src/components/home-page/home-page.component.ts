@@ -8,10 +8,14 @@ import { travelCards } from "../../app/travel-cards";
 import { pictures } from "../../app/pictures";
 import { IOffer } from "../../app/interfaces/IOffer";
 import { offers } from '../../app/offers';
+import { FaIconComponent, IconDefinition } from '@fortawesome/angular-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home-page',
-  imports: [],
+  imports: [
+    FaIconComponent
+  ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
@@ -24,5 +28,6 @@ export class HomePageComponent {
   offers: IOffer[] = offers;
   populars: ICard[] = popularCards;
   travels: ICard[] = travelCards;
+  play: IconDefinition = faPlay;
 
 }

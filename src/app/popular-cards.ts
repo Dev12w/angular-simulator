@@ -1,4 +1,5 @@
 import { ICard } from './interfaces/ICard';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 export const popularCards: ICard[] = [
   {
@@ -6,7 +7,7 @@ export const popularCards: ICard[] = [
     image: 'lake-near-mountains',
     title: 'Озеро возле гор',
     rating: 4.9,
-    icon: 'rating-star-icon',
+    icon: faStar,
     price: 480,
     description: 'романтическое приключение'
   },
@@ -15,7 +16,7 @@ export const popularCards: ICard[] = [
     image: 'night-mountains',
     title: 'Ночь в горах',
     rating: 4.5,
-    icon: 'rating-star-icon',
+    icon: faStar,
     price: 500,
     description: 'в компании друзей'
   },
@@ -24,7 +25,7 @@ export const popularCards: ICard[] = [
     image: 'yoga-in-mountains',
     title: 'Йога в горах',
     rating: 5.1,
-    icon: 'rating-star-icon',
+    icon: faStar,
     price: 230,
     description: 'для тех, кто забоится о себе'
   }
