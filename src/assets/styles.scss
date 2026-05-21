@@ -98,3 +98,24 @@
 .no-underline {
   text-decoration: none
 }
+
+.animated-gradient-border {
+  position: relative;
+  border-radius: 10px;
+  padding: var(--gradient-thickness);
+  background: linear-gradient(270deg, var(--gradient-colors));
+  background-size: 400% 400%;
+  animation: gradientBorder 6s ease infinite;
+}
+
+@keyframes gradientBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

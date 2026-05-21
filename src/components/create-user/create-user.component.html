@@ -3,62 +3,84 @@
 
   <label class="form-label">
     <span>Имя</span>
-    <input id="name" type="text" formControlName="name"/>
+    <div gradientBorder>
+      <input id="name" type="text" formControlName="name"/>
+    </div>
   </label>
 
   <label class="form-label">
     <span>Фамилия</span>
-    <input id="username" type="text" formControlName="username"/>
+    <div gradientBorder>
+      <input id="username" type="text" formControlName="username"/>
+    </div>
   </label>
 
   <label class="form-label">
     <span>Почта</span>
-    <input id="email" type="text" formControlName="email"/>
+    <div gradientBorder>
+      <input id="email" type="text" formControlName="email"/>
+    </div>
     <small class="field-error">Некорректный email</small>
   </label>
 
   <label class="form-label">
     <span>Телефон</span>
-    <input id="phone" type="text" formControlName="phone"/>
+    <div gradientBorder>
+      <input id="phone" type="text" formControlName="phone"/>
+    </div>
     <small class="field-error">Разрешены цифры и символы +()-</small>
   </label>
 
   <label class="form-label">
     <span>Сайт</span>
-    <input id="website" type="text" formControlName="website"/>
+    <div gradientBorder>
+      <input id="website" type="text" formControlName="website"/>
+    </div>
     <small class="field-error">Пример: site.com</small>
   </label>
 
   <div formGroupName="address">
     <label class="form-label">
       <span>Город</span>
-      <input id="city" type="text" formControlName="city"/>
+      <div gradientBorder>
+        <input id="city" type="text" formControlName="city"/>
+      </div>
     </label>
 
     <label class="form-label">
       <span>Улица</span>
-      <input id="street" type="text" formControlName="street"/>
+      <div gradientBorder>
+        <input id="street" type="text" formControlName="street"/>
+      </div>
     </label>
 
     <label class="form-label">
       <span>Офис</span>
-      <input id="suite" type="text" formControlName="suite"/>
+      <div gradientBorder>
+        <input id="suite" type="text" formControlName="suite"/>
+      </div>
     </label>
 
     <label class="form-label">
       <span>Индекс</span>
-      <input id="zipcode" type="text" formControlName="zipcode"/>
+      <div gradientBorder>
+        <input id="zipcode" type="text" formControlName="zipcode"/>
+      </div>
     </label>
 
     <div formGroupName="geo">
       <label class="form-label">
         <span>Широта</span>
-        <input id="lat" type="text" formControlName="lat"/>
+        <div gradientBorder>
+          <input id="lat" type="text" formControlName="lat"/>
+        </div>
       </label>
 
       <label class="form-label">
         <span>Долгота</span>
-        <input id="lng" type="text" formControlName="lng"/>
+        <div gradientBorder>
+          <input id="lng" type="text" formControlName="lng"/>
+        </div>
       </label>
     </div>
   </div>
@@ -66,21 +88,27 @@
   <div formGroupName="company">
     <label class="form-label">
       <span>Компания</span>
-      <input id="company-name" type="text" formControlName="name"/>
+      <div gradientBorder>
+        <input id="company-name" type="text" formControlName="name"/>
+      </div>
     </label>
 
     <label class="form-label">
       <span>Миссия</span>
-      <input id="catch-phrase" type="text" formControlName="catchPhrase"/>
+      <div gradientBorder>
+        <input id="catch-phrase" type="text" formControlName="catchPhrase"/>
+      </div>
     </label>
 
     <label class="form-label">
       <span>Специализация</span>
-      <input id="bs" type="text" formControlName="bs"/>
+      <div gradientBorder>
+        <input id="bs" type="text" formControlName="bs"/>
+      </div>
     </label>
   </div>
 
-  <button id="submit-btn" class="form-submit-btn" type="submit" [disabled]="form.invalid">
+  <button boldHover id="submit-btn" class="form-submit-btn" type="submit" [disabled]="form.invalid">
     Создать пользователя
   </button>
 </form>
