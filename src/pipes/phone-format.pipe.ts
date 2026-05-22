@@ -8,6 +8,7 @@ import { PhoneFormat } from '../types/PhoneFormat';
 export class PhoneFormatPipe implements PipeTransform {
 
   transform(phone: string, mode: PhoneFormat = 'international'): string {
+
     if (!phone) return '';
 
     const digits: string = phone.replace(/\D/g, '');
@@ -20,15 +21,16 @@ export class PhoneFormatPipe implements PipeTransform {
 
     switch (mode) {
       case 'compact':
-        return `+${digits}`;
+        return `+${ digits }`;
       case 'international':
-        return `+${countryCode} ${operatorCode} ${first} ${second} ${third}`;
+        return `+${ countryCode } ${ operatorCode } ${ first } ${ second } ${ third }`;
       case 'national':
-        return `${operatorCode} ${first} ${second} ${third}`;
+        return `${ operatorCode } ${ first } ${ second } ${ third }`;
       case 'masked':
-        return `+${countryCode} ${operatorCode} *** ** ${third}`;
+        return `+${ countryCode } ${ operatorCode } *** ** ${ third }`;
       default:
-        return `+${digits}`;
+        return `+${ digits }`;
     }
   }
+
 }

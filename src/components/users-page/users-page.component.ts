@@ -46,8 +46,4 @@ export class UsersPageComponent {
     this.userService.createUser(user);
   }
 
-  usersLength(): number {
-    return this.userService.getUsers().length;
-  }
-
 }

@@ -1,5 +1,5 @@
 import { Directive, HostBinding, HostListener, Input } from '@angular/core';
-import { IGradient } from '../app/interfaces/IGradient';
+import { IGradientConfig } from '../app/interfaces/IGradientConfig';
 
 @Directive({
   selector: '[gradientBorder]',
@@ -7,9 +7,9 @@ import { IGradient } from '../app/interfaces/IGradient';
 })
 export class GradientBorderDirective {
 
-  @Input() GradientConfiguration: IGradient = {};
+  @Input() GradientConfiguration: IGradientConfig = {};
 
-  private defaultConfig: IGradient = {
+  private defaultConfig: IGradientConfig = {
     delay: 1000,
     colors: ['#ff0080', '#7928ca', '#2afadf', '#00ff88'],
     thickness: '2px',
@@ -39,4 +39,5 @@ export class GradientBorderDirective {
     this.gradientColors = '';
     this.gradientThickness = '2px';
   }
+
 }
