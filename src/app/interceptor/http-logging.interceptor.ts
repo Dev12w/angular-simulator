@@ -1,6 +1,5 @@
 import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
 import { catchError, tap, throwError } from 'rxjs';
-import { HttpLogMassage } from '../interfaces/HttpLogMassage';
 
 export const httpLoggingInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
   const startTime: number = Date.now();
