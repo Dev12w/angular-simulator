@@ -9,11 +9,7 @@ import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-post-list-page',
-  imports: [
-    TableModule,
-    Tag,
-    Button
-  ],
+  imports: [TableModule, Tag, Button],
   templateUrl: './post-list-page.component.html',
   styleUrl: './post-list-page.component.scss',
 })
