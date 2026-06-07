@@ -45,7 +45,7 @@ export class HeaderComponent {
     }
   ];
 
-  setHeaderWidget(widget: Widget) {
+  setHeaderWidget(widget: Widget): void {
     this.currentHeaderWidget = widget;
   }
 
