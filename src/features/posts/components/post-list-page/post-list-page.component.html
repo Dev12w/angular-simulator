@@ -1,21 +1,35 @@
-<!--<div class="card">-->
-<!--  <p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }">-->
-<!--    <ng-template #header>-->
-<!--      <tr>-->
-<!--        <th>Code</th>-->
-<!--        <th>Name</th>-->
-<!--        <th>Category</th>-->
-<!--        <th>Quantity</th>-->
-<!--      </tr>-->
-<!--    </ng-template>-->
-<!--    <ng-template #body let-product>-->
-<!--      <tr>-->
-<!--        <td>{{ product.code }}</td>-->
-<!--        <td>{{ product.name }}</td>-->
-<!--        <td>{{ product.category }}</td>-->
-<!--        <td>{{ product.quantity }}</td>-->
-<!--      </tr>-->
-<!--    </ng-template>-->
-<!--  </p-table>-->
-<!--</div>-->
-лплнпорплорплроплорп
+<div class="posts">
+  <p-table [value]="posts" [tableStyle]="{ 'min-width': '60rem' }">
+    <ng-template #caption>
+      <div class="posts-header">
+        <span class="text-xl font-bold">Посты</span>
+        <p-button class="posts-add-btn" raised>Создать</p-button>
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Tags</th>
+        <th>Views</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-post>
+      <tr>
+        <td>{{ post.id }}</td>
+        <td>{{ post.title }}</td>
+        <td>
+          @for (tag of post.tags; track tag) {
+            <p-tag [value]="tag" [severity]="'info'"/>
+          }
+        </td>
+        <td>{{ post.views }}</td>
+      </tr>
+    </ng-template>
+    <ng-template #footer>
+      <tr>
+        <td colspan="6">Total: {{ totalCount }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

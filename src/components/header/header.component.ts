@@ -42,6 +42,10 @@ export class HeaderComponent {
     {
       name: 'Пользователи',
       path: 'users'
+    },
+    {
+      name: 'Посты',
+      path: 'posts'
     }
   ];
 
