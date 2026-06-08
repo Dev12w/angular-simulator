@@ -5,8 +5,8 @@ export const httpLoggingInterceptor: HttpInterceptorFn = (req: HttpRequest<unkno
   const startTime: number = Date.now();
 
   const logMessages = (status: number, isError: boolean = false ): void => {
-    const massage = `${ req.method } ${ req.url } ${ status } ${ Date.now() - startTime } мс`;
-    isError ? console.error(`Ошибка запроса: ${ massage }`) : console.log(massage);
+    const message: string = `${ req.method } ${ req.url } ${ status } ${ Date.now() - startTime } мс`;
+    isError ? console.error(`Ошибка запроса: ${ message }`) : console.log(message);
   };
 
   return next(req).pipe(
