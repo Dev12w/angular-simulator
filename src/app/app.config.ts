@@ -7,6 +7,9 @@ import { Theme } from '../types/Theme';
 import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara';
 import Nora from '@primeuix/themes/nora';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { httpLoggingInterceptor } from './interceptor/http-logging.interceptor';
+import { serverErrorInterceptor } from './interceptor/server-error.interceptor';
 
 function getCurrentThemePreset(): Preset {
   const themeName: string = localStorage.getItem('theme') ?? '';
@@ -23,6 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideZoneChangeDetection(),
+    provideHttpClient(withInterceptors([httpLoggingInterceptor, serverErrorInterceptor])),
     providePrimeNG({
       theme: {
         preset: getCurrentThemePreset(),
