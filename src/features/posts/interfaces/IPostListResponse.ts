@@ -5,4 +5,5 @@ export interface IPostListResponse {
   total: number;
   limit: number;
   skip: number;
+  offset: number;
 }

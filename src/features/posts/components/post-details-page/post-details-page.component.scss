@@ -1,0 +1,11 @@
+.post-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 800px;
+
+  .post-container {
+    width: 800px;
+    height: 400px;
+  }
+}

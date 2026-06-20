@@ -23,6 +23,7 @@
   "private": true,
   "packageManager": "npm@11.6.2",
   "dependencies": {
+    "@angular/animations": "^21.2.16",
     "@angular/common": "^21.2.14",
     "@angular/compiler": "^21.2.14",
     "@angular/core": "^21.2.14",
@@ -35,6 +36,7 @@
     "@fortawesome/free-regular-svg-icons": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@primeuix/themes": "^2.0.3",
+    "primeicons": "^7.0.0",
     "primeng": "^21.1.9",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
