@@ -12,28 +12,30 @@ export class PostApiService {
 
   private http: HttpClient = inject(HttpClient);
 
+  private urlPosts: string = `https://dummyjson.com/posts`
+
   getList(limit: number = 10, offset: number = 0): Observable<IPostListResponse> {
-    const url = `https://dummyjson.com/posts?limit=${ limit }&skip=${ offset }`;
+    const url = `${this.urlPosts}?limit=${ limit }&skip=${ offset }`;
     return this.http.get<IPostListResponse>(url);
   }
 
   getPost(id: number): Observable<IPost> {
-    const url = `https://dummyjson.com/posts/${ id }`;
+    const url = `${this.urlPosts}/${ id }`;
     return this.http.get<IPost>(url);
   }
 
   createPost(body: PostCreateBody): Observable<IPost> {
-    const url = 'https://dummyjson.com/posts/add';
+    const url = `${this.urlPosts}/add`;
     return this.http.post<IPost>(url, body);
   }
 
   updatePost(id: number, body: PostUpdateBody) {
-    const url = `https://dummyjson.com/posts/${ id }`;
+    const url = `${this.urlPosts}/${ id }`;
     return this.http.patch<IPost>(url, body);
   }
 
   deletePost(id: number): Observable<IPost> {
-    const url = `https://dummyjson.com/posts/${ id }`;
+    const url = `${this.urlPosts}/${ id }`;
     return this.http.delete<IPost>(url);
   }
 
