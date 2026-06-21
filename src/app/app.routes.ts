@@ -17,6 +17,13 @@ export const routes: Routes = [
   },
 
   {
+    path: 'posts',
+    loadComponent: () =>
+      import('../features/posts/components/post-list-page/post-list-page.component')
+        .then((m) => m.PostListPageComponent),
+  },
+
+  {
     path: 'posts/create',
     loadComponent: () =>
       import('../features/posts/components/post-create-page/post-create-page.component')
