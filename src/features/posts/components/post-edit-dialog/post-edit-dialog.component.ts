@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { IPost } from '../../interfaces/IPost';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostUpdateBody } from '../../interfaces/IPostRequestBody';
 
@@ -15,8 +15,9 @@ import { PostUpdateBody } from '../../interfaces/IPostRequestBody';
 export class PostEditDialogComponent {
 
   dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
+  config: DynamicDialogConfig = inject(DynamicDialogConfig);
 
-  @Input({ required: true }) post!: IPost;
+  post: IPost = this.config.data;
 
   form: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -27,7 +28,7 @@ export class PostEditDialogComponent {
   ngOnInit(): void {
     this.form.get('title')?.setValue(this.post.title);
     this.form.get('views')?.setValue(this.post.views);
-    this.post.tags.forEach(tag => this.tags.push(new FormControl(tag)));
+    this.post.tags.forEach((tag: string) => this.tags.push(new FormControl(tag)));
   }
 
   get tags(): FormArray<FormControl<string | null>> {

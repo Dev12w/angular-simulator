@@ -1,22 +1,22 @@
 <div class="form-container">
-  <form [formGroup]="form" (ngSubmit)="handleSubmit()" class="form-create">
-    <input type="text" formControlName="title">
-    <textarea formControlName="body"></textarea>
-    <input type="number" formControlName="views">
-    <input type="number" formControlName="userId">
+  <form id="form" [formGroup]="form" (ngSubmit)="handleSubmit()" class="form-create">
+    <input id="form-title" type="text" formControlName="title">
+    <textarea id="form-body" formControlName="body"></textarea>
+    <input id="form-views" type="number" formControlName="views">
+    <input id="form-userId" type="number" formControlName="userId">
     <div formGroupName="reactions">
-      <input type="number" formControlName="likes">
-      <input type="number" formControlName="dislikes">
+      <input id="form-likes" type="number" formControlName="likes">
+      <input id="form-dislikes" type="number" formControlName="dislikes">
     </div>
     <div class="form-tags" formArrayName="tags">
       @for (tag of tags.controls; track $index) {
         <div style="display: flex; gap: 3px">
-          <input type="text" [formControl]="tag"/>
-          <button (click)="removeTagControl($index)">Удалить тег</button>
+          <input [id]="'input-tag-' + $index" type="text" [formControl]="tag"/>
+          <button [id]="'remove-tag-' + $index" (click)="removeTagControl($index)">Удалить тег</button>
         </div>
       }
-      <button type="button" (click)="addTagControl()">Добавить тег</button>
+      <button id="form-tags-btn" type="button" (click)="addTagControl()">Добавить тег</button>
     </div>
-    <button type="submit">Сохранить изменения</button>
+    <button id="form-submit-btn" type="submit">Сохранить изменения</button>
   </form>
 </div>

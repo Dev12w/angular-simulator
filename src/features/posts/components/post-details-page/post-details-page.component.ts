@@ -1,24 +1,21 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
-import { tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { IPost } from '../../interfaces/IPost';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-post-details-page',
-  imports: [],
+  imports: [
+    AsyncPipe
+  ],
   templateUrl: './post-details-page.component.html',
   styleUrl: './post-details-page.component.scss',
 })
 export class PostDetailsPageComponent {
+  private route = inject(ActivatedRoute);
 
-  private route: ActivatedRoute = inject(ActivatedRoute);
-
-  post!: IPost;
-
-  constructor() {
-    this.route.data.pipe(
-      tap((data: Data) => this.post = data['post'] as IPost),
-    ).subscribe();
-  }
-
+  post$ = this.route.data.pipe(
+    map(data => data['post'] as IPost)
+  );
 }
