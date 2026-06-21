@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
-import { map, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { IPost } from '../../interfaces/IPost';
 import { AsyncPipe } from '@angular/common';
 
@@ -13,9 +13,10 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './post-details-page.component.scss',
 })
 export class PostDetailsPageComponent {
-  private route = inject(ActivatedRoute);
+  private route: ActivatedRoute = inject(ActivatedRoute);
 
-  post$ = this.route.data.pipe(
-    map(data => data['post'] as IPost)
+  post$: Observable<IPost> = this.route.data.pipe(
+    map((data: Data) => data['post'] as IPost)
   );
+
 }
