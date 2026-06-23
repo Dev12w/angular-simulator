@@ -1,4 +1,4 @@
 import { IPost } from './IPost';
 
-export type PostCreateBody = Omit<IPost, "id">
-export type PostUpdateBody = Omit<Partial<IPost>, "id">
+export type PostCreateRequest = Omit<IPost, "id">
+export type PostUpdateRequest = Omit<Partial<IPost>, "id">

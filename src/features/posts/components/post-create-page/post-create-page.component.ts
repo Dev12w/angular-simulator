@@ -3,7 +3,7 @@ import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Va
 import { PostApiService } from '../../services/post-api.service';
 import { Router } from '@angular/router';
 import { MessageService } from '../../../../app/services/message.service';
-import { PostCreateBody } from '../../interfaces/IPostRequestBody';
+import { PostCreateRequest } from '../../interfaces/IPostRequestBody';
 import { catchError, EMPTY, tap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -49,7 +49,7 @@ export class PostCreatePageComponent {
       return;
     }
 
-    const body: PostCreateBody = this.form.getRawValue();
+    const body: PostCreateRequest = this.form.getRawValue();
 
     this.postApiService.createPost(body).pipe(
       tap(() => {

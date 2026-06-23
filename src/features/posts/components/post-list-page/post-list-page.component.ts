@@ -1,39 +1,42 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { TableModule, TablePageEvent } from 'primeng/table';
-import { Button } from 'primeng/button';
 import { Tag } from 'primeng/tag';
+import { Button } from 'primeng/button';
+import { IPostListResponse } from '../../interfaces/IPostListResponse';
+import { IPost } from '../../interfaces/IPost';
+import { finalize, Observable, switchMap, tap } from 'rxjs';
 import { Skeleton } from 'primeng/skeleton';
 import { ContextMenu } from 'primeng/contextmenu';
 import { MenuItem } from 'primeng/api';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { switchMap, tap } from 'rxjs';
-import { PostService } from '../../services/post.service';
-import { IPost } from '../../interfaces/IPost';
-import { PostUpdateBody } from '../../interfaces/IPostRequestBody';
 import { PostEditDialogComponent } from '../post-edit-dialog/post-edit-dialog.component';
+import { PostUpdateRequest } from '../../interfaces/IPostRequestBody';
+import { PostService } from '../../services/post.service';
+import { AsyncPipe } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-post-list-page',
-  imports: [TableModule, Tag, Button, Skeleton, ContextMenu, FormsModule],
+  imports: [TableModule, Tag, Button, Skeleton, ContextMenu, FormsModule, AsyncPipe],
   templateUrl: './post-list-page.component.html',
   styleUrl: './post-list-page.component.scss',
   providers: [DialogService]
 })
-export class PostListPageComponent implements OnInit {
+export class PostListPageComponent {
+  router: Router = inject(Router);
+  dialogService: DialogService = inject(DialogService);
+  postService: PostService = inject(PostService);
+  destroyRef: DestroyRef = inject(DestroyRef);
 
-  private postService: PostService = inject(PostService);
-  private router: Router = inject(Router);
-  private dialogService: DialogService = inject(DialogService);
-
-  totalCount: number = 0;
+  totalCount$: Observable<number> = this.postService.totalCount$;
   offset: number = 0;
   limit: number = 10;
   isLoading: boolean = true;
   posts: IPost[] = Array.from({ length: this.limit }).map(() => ({} as IPost));
-  selectedPost: IPost | null = null;
   editPostDialogRef: DynamicDialogRef | null = null;
+  selectedPost: IPost | null = null;
 
   contextMenuItems: MenuItem[] = [
     {
@@ -54,59 +57,60 @@ export class PostListPageComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.postService.posts$.pipe(
-      tap((posts: IPost[]) => this.posts = posts)
+    this.isLoading = true;
+    this.postService.dataLoader$.pipe(
+      takeUntilDestroyed(this.destroyRef),
+      tap((response: IPostListResponse) => {
+        this.posts = response.posts;
+        this.offset = response.skip;
+        this.isLoading = false;
+      }),
     ).subscribe();
-    this.postService.totalCount$.pipe(
-      tap((total: number) => this.totalCount = total)
-    ).subscribe();
-    this.postService.loading$.pipe(
-      tap((isLoading: boolean) => this.isLoading = isLoading)
-    ).subscribe();
-
-    this.postService.loadPosts();
   }
 
   refreshData(): void {
-    this.postService.refresh();
+    this.isLoading = true;
+    this.postService.loadPosts(this.offset, this.limit);
   }
 
   pageChange(event: TablePageEvent): void {
+    this.limit = event.rows;
+    this.offset = event.first;
+    this.isLoading = true;
     this.postService.loadPosts(event.rows, event.first);
   }
 
-  toPostDetailPage(post: IPost): void {
-    this.router.navigateByUrl(`/posts/${ post.id }`);
+  toPostDetailPage(selectedPost: IPost): void {
+    this.router.navigateByUrl(`/posts/${ selectedPost.id }`);
   }
 
-  createPost(): void {
-    this.router.navigateByUrl('/posts/create');
-  }
-
-  editPost(post: IPost): void {
-    this.editPostDialogRef = this.dialogService.open(
-      PostEditDialogComponent,
-      {
-        header: 'Редактирование поста',
-        width: '50vw',
-        modal: true,
-        dismissableMask: true,
-        closable: true,
-        inputValues: {
-          post
-        }
-      }
-    );
+  editPost(selectedPost: IPost): void {
+    this.editPostDialogRef = this.dialogService.open(PostEditDialogComponent, {
+      header: 'Редактирование поста',
+      width: '50vw',
+      modal: true,
+      dismissableMask: true,
+      closable: true,
+      inputValues: {
+        post: selectedPost,
+      },
+    });
 
     this.editPostDialogRef?.onClose?.pipe(
-      switchMap((body: PostUpdateBody) =>
-        this.postService.updatePost(post.id, body)
-      )
+      switchMap((data: PostUpdateRequest) => this.postService.updatePost(selectedPost.id, data))
     ).subscribe();
   }
 
-  deletePost(post: IPost): void {
-    this.postService.deletePost(post).subscribe();
+  createPost(): void {
+    this.router.navigateByUrl(`/posts/create`);
+    this.isLoading = true;
+  }
+
+  deletePost(selectedPost: IPost): void {
+    this.isLoading = true;
+    this.postService.deletePost(selectedPost).pipe(
+      finalize(() => this.isLoading = false)
+    ).subscribe();
   }
 
 }

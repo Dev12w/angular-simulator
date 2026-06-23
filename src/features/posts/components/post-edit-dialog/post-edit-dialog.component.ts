@@ -2,7 +2,7 @@ import { Component, inject, Input } from '@angular/core';
 import { IPost } from '../../interfaces/IPost';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PostUpdateBody } from '../../interfaces/IPostRequestBody';
+import { PostUpdateRequest } from '../../interfaces/IPostRequestBody';
 
 @Component({
   selector: 'app-post-edit-dialog',
@@ -44,7 +44,8 @@ export class PostEditDialogComponent {
   }
 
   handleSubmit(): void {
-    const data: PostUpdateBody = this.form.getRawValue();
+    const data: PostUpdateRequest = this.form.getRawValue();
     this.dialogRef.close(data);
   }
+
 }
