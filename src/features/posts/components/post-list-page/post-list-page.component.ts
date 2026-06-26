@@ -4,7 +4,7 @@ import { Tag } from 'primeng/tag';
 import { Button } from 'primeng/button';
 import { IPostListResponse } from '../../interfaces/IPostListResponse';
 import { IPost } from '../../interfaces/IPost';
-import { finalize, Observable, switchMap, tap } from 'rxjs';
+import { finalize, switchMap, tap } from 'rxjs';
 import { Skeleton } from 'primeng/skeleton';
 import { ContextMenu } from 'primeng/contextmenu';
 import { MenuItem } from 'primeng/api';
@@ -14,25 +14,25 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PostEditDialogComponent } from '../post-edit-dialog/post-edit-dialog.component';
 import { PostUpdateRequest } from '../../interfaces/IPostRequestBody';
 import { PostService } from '../../services/post.service';
-import { AsyncPipe } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-post-list-page',
-  imports: [TableModule, Tag, Button, Skeleton, ContextMenu, FormsModule, AsyncPipe],
+  imports: [TableModule, Tag, Button, Skeleton, ContextMenu, FormsModule],
   templateUrl: './post-list-page.component.html',
   styleUrl: './post-list-page.component.scss',
   providers: [DialogService]
 })
 export class PostListPageComponent {
+
   router: Router = inject(Router);
   dialogService: DialogService = inject(DialogService);
   postService: PostService = inject(PostService);
   destroyRef: DestroyRef = inject(DestroyRef);
 
-  totalCount$: Observable<number> = this.postService.totalCount$;
   offset: number = 0;
   limit: number = 10;
+  totalCount: number = 0;
   isLoading: boolean = true;
   posts: IPost[] = Array.from({ length: this.limit }).map(() => ({} as IPost));
   editPostDialogRef: DynamicDialogRef | null = null;
@@ -57,27 +57,28 @@ export class PostListPageComponent {
   ];
 
   ngOnInit(): void {
-    this.isLoading = true;
-    this.postService.dataLoader$.pipe(
-      takeUntilDestroyed(this.destroyRef),
-      tap((response: IPostListResponse) => {
-        this.posts = response.posts;
-        this.offset = response.skip;
-        this.isLoading = false;
-      }),
-    ).subscribe();
+    this.loadPosts();
   }
 
-  refreshData(): void {
+  loadPosts(): void {
     this.isLoading = true;
-    this.postService.loadPosts(this.offset, this.limit);
+    this.postService.getPosts(this.limit, this.offset)
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        tap((response: IPostListResponse) => {
+            this.posts = response.posts;
+            this.totalCount = response.total;
+            this.isLoading = false;
+          }
+        ),
+      ).subscribe();
   }
 
   pageChange(event: TablePageEvent): void {
     this.limit = event.rows;
     this.offset = event.first;
     this.isLoading = true;
-    this.postService.loadPosts(event.rows, event.first);
+    this.loadPosts();
   }
 
   toPostDetailPage(selectedPost: IPost): void {

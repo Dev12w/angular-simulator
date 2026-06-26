@@ -11,7 +11,7 @@
     [rowsPerPageOptions]="[10, 25, 50]"
     [lazy]="true"
     [lazyLoadOnInit]="true"
-    [totalRecords]="(totalCount$ | async) ?? 0"
+    [totalRecords]="totalCount"
     [alwaysShowPaginator]="true"
     [contextMenu]="cm"
     [(contextMenuSelection)]="selectedPost"
@@ -20,14 +20,12 @@
       <div class="posts-header">
         <span class="text-xl font-bold">Посты</span>
         <div class="posts-actions">
-          <p-button icon="pi pi-refresh" severity="secondary" (click)="refreshData()" id="refresh-date"/>
           <p-button class="posts-add-btn" id="posts-add" (click)="createPost()" raised>Создать</p-button>
         </div>
       </div>
     </ng-template>
     <ng-template #header>
       <tr>
-        <th>ID</th>
         <th>Title</th>
         <th>Tags</th>
         <th>Views</th>
@@ -51,7 +49,6 @@
         </tr>
       } @else {
         <tr [pContextMenuRow]="post" (dblclick)="toPostDetailPage(post)">
-          <td>{{ post.id }}</td>
           <td>{{ post.title }}</td>
           <td>
             @for (tag of post.tags; track tag) {
