@@ -1,7 +1,7 @@
 <div class="posts">
   <p-contextmenu #cm [model]="contextMenuItems" (onHide)="selectedPost = null"/>
   <p-table
-    [value]="posts" [tableStyle]="{ 'min-width': '60rem' }"
+    [value]="(posts$ | async) ?? posts" [tableStyle]="{ 'min-width': '60rem' }"
     [paginator]="true"
     [rows]="limit"
     [showCurrentPageReport]="true"
@@ -11,7 +11,7 @@
     [rowsPerPageOptions]="[10, 25, 50]"
     [lazy]="true"
     [lazyLoadOnInit]="true"
-    [totalRecords]="totalCount"
+    [totalRecords]="(totalCount$ | async) ?? 0"
     [alwaysShowPaginator]="true"
     [contextMenu]="cm"
     [(contextMenuSelection)]="selectedPost"

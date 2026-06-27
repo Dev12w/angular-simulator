@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IPostListResponse } from '../interfaces/IPostListResponse';
 import { IPost } from '../interfaces/IPost';
-import { PostCreateRequest, PostUpdateRequest } from '../interfaces/IPostRequestBody';
+import { IPostCreateRequest, IPostUpdateRequest } from '../interfaces/IPostRequestBody';
 
 @Injectable({
   providedIn: 'root',
@@ -24,12 +24,12 @@ export class PostApiService {
     return this.http.get<IPost>(url);
   }
 
-  createPost(body: PostCreateRequest): Observable<IPost> {
+  createPost(body: IPostCreateRequest): Observable<IPost> {
     const url: string = `${ this.API_URL }/add`;
     return this.http.post<IPost>(url, body);
   }
 
-  updatePost(id: number, body: PostUpdateRequest): Observable<IPost> {
+  updatePost(id: number, body: IPostUpdateRequest): Observable<IPost> {
     const url: string = `${ this.API_URL }/${ id }`;
     return this.http.patch<IPost>(url, body);
   }
