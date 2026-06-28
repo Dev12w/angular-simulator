@@ -10,11 +10,13 @@ import { IOffer } from "../../app/interfaces/IOffer";
 import { offers } from '../../app/offers';
 import { FaIconComponent, IconDefinition } from '@fortawesome/angular-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
   imports: [
-    FaIconComponent
+    FaIconComponent,
+    FormsModule
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
@@ -29,5 +31,14 @@ export class HomePageComponent {
   populars: ICard[] = popularCards;
   travels: ICard[] = travelCards;
   play: IconDefinition = faPlay;
+
+  participants: string = '';
+  liveInputValue!: string;
+  city: string = '';
+  date: string = '';
+
+  isFormValid(): boolean {
+    return !!(this.city && this.date && this.participants);
+  }
 
 }

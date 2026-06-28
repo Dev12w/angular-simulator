@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 
+import { postResolver } from '../features/posts/resolvers/post.resolver';
+
 export const routes: Routes = [
   {
     path: '',
@@ -13,6 +15,23 @@ export const routes: Routes = [
       import('../components/users-page/users-page.component')
         .then((m) => m.UsersPageComponent),
   },
+  {
+    path: 'posts/create',
+    loadComponent: () =>
+      import('../features/posts/components/post-create-page/post-create-page.component')
+        .then((m) => m.PostCreatePageComponent),
+  },
+
+  {
+    path: 'posts/:id',
+    loadComponent: () =>
+      import('../features/posts/components/post-details-page/post-details-page.component')
+        .then((m) => m.PostDetailsPageComponent),
+    resolve: {
+      post: postResolver,
+    }
+  },
+
   {
     path: '**',
     loadComponent: () =>

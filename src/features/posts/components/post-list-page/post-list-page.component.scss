@@ -1,0 +1,22 @@
+.posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 200px;
+  background: var(--blue-color);
+  justify-content: center;
+  padding-bottom: 160px;
+  min-height: 1000px;
+}
+
+.posts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.posts-actions {
+  display: flex;
+  justify-items: center;
+  gap: 5px;
+}

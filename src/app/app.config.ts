@@ -10,6 +10,7 @@ import Nora from '@primeuix/themes/nora';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { httpLoggingInterceptor } from './interceptor/http-logging.interceptor';
 import { serverErrorInterceptor } from './interceptor/server-error.interceptor';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 function getCurrentThemePreset(): Preset {
   const themeName: string = localStorage.getItem('theme') ?? '';
@@ -23,6 +24,7 @@ function getCurrentThemePreset(): Preset {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAnimations(),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideZoneChangeDetection(),

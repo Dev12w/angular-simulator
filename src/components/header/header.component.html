@@ -39,49 +39,5 @@
       </button>
     </div>
   </div>
-
-  <div class="header-content">
-    <div class="header-search-wrapper">
-      <h1 class="header-title">
-        Насладись прогулкой в горах <br> с командой единомышленников
-      </h1>
-      <div class="header-tour-search">
-        <div class="header-location-search">
-          <select [(ngModel)]="city" name="city" class="header-option-text" id="option-city">
-            <option value="" disabled selected hidden>Выберите город</option>
-            <option value="msk">Москва</option>
-            <option value="spb">Санкт-Петербург</option>
-          </select>
-          <span class="location-search-text">выберите из списка</span>
-        </div>
-        <div class="header-location-search">
-          <select [(ngModel)]="date" name="date" class="header-option-text" id="option-date">
-            <option value="" disabled selected hidden>Дата похода</option>
-            <option value="2026-02-10">10 февраля</option>
-            <option value="2026-02-17">17 февраля</option>
-            <option value="2026-02-24">24 февраля</option>
-          </select>
-          <span class="location-search-text">укажите диапазон</span>
-        </div>
-        <div class="header-location-search">
-          <select [(ngModel)]="participants" name="participants" class="header-option-text" id="option-participants">
-            <option value="" disabled selected hidden>Участники</option>
-            <option value="one-person">1 человек</option>
-            <option value="two-people">2 человека</option>
-          </select>
-          <span class="location-search-text">выберите из списка</span>
-        </div>
-        <div class="header-location-search">
-          <button [disabled]="!isFormValid()" name="isFormComplete" class="btn-program-find fs-18" id="submit-form-btn">
-            Найти программу
-          </button>
-        </div>
-      </div>
-      <div>
-        <input [(ngModel)]="liveInputValue" type="text" placeholder="Живой инпут" id="live-input-value">
-        <span>{{ liveInputValue }}</span>
-      </div>
-    </div>
-  </div>
 </header>
 

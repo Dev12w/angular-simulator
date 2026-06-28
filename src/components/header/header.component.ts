@@ -22,10 +22,7 @@ export class HeaderComponent {
   themeOptions: ITheme[] = this.themeService.themes;
 
   companyName: string = 'Румтибет';
-  participants: string = '';
-  liveInputValue!: string;
-  city: string = '';
-  date: string = '';
+
   count: number = 0;
   currentHeaderWidget: Widget = 'date';
   currentDate: Date = new Date();
@@ -42,6 +39,10 @@ export class HeaderComponent {
     {
       name: 'Пользователи',
       path: 'users'
+    },
+    {
+      name: 'Посты',
+      path: 'posts'
     }
   ];
 
@@ -55,10 +56,6 @@ export class HeaderComponent {
 
   decrementCount(): void {
     this.count = this.count > 0 ? this.count - 1 : 0;
-  }
-
-  isFormValid(): boolean {
-    return !!(this.city && this.date && this.participants);
   }
 
   private initCurrentDate(): void {

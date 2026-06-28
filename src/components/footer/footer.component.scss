@@ -10,14 +10,13 @@
   background: var(--p-primary-color);
   position: relative;
 
-
   .footer-mailing {
     display: flex;
     justify-content: center;
     position: absolute;
     z-index: 2;
     top: -100px;
-    left: 360px;
+    left: 21.5%;
 
     .footer-mailing-content {
       display: flex;
