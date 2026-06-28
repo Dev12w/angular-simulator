@@ -37,10 +37,10 @@ export class PostListPageComponent {
   editPostDialogRef: DynamicDialogRef | null = null;
   selectedPost: IPost | null = null;
   totalCount$: Observable<number> = this.postService.totalCount$;
-  placeholderPosts: IPost[] = Array.from({ length: this.limit }).map(() => ({} as IPost));
+  placeholderRows: IPost[] = Array.from({ length: this.limit }).map(() => ({} as IPost));
 
   posts$: Observable<IPost[]> = this.postService.posts$.pipe(
-    map((posts: IPost[]) => posts.length ? posts : this.placeholderPosts)
+    map((posts: IPost[]) => posts.length ? posts : this.placeholderRows)
   );
 
   contextMenuItems: MenuItem[] = [

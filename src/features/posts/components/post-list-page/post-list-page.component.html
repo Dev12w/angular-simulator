@@ -1,7 +1,7 @@
 <div class="posts">
   <p-contextmenu #cm [model]="contextMenuItems" (onHide)="selectedPost = null"/>
   <p-table
-    [value]="(posts$ | async) ?? placeholderPosts" [tableStyle]="{ 'min-width': '60rem' }"
+    [value]="(posts$ | async) ?? placeholderRows" [tableStyle]="{ 'min-width': '60rem' }"
     [paginator]="true"
     [rows]="limit"
     [showCurrentPageReport]="true"
