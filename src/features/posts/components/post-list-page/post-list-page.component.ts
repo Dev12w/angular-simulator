@@ -3,7 +3,7 @@ import { TableModule, TablePageEvent } from 'primeng/table';
 import { Tag } from 'primeng/tag';
 import { Button } from 'primeng/button';
 import { IPost } from '../../interfaces/IPost';
-import { catchError, EMPTY, finalize, map, Observable, switchMap, tap } from 'rxjs';
+import { catchError, EMPTY, finalize, Observable, switchMap, tap } from 'rxjs';
 import { Skeleton } from 'primeng/skeleton';
 import { ContextMenu } from 'primeng/contextmenu';
 import { MenuItem } from 'primeng/api';
