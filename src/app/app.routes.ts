@@ -15,14 +15,6 @@ export const routes: Routes = [
       import('../components/users-page/users-page.component')
         .then((m) => m.UsersPageComponent),
   },
-
-  {
-    path: 'posts',
-    loadComponent: () =>
-      import('../features/posts/components/post-list-page/post-list-page.component')
-        .then((m) => m.PostListPageComponent),
-  },
-
   {
     path: 'posts/create',
     loadComponent: () =>
@@ -46,5 +38,4 @@ export const routes: Routes = [
       import('../components/not-found-page/not-found-page.component')
         .then((m) => m.NotFoundPageComponent),
   },
-
 ];
