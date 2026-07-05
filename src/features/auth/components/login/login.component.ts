@@ -1,12 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { catchError, EMPTY, finalize, Observable, tap } from 'rxjs';
-import { IAuthUser } from '../../interface/IAuthUser';
-import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { catchError, EMPTY, finalize, tap } from 'rxjs';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { validate } from '@angular/forms/signals';
 import { MessageService } from '../../../../app/services/message.service';
-import { IAuthResponse } from '../../interface/IAuthResponse';
 
 @Component({
   selector: 'app-login',
