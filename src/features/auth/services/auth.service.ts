@@ -1,10 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, Observable, of, switchMap, tap } from 'rxjs';
 import { IAuthUser } from '../interface/IAuthUser';
 import { LocalStorageService } from '../../../app/services/local-storage.service';
 import { Router } from '@angular/router';
 import { AuthApiService } from './auth-api.service';
-import { IAuthResponse } from '../interface/IAuthResponse';
+import { ITokenResponse } from '../interface/ITokenResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +15,7 @@ export class AuthService {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private authApiService: AuthApiService = inject(AuthApiService);
 
-  private readonly TOKEN_KEY: string = 'accessToken';
-  private readonly REFRESH_KEY: string = 'refreshToken';
+  private readonly TOKEN_KEY: string = 'token';
 
   private currentUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(null);
 
@@ -29,16 +28,16 @@ export class AuthService {
   }
 
   setRefreshToken(token: string): void {
-    this.localStorageService.setItem(this.REFRESH_KEY, token);
+    this.localStorageService.setItem(this.TOKEN_KEY, token);
   }
 
   getRefreshToken(): string | null {
-    return this.localStorageService.getItem(this.REFRESH_KEY);
+    return this.localStorageService.getItem(this.TOKEN_KEY);
   }
 
   login(name: string, password: string): Observable<IAuthUser> {
-    return this.authApiService.getAuth(name, password).pipe(
-      tap((token: IAuthResponse) => {
+    return this.authApiService.getLogin(name, password).pipe(
+      tap((token: ITokenResponse) => {
         this.setToken(token.accessToken);
         this.setRefreshToken(token.refreshToken);
       }),
@@ -49,7 +48,6 @@ export class AuthService {
 
   logout(): void {
     this.localStorageService.removeItem(this.TOKEN_KEY);
-    this.localStorageService.removeItem(this.REFRESH_KEY);
     this.currentUserSubject.next(null);
     this.router.navigateByUrl('/login');
   }
@@ -70,10 +68,12 @@ export class AuthService {
       );
   }
 
-  refreshToken(): Observable<IAuthResponse> {
-    return this.authApiService.refreshAccessToken(this.getRefreshToken())
+  refreshToken(): Observable<ITokenResponse> {
+    const refreshToken: string | null = this.getRefreshToken();
+    if (!refreshToken) return EMPTY;
+    return this.authApiService.refreshToken(refreshToken)
       .pipe(
-        tap((token: IAuthResponse) => {
+        tap((token: ITokenResponse) => {
           this.setToken(token.accessToken);
           this.setRefreshToken(token.refreshToken);
         })

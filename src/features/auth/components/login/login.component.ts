@@ -20,8 +20,6 @@ export class LoginComponent {
   private router: Router = inject(Router);
   private messageService: MessageService = inject(MessageService);
 
-  isLoading: boolean = false;
-
   loginForm = this.fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required]
@@ -34,7 +32,6 @@ export class LoginComponent {
     }
 
     const { username, password } = this.loginForm.getRawValue();
-    this.isLoading = true;
 
     this.authService.login(username, password)
       .pipe(
@@ -43,10 +40,9 @@ export class LoginComponent {
           this.router.navigate(['/']);
         }),
         catchError(() => {
-          this.messageService.showError('Неверный логин или пароль');
+          this.messageService.showError('Ошибка регистрации');
           return EMPTY;
         }),
-        finalize(() => this.isLoading = false)
       ).subscribe();
   }
 }

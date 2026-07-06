@@ -5,5 +5,5 @@ export interface IAuthUser {
   firstName: string;
   lastName: string;
   gender: string;
-  image: string,
+  image: string;
 }
