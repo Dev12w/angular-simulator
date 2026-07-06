@@ -18,6 +18,7 @@ export class AuthService {
   private readonly TOKEN_KEY: string = 'token';
 
   private currentUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(null);
+  currentUser$: Observable<IAuthUser | null> = this.currentUserSubject.asObservable();
 
   setToken(token: string): void {
     this.localStorageService.setItem(this.TOKEN_KEY, token);
