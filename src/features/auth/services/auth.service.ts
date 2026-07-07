@@ -1,10 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, EMPTY, Observable, of, switchMap, tap } from 'rxjs';
-import { IAuthUser } from '../interface/IAuthUser';
+import { IAuthUser } from '../interfaces/IAuthUser';
 import { LocalStorageService } from '../../../app/services/local-storage.service';
 import { Router } from '@angular/router';
 import { AuthApiService } from './auth-api.service';
-import { ITokenResponse } from '../interface/ITokenResponse';
+import { IToken } from '../interfaces/IToken';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +38,7 @@ export class AuthService {
 
   login(name: string, password: string): Observable<IAuthUser> {
     return this.authApiService.getLogin(name, password).pipe(
-      tap((token: ITokenResponse) => {
+      tap((token: IToken) => {
         this.setToken(token.accessToken);
         this.setRefreshToken(token.refreshToken);
       }),
@@ -69,12 +69,12 @@ export class AuthService {
       );
   }
 
-  refreshToken(): Observable<ITokenResponse> {
+  refreshToken(): Observable<IToken> {
     const refreshToken: string | null = this.getRefreshToken();
     if (!refreshToken) return EMPTY;
     return this.authApiService.refreshToken(refreshToken)
       .pipe(
-        tap((token: ITokenResponse) => {
+        tap((token: IToken) => {
           this.setToken(token.accessToken);
           this.setRefreshToken(token.refreshToken);
         })

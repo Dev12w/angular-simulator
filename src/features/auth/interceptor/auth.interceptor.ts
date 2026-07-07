@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from
 import { inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { catchError, switchMap, throwError } from 'rxjs';
-import { ITokenResponse } from '../interface/ITokenResponse';
+import { IToken } from '../interfaces/IToken';
 
 export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
   const authService: AuthService = inject(AuthService);
@@ -22,7 +22,7 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, ne
         return throwError(() => error);
       }
       return authService.refreshToken().pipe(
-        switchMap((token: ITokenResponse) => {
+        switchMap((token: IToken) => {
           return next(addHeaderToken(req, token.accessToken));
         }),
         catchError((refreshError: HttpErrorResponse) => {
