@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
@@ -11,6 +11,9 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { httpLoggingInterceptor } from './interceptor/http-logging.interceptor';
 import { serverErrorInterceptor } from './interceptor/server-error.interceptor';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { authInterceptor } from '../features/auth/interceptor/auth.interceptor';
+import { AuthService } from '../features/auth/services/auth.service';
+import { firstValueFrom } from 'rxjs';
 
 function getCurrentThemePreset(): Preset {
   const themeName: string = localStorage.getItem('theme') ?? '';
@@ -24,11 +27,15 @@ function getCurrentThemePreset(): Preset {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAppInitializer(() => {
+      const authService: AuthService = inject(AuthService);
+      return firstValueFrom(authService.initAuthToken());
+    }),
     provideAnimations(),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideZoneChangeDetection(),
-    provideHttpClient(withInterceptors([httpLoggingInterceptor, serverErrorInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, httpLoggingInterceptor, serverErrorInterceptor])),
     providePrimeNG({
       theme: {
         preset: getCurrentThemePreset(),
