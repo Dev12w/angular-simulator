@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { postResolver } from '../features/posts/resolvers/post.resolver';
 import { authGuard } from '../features/auth/guard/auth.guard';
+import { adminGuard } from '../features/auth/guard/admin.guard';
 
 export const routes: Routes = [
 
@@ -33,7 +34,7 @@ export const routes: Routes = [
   },
   {
     path: 'posts/create',
-    canActivate: [authGuard],
+    canActivate: [authGuard, adminGuard],
     loadComponent: () =>
       import('../features/posts/components/post-create-page/post-create-page.component')
         .then((m) => m.PostCreatePageComponent),
