@@ -1,15 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { catchError, EMPTY, finalize, tap } from 'rxjs';
+import { catchError, EMPTY, tap } from 'rxjs';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from '../../../../app/services/message.service';
 
 @Component({
   selector: 'app-login',
-  imports: [
-    ReactiveFormsModule
-  ],
+  imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -22,7 +20,7 @@ export class LoginComponent {
 
   loginForm = this.fb.group({
     username: ['', Validators.required],
-    password: ['', Validators.required]
+    password: ['', Validators.required],
   });
 
   login(): void {
@@ -33,7 +31,8 @@ export class LoginComponent {
 
     const { username, password } = this.loginForm.getRawValue();
 
-    this.authService.login(username, password)
+    this.authService
+      .login(username, password)
       .pipe(
         tap(() => {
           this.messageService.showSuccess('Регистрация прошла успешно');
@@ -43,6 +42,8 @@ export class LoginComponent {
           this.messageService.showError('Ошибка регистрации');
           return EMPTY;
         }),
-      ).subscribe();
+      )
+      .subscribe();
   }
+
 }

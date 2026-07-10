@@ -11,7 +11,14 @@ import { GradientBorderDirective } from '../../directives/gradient-border.direct
 
 @Component({
   selector: 'app-users-page',
-  imports: [AsyncPipe, UserCardComponent, CreateUserComponent, UsersFilterComponent, PluralizePipe, GradientBorderDirective],
+  imports: [
+    AsyncPipe,
+    UserCardComponent,
+    CreateUserComponent,
+    UsersFilterComponent,
+    PluralizePipe,
+    GradientBorderDirective,
+  ],
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',
 })
@@ -23,19 +30,22 @@ export class UsersPageComponent {
 
   filterTextSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  filteredUsers$: Observable<IUser[]> = combineLatest([this.userService.users$, this.filterTextSubject]).pipe(
+  filteredUsers$: Observable<IUser[]> = combineLatest([
+    this.userService.users$,
+    this.filterTextSubject,
+  ]).pipe(
     map(([users, filterText]: [IUser[], string]) => {
       filterText = filterText.trim().toLowerCase();
       return users.filter((user: IUser) => user.name.toLowerCase().includes(filterText));
     }),
-    tap((users: IUser[]) => this.usersCount = users.length)
+    tap((users: IUser[]) => (this.usersCount = users.length)),
   );
 
   ngOnInit(): void {
-    this.userService.loadUsers()
-      .pipe(
-        tap((users: IUser[]) => this.userService.setUsers(users)),
-      ).subscribe();
+    this.userService
+      .loadUsers()
+      .pipe(tap((users: IUser[]) => this.userService.setUsers(users)))
+      .subscribe();
   }
 
   handleDeleteUser(user: IUser): void {

@@ -5,9 +5,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-users-filter',
-  imports: [
-    ReactiveFormsModule
-  ],
+  imports: [ReactiveFormsModule],
   templateUrl: './users-filter.component.html',
   styleUrl: './users-filter.component.scss',
 })
@@ -20,13 +18,15 @@ export class UsersFilterComponent implements OnInit {
   private destroyRef: DestroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    this.filterFormControl.valueChanges.pipe(
-      debounceTime(this.debounceMs),
-      distinctUntilChanged(),
-      map((value: string | null) => value ?? ''),
-      tap((value: string) => this.filter.emit(value)),
-      takeUntilDestroyed(this.destroyRef),
-    ).subscribe();
+    this.filterFormControl.valueChanges
+      .pipe(
+        debounceTime(this.debounceMs),
+        distinctUntilChanged(),
+        map((value: string | null) => value ?? ''),
+        tap((value: string) => this.filter.emit(value)),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
   }
 
 }

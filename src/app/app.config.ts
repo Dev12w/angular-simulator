@@ -1,4 +1,10 @@
-import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  inject,
+  provideAppInitializer,
+  provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
@@ -18,11 +24,13 @@ import { firstValueFrom } from 'rxjs';
 function getCurrentThemePreset(): Preset {
   const themeName: string = localStorage.getItem('theme') ?? '';
 
-  return {
-    [Theme.AURA]: Aura,
-    [Theme.LARA]: Lara,
-    [Theme.NORA]: Nora
-  }[themeName] ?? Aura;
+  return (
+    {
+      [Theme.AURA]: Aura,
+      [Theme.LARA]: Lara,
+      [Theme.NORA]: Nora,
+    }[themeName] ?? Aura
+  );
 }
 
 export const appConfig: ApplicationConfig = {
@@ -35,14 +43,16 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideZoneChangeDetection(),
-    provideHttpClient(withInterceptors([authInterceptor, httpLoggingInterceptor, serverErrorInterceptor])),
+    provideHttpClient(
+      withInterceptors([authInterceptor, httpLoggingInterceptor, serverErrorInterceptor]),
+    ),
     providePrimeNG({
       theme: {
         preset: getCurrentThemePreset(),
         options: {
-          darkModeSelector: '.app-dark'
-        }
-      }
+          darkModeSelector: '.app-dark',
+        },
+      },
     }),
-  ]
+  ],
 };

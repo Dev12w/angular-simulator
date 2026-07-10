@@ -31,7 +31,9 @@ export class UserService {
   }
 
   deleteUser(user: IUser): void {
-    const filteredUsers: IUser[] = this.getUsers().filter((userItem: IUser) => userItem.id != user.id);
+    const filteredUsers: IUser[] = this.getUsers().filter(
+      (userItem: IUser) => userItem.id != user.id,
+    );
     this.setUsers(filteredUsers);
   }
 
@@ -40,20 +42,21 @@ export class UserService {
   }
 
   loadUsers(): Observable<IUser[]> {
-    const usersFromLocalStorage: IUser[] | null = this.localStorageService.getItem<IUser[]>(this.USERS_KEY);
+    const usersFromLocalStorage: IUser[] | null = this.localStorageService.getItem<IUser[]>(
+      this.USERS_KEY,
+    );
     if (usersFromLocalStorage && usersFromLocalStorage.length > 0) {
       return of(usersFromLocalStorage);
     }
 
     this.loaderService.showLoader();
-    return this.userApiService.getUsers()
-      .pipe(
-        finalize(() => this.loaderService.hideLoader()),
-        catchError(() => {
-          this.messageService.showError('Нет пользователей для отображения');
-          return of([]);
-        })
-      );
+    return this.userApiService.getUsers().pipe(
+      finalize(() => this.loaderService.hideLoader()),
+      catchError(() => {
+        this.messageService.showError('Нет пользователей для отображения');
+        return of([]);
+      }),
+    );
   }
 
 }

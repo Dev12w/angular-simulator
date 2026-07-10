@@ -6,15 +6,29 @@
         <span class="logo-text fs-16 bold">{{ companyName }}</span>
       </div>
       <div class="card flex justify-center">
-        <p-selectButton [options]="themeOptions" [allowEmpty]="false" [ngModel]="themeService.theme$ | async" (onChange)="themeService.setTheme($event.value)" optionLabel="name" />
+        <p-selectButton
+          [options]="themeOptions"
+          [allowEmpty]="false"
+          [ngModel]="themeService.theme$ | async"
+          (onChange)="themeService.setTheme($event.value)"
+          optionLabel="name"
+        />
         <div class="card flex justify-center">
-          <p-toggleswitch [ngModel]="themeService.isDarkMode$ | async" (onChange)="themeService.setDarkMode($event.checked)"/>
+          <p-toggleswitch
+            [ngModel]="themeService.isDarkMode$ | async"
+            (onChange)="themeService.setDarkMode($event.checked)"
+          />
           DarkMode
         </div>
       </div>
       <nav class="header-menu fs-18 bold">
         @for (link of navigationLink; track link.path) {
-          <a [id]="link.path" [routerLink]="link.path" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: link.path === '' }">
+          <a
+            [id]="link.path"
+            [routerLink]="link.path"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: link.path === '' }"
+          >
             {{ link.name }}
           </a>
         }
@@ -22,22 +36,25 @@
       </nav>
     </div>
     <div class="header-date-counter">
-      @if (currentHeaderWidget == 'date') {
+      @if (currentHeaderWidget === 'date') {
         <div class="header-date">
           <span>{{ currentDate.toLocaleString() }}</span>
         </div>
       }
-      @if (currentHeaderWidget == 'counter') {
+      @if (currentHeaderWidget === 'counter') {
         <div class="header-counter">
           <button (click)="decrementCount()" class="counter-btn" id="decrement-count-btn">-</button>
           <span>{{ count }}</span>
           <button (click)="incrementCount()" class="counter-btn" id="increment-count-btn">+</button>
         </div>
       }
-      <button (click)="setHeaderWidget(currentHeaderWidget == 'date' ? 'counter' : 'date')" class="header-toggle-btn" id="widget-toggle-btn">
-        {{ currentHeaderWidget == 'date' ? 'Показать кликер' : 'Показать дату' }}
+      <button
+        (click)="setHeaderWidget(currentHeaderWidget === 'date' ? 'counter' : 'date')"
+        class="header-toggle-btn"
+        id="widget-toggle-btn"
+      >
+        {{ currentHeaderWidget === 'date' ? 'Показать кликер' : 'Показать дату' }}
       </button>
     </div>
   </div>
 </header>
-

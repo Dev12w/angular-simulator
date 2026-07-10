@@ -1,7 +1,5 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Router } from '@angular/router';
-// import { RouterEvent } from '../../features/posts/type/RouterEvent';
 
 @Injectable({
   providedIn: 'root',

@@ -1,7 +1,8 @@
 <section class="tour-content">
   <div class="tour-search-wrapper">
     <h1 class="tour-title">
-      Насладись прогулкой в горах <br> с командой единомышленников
+      Насладись прогулкой в горах <br />
+      с командой единомышленников
     </h1>
     <div class="tour-search">
       <div class="tour-location-search">
@@ -22,7 +23,12 @@
         <span class="location-search-text">укажите диапазон</span>
       </div>
       <div class="tour-location-search">
-        <select [(ngModel)]="participants" name="participants" class="tour-option-text" id="option-participants">
+        <select
+          [(ngModel)]="participants"
+          name="participants"
+          class="tour-option-text"
+          id="option-participants"
+        >
           <option value="" disabled selected hidden>Участники</option>
           <option value="one-person">1 человек</option>
           <option value="two-people">2 человека</option>
@@ -30,13 +36,24 @@
         <span class="location-search-text">выберите из списка</span>
       </div>
       <div class="tour-location-search">
-        <button [disabled]="!isFormValid()" name="isFormComplete" class="btn-program-find fs-18" id="submit-form-btn">
+        <button
+          [disabled]="!isFormValid()"
+          name="isFormComplete"
+          class="btn-program-find fs-18"
+          id="submit-form-btn"
+        >
           Найти программу
         </button>
       </div>
     </div>
     <div>
-      <input [(ngModel)]="liveInputValue" type="text" placeholder="Живой инпут" class="live-input-value" id="live-input-value" >
+      <input
+        [(ngModel)]="liveInputValue"
+        type="text"
+        placeholder="Живой инпут"
+        class="live-input-value"
+        id="live-input-value"
+      />
       <span>{{ liveInputValue }}</span>
     </div>
   </div>
@@ -49,7 +66,7 @@
       <div class="trip-video-overlay">
         <div class="trip-wrapper-btn">
           <button class="trip-play-btn" id="video-play-btn">
-            <fa-icon [icon]="play"/>
+            <fa-icon [icon]="play" />
           </button>
         </div>
       </div>
@@ -58,9 +75,16 @@
       <span class="fs-24 yellow-color">о нашем походе</span>
       <h1 class="trip-title fs-32 bold">Исследуйте все горные массивы мира вместе с нами</h1>
       <p class="trip-story fs-18">
-        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.
+        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
+        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат
+        Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его
+        поисками в классической латинской литературе.
       </p>
-      <button class="trip-tour-button fs-16 bold" id="submit-tour-btn" (click)="messageService.showSuccess('Программа тура')">
+      <button
+        class="trip-tour-button fs-16 bold"
+        id="submit-tour-btn"
+        (click)="messageService.showSuccess('Программа тура')"
+      >
         Программа тура
       </button>
     </div>
@@ -73,13 +97,14 @@
       <span class="fs-24 yellow-color">наше предложение</span>
       <h1 class="offers-title fs-32">Лучшие программы для тебя</h1>
       <p class="offers-description fs-18">
-        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.
+        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
+        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.
       </p>
       <ul class="offers-features">
         @for (offer of offers; track offer.id) {
           <li class="offers-feature">
             <div class="offers-wrapper-icon">
-              <fa-icon [icon]="offer.icon" class="fs-32 black-color"/>
+              <fa-icon [icon]="offer.icon" class="fs-32 black-color" />
             </div>
             <div class="offers-wrapper">
               <h3 class="offers-feature-title fs-18">{{ offer.title }}</h3>
@@ -88,13 +113,17 @@
           </li>
         }
       </ul>
-      <button class="offers-price-btn fs-16" id="submit-price-btn" (click)="messageService.showWarn('Стоимость программ')">
+      <button
+        class="offers-price-btn fs-16"
+        id="submit-price-btn"
+        (click)="messageService.showWarn('Стоимость программ')"
+      >
         Стоимость программ
       </button>
     </div>
     <div class="offers-gallery">
       @for (picture of galleryImages; track picture.id) {
-        <img [src]="'images/' + picture.image + '.png'" [alt]="picture.image">
+        <img [src]="'images/' + picture.image + '.png'" [alt]="picture.image" />
       }
     </div>
   </div>
@@ -108,9 +137,9 @@
       @for (popular of populars; track popular.id) {
         <div class="popular-wrapper-card">
           <div class="popular-card-image">
-            <img [src]="'images/' + popular.image + '.png'" [alt]="popular.image">
+            <img [src]="'images/' + popular.image + '.png'" [alt]="popular.image" />
             <div class="popular-card-rating">
-              <fa-icon [icon]="popular.icon" class="yellow-color"/>
+              <fa-icon [icon]="popular.icon" class="yellow-color" />
               {{ popular.rating }}
             </div>
           </div>
@@ -120,7 +149,7 @@
                 {{ popular.title }}
               </h3>
               <span class="popular-card-description fs-14">
-                    {{ popular.description }}
+                {{ popular.description }}
               </span>
             </div>
             <div class="popular-card-wrapper-price fs-20 bold">
@@ -130,7 +159,11 @@
         </div>
       }
     </div>
-    <button class="popular-rating-btn fs-16 bold" id="submit-rating-btn" (click)="messageService.showInfo('Рейтинг направлений')">
+    <button
+      class="popular-rating-btn fs-16 bold"
+      id="submit-rating-btn"
+      (click)="messageService.showInfo('Рейтинг направлений')"
+    >
       Рейтинг направлений
     </button>
   </div>
@@ -144,22 +177,30 @@
       @for (travel of travels; track travel) {
         <div class="travel-card-container">
           @if (travel.image) {
-            <img [src]="'images/' + travel.image + '.png'" [alt]="travel.image">
+            <img [src]="'images/' + travel.image + '.png'" [alt]="travel.image" />
           }
           <div class="travel-card-information">
             <div class="travel-card-wrapper">
               <h3 class="travel-card-title fs-24 lh-32 bold black-color">{{ travel.title }}</h3>
-              <p class="travel-card-description fs-14 lh-20 black-color">{{ travel.description }}</p>
+              <p class="travel-card-description fs-14 lh-20 black-color">
+                {{ travel.description }}
+              </p>
             </div>
             <div class="travel-card-date">
               <span class="travel-date yellow-color">{{ travel.date }}</span>
-              <a id="travel-link-read" class="travel-link-read fs-14 bold" href="#">{{ travel.link }}</a>
+              <a id="travel-link-read" class="travel-link-read fs-14 bold" href="#">{{
+                travel.link
+              }}</a>
             </div>
           </div>
         </div>
       }
     </div>
-    <button class="travel-card-btn fs-16 bold" id="submit-materials-btn" (click)="messageService.showError('Другие материалы')">
+    <button
+      class="travel-card-btn fs-16 bold"
+      id="submit-materials-btn"
+      (click)="messageService.showError('Другие материалы')"
+    >
       Другие материалы
     </button>
   </div>
@@ -172,11 +213,10 @@
     <div class="gallery-images">
       @for (picture of pictures; track picture.id) {
         <div>
-          <img [src]="'images/' + picture.image + '.png'" [alt]="picture.image">
+          <img [src]="'images/' + picture.image + '.png'" [alt]="picture.image" />
         </div>
       }
     </div>
     <button class="gallery-btn" id="submit-gallery-btn">Наш pinterest</button>
   </div>
 </section>
-

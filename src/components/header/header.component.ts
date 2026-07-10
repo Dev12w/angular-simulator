@@ -34,16 +34,16 @@ export class HeaderComponent {
   navigationLink: INavigationLink[] = [
     {
       name: 'Главная',
-      path: ''
+      path: '',
     },
     {
       name: 'Пользователи',
-      path: 'users'
+      path: 'users',
     },
     {
       name: 'Посты',
-      path: 'posts'
-    }
+      path: 'posts',
+    },
   ];
 
   setHeaderWidget(widget: Widget): void {
@@ -59,7 +59,7 @@ export class HeaderComponent {
   }
 
   private initCurrentDate(): void {
-    setInterval(() => this.currentDate = new Date(), 1000);
+    setInterval(() => (this.currentDate = new Date()), 1000);
   }
 
 }
