@@ -5,6 +5,7 @@ import { LocalStorageService } from '../../../app/services/local-storage.service
 import { Router } from '@angular/router';
 import { AuthApiService } from './auth-api.service';
 import { IToken } from '../interfaces/IToken';
+import { UserRole } from '../enums/UserRole';
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +35,10 @@ export class AuthService {
 
   getRefreshToken(): string | null {
     return this.localStorageService.getItem(this.TOKEN_KEY);
+  }
+
+  isAdmin(): boolean {
+    return this.currentUserSubject.value?.role === UserRole.ADMIN;
   }
 
   login(name: string, password: string): Observable<IAuthUser> {
