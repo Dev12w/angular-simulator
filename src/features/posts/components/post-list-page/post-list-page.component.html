@@ -1,7 +1,8 @@
 <div class="posts">
-  <p-contextmenu #cm [model]="contextMenuItems" (onHide)="selectedPost = null"/>
+  <p-contextmenu #cm [model]="contextMenuItems" (onHide)="selectedPost = null" />
   <p-table
-    [value]="(posts$ | async) ?? []" [tableStyle]="{ 'min-width': '60rem' }"
+    [value]="(posts$ | async) ?? []"
+    [tableStyle]="{ 'min-width': '60rem' }"
     [paginator]="true"
     [rows]="limit"
     [showCurrentPageReport]="true"
@@ -20,7 +21,9 @@
       <div class="posts-header">
         <span class="text-xl font-bold">Посты</span>
         <div class="posts-actions">
-          <p-button class="posts-add-btn" id="posts-add" (click)="createPost()" raised>Создать</p-button>
+          <p-button class="posts-add-btn" id="posts-add" (click)="createPost()" raised
+            >Создать</p-button
+          >
         </div>
       </div>
     </ng-template>
@@ -35,16 +38,16 @@
       @if (isLoading) {
         <tr>
           <td>
-            <p-skeleton/>
+            <p-skeleton />
           </td>
           <td>
-            <p-skeleton/>
+            <p-skeleton />
           </td>
           <td>
-            <p-skeleton/>
+            <p-skeleton />
           </td>
           <td>
-            <p-skeleton/>
+            <p-skeleton />
           </td>
         </tr>
       } @else {
@@ -52,7 +55,7 @@
           <td>{{ post.title }}</td>
           <td>
             @for (tag of post.tags; track tag) {
-              <p-tag [value]="tag" [severity]="'info'"/>
+              <p-tag [value]="tag" [severity]="'info'" />
             }
           </td>
           <td>{{ post.views }}</td>

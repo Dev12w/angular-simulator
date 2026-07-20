@@ -8,7 +8,6 @@ import { PhoneFormat } from '../types/PhoneFormat';
 export class PhoneFormatPipe implements PipeTransform {
 
   transform(phone: string, mode: PhoneFormat = 'international'): string {
-
     if (!phone) return '';
 
     const digits: string = phone.replace(/\D/g, '');

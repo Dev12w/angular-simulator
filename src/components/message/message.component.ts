@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
-import { MessageService } from "../../app/services/message.service";
+import { MessageService } from '../../app/services/message.service';
 import { FaIconComponent, IconDefinition } from '@fortawesome/angular-fontawesome';
 import { faMessage, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,4 +16,5 @@ export class MessageComponent {
 
   messageIcon: IconDefinition = faMessage;
   circleXmark: IconDefinition = faCircleXmark;
+
 }

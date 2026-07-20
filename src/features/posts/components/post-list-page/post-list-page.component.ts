@@ -22,7 +22,7 @@ import { MessageService } from '../../../../app/services/message.service';
   imports: [TableModule, Tag, Button, Skeleton, ContextMenu, FormsModule, AsyncPipe],
   templateUrl: './post-list-page.component.html',
   styleUrl: './post-list-page.component.scss',
-  providers: [DialogService]
+  providers: [DialogService],
 })
 export class PostListPageComponent {
 
@@ -43,38 +43,42 @@ export class PostListPageComponent {
     {
       label: 'Просмотр',
       icon: 'pi pi-fw pi-search',
-      command: () => this.toPostDetailPage(this.selectedPost!)
+      command: () => this.toPostDetailPage(this.selectedPost!),
     },
     {
       label: 'Редактировать',
       icon: 'pi pi-fw pi-pencil',
-      command: () => this.editPost(this.selectedPost!)
+      command: () => this.editPost(this.selectedPost!),
     },
     {
       label: 'Удалить',
       icon: 'pi pi-fw pi-times',
-      command: () => this.deletePost(this.selectedPost!)
-    }
+      command: () => this.deletePost(this.selectedPost!),
+    },
   ];
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.postService.getPosts(this.limit, this.offset).pipe(
-      catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(error.message);
-        return EMPTY;
-      }),
-      finalize(() => this.isLoading = false)
-    ).subscribe();
+    this.postService
+      .getPosts(this.limit, this.offset)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.messageService.showError(error.message);
+          return EMPTY;
+        }),
+        finalize(() => (this.isLoading = false)),
+      )
+      .subscribe();
   }
 
   pageChange(event: TablePageEvent): void {
     this.limit = event.rows;
     this.offset = event.first;
     this.isLoading = true;
-    this.postService.getPosts(this.limit, this.offset).pipe(
-      finalize(() => this.isLoading = false)
-    ).subscribe();
+    this.postService
+      .getPosts(this.limit, this.offset)
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe();
   }
 
   toPostDetailPage(selectedPost: IPost): void {
@@ -93,14 +97,16 @@ export class PostListPageComponent {
       },
     });
 
-    this.editPostDialogRef?.onClose?.pipe(
-      switchMap((data: IPostUpdateRequest) => this.postService.updatePost(selectedPost.id, data)),
-      tap(() => this.messageService.showSuccess('Пост изменен')),
-      catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(`Ошибка изменения поста: ${ error.message }`);
-        return EMPTY;
-      })
-    ).subscribe();
+    this.editPostDialogRef?.onClose
+      ?.pipe(
+        switchMap((data: IPostUpdateRequest) => this.postService.updatePost(selectedPost.id, data)),
+        tap(() => this.messageService.showSuccess('Пост изменен')),
+        catchError((error: HttpErrorResponse) => {
+          this.messageService.showError(`Ошибка изменения поста: ${ error.message }`);
+          return EMPTY;
+        }),
+      )
+      .subscribe();
   }
 
   createPost(): void {
@@ -110,14 +116,19 @@ export class PostListPageComponent {
 
   deletePost(selectedPost: IPost): void {
     this.isLoading = true;
-    this.postService.deletePost(selectedPost).pipe(
-      tap((post: IPost) => this.messageService.showSuccess(`Пост с id ${ post.id } удален`)),
-      catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(`Ошибка при удаления поста ${ selectedPost.id }: ${ error.message }`);
-        return EMPTY;
-      }),
-      finalize(() => this.isLoading = false)
-    ).subscribe();
+    this.postService
+      .deletePost(selectedPost)
+      .pipe(
+        tap((post: IPost) => this.messageService.showSuccess(`Пост с id ${ post.id } удален`)),
+        catchError((error: HttpErrorResponse) => {
+          this.messageService.showError(
+            `Ошибка при удаления поста ${ selectedPost.id }: ${ error.message }`,
+          );
+          return EMPTY;
+        }),
+        finalize(() => (this.isLoading = false)),
+      )
+      .subscribe();
   }
 
 }

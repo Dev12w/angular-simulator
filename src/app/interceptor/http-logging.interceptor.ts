@@ -1,12 +1,22 @@
-import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandlerFn,
+  HttpInterceptorFn,
+  HttpRequest,
+  HttpResponse,
+} from '@angular/common/http';
 import { catchError, tap, throwError } from 'rxjs';
 
-export const httpLoggingInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
+export const httpLoggingInterceptor: HttpInterceptorFn = (
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn,
+) => {
   const startTime: number = Date.now();
 
-  const logMessage = (status: number, isError: boolean = false ): void => {
+  const logMessage = (status: number, isError: boolean = false): void => {
     const message: string = `${ req.method } ${ req.url } ${ status } ${ Date.now() - startTime } мс`;
-    isError ? console.error(`Ошибка запроса: ${ message }`) : console.log(message);
+    return isError ? console.error(`Ошибка запроса: ${ message }`) : console.warn(message);
   };
 
   return next(req).pipe(
@@ -18,8 +28,6 @@ export const httpLoggingInterceptor: HttpInterceptorFn = (req: HttpRequest<unkno
     catchError((error: HttpErrorResponse) => {
       logMessage(error.status, true);
       return throwError(() => error);
-    })
+    }),
   );
 };
-
-

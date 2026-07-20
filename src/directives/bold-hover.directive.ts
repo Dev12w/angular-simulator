@@ -1,7 +1,7 @@
 import { Directive, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[boldHover]'
+  selector: '[boldHover]',
 })
 export class BoldHoverDirective {
 
@@ -16,4 +16,5 @@ export class BoldHoverDirective {
   onLeave(): void {
     this.fontWeight = 'normal';
   }
+
 }

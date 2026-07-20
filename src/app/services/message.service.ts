@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IMessage } from '../interfaces/IMessage';
-import { Message } from "../../enums/Message";
+import { Message } from '../../enums/Message';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -17,7 +17,8 @@ export class MessageService {
   }
 
   closeMessage(message: IMessage): void {
-    const messages: IMessage[] = this.messagesSubject.getValue()
+    const messages: IMessage[] = this.messagesSubject
+      .getValue()
       .filter((currentMessage: IMessage) => currentMessage !== message);
     this.messagesSubject.next(messages);
   }

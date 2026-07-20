@@ -9,7 +9,7 @@ export const popularCards: ICard[] = [
     rating: 4.9,
     icon: faStar,
     price: 480,
-    description: 'романтическое приключение'
+    description: 'романтическое приключение',
   },
   {
     id: 'night-mountains',
@@ -18,7 +18,7 @@ export const popularCards: ICard[] = [
     rating: 4.5,
     icon: faStar,
     price: 500,
-    description: 'в компании друзей'
+    description: 'в компании друзей',
   },
   {
     id: 'yoga-in-mountains',
@@ -27,6 +27,6 @@ export const popularCards: ICard[] = [
     rating: 5.1,
     icon: faStar,
     price: 230,
-    description: 'для тех, кто забоится о себе'
-  }
+    description: 'для тех, кто забоится о себе',
+  },
 ];

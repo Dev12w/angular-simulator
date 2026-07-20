@@ -18,7 +18,9 @@ export class AuthService {
 
   private readonly TOKEN_KEY: string = 'token';
 
-  private currentUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(null);
+  private currentUserSubject: BehaviorSubject<IAuthUser | null> =
+    new BehaviorSubject<IAuthUser | null>(null);
+
   currentUser$: Observable<IAuthUser | null> = this.currentUserSubject.asObservable();
 
   setToken(token: string): void {
@@ -48,7 +50,7 @@ export class AuthService {
         this.setRefreshToken(token.refreshToken);
       }),
       switchMap((): Observable<IAuthUser> => this.authApiService.getCurrentUser()),
-      tap((user: IAuthUser) => this.currentUserSubject.next(user))
+      tap((user: IAuthUser) => this.currentUserSubject.next(user)),
     );
   }
 
@@ -64,26 +66,24 @@ export class AuthService {
 
   initAuthToken(): Observable<IAuthUser | null> {
     if (!this.getToken()) return of(null);
-    return this.authApiService.getCurrentUser()
-      .pipe(
-        tap((user: IAuthUser) => this.currentUserSubject.next(user)),
-        catchError(() => {
-          this.logout();
-          return of(null);
-        })
-      );
+    return this.authApiService.getCurrentUser().pipe(
+      tap((user: IAuthUser) => this.currentUserSubject.next(user)),
+      catchError(() => {
+        this.logout();
+        return of(null);
+      }),
+    );
   }
 
   refreshToken(): Observable<IToken> {
     const refreshToken: string | null = this.getRefreshToken();
     if (!refreshToken) return EMPTY;
-    return this.authApiService.refreshToken(refreshToken)
-      .pipe(
-        tap((token: IToken) => {
-          this.setToken(token.accessToken);
-          this.setRefreshToken(token.refreshToken);
-        })
-      );
+    return this.authApiService.refreshToken(refreshToken).pipe(
+      tap((token: IToken) => {
+        this.setToken(token.accessToken);
+        this.setRefreshToken(token.refreshToken);
+      }),
+    );
   }
 
 }

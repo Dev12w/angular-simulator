@@ -6,7 +6,7 @@ import { IPost } from '../interfaces/IPost';
 import { IPostUpdateRequest } from '../interfaces/IPostRequestBody';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PostService {
 
@@ -30,20 +30,24 @@ export class PostService {
   updatePost(id: number, data: IPostUpdateRequest): Observable<IPost> {
     return this.postApiService.updatePost(id, data).pipe(
       tap((updatePost: IPost) => {
-        const posts: IPost[] = this.postsSubject.value.map((post: IPost) => post.id === updatePost.id ? updatePost : post);
+        const posts: IPost[] = this.postsSubject.value.map((post: IPost) =>
+          post.id === updatePost.id ? updatePost : post,
+        );
         this.postsSubject.next(posts);
-      })
+      }),
     );
-  };
+  }
 
   deletePost(selectedPost: IPost): Observable<IPost> {
     return this.postApiService.deletePost(selectedPost.id).pipe(
       tap((post: IPost) => {
-        const posts: IPost[] = this.postsSubject.value.filter((currentPost: IPost) => currentPost.id !== post.id);
+        const posts: IPost[] = this.postsSubject.value.filter(
+          (currentPost: IPost) => currentPost.id !== post.id,
+        );
         this.postsSubject.next(posts);
         this.totalCountSubject.next(this.totalCountSubject.value - 1);
-      })
+      }),
     );
-  };
+  }
 
 }

@@ -1,5 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { PostApiService } from '../../services/post-api.service';
 import { Router } from '@angular/router';
 import { MessageService } from '../../../../app/services/message.service';
@@ -51,16 +58,19 @@ export class PostCreatePageComponent {
 
     const body: IPostCreateRequest = this.form.getRawValue();
 
-    this.postApiService.createPost(body).pipe(
-      tap(() => {
-        this.messageService.showSuccess('Пост успешно создан');
-        this.router.navigateByUrl('/posts');
-      }),
-      catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(`Ошибка создания поста ${ error.message }`);
-        return EMPTY;
-      })
-    ).subscribe();
+    this.postApiService
+      .createPost(body)
+      .pipe(
+        tap(() => {
+          this.messageService.showSuccess('Пост успешно создан');
+          this.router.navigateByUrl('/posts');
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.messageService.showError(`Ошибка создания поста ${ error.message }`);
+          return EMPTY;
+        }),
+      )
+      .subscribe();
   }
 
 }

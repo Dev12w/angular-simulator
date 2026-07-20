@@ -1,11 +1,11 @@
 <div class="form-container">
   <form id="form" [formGroup]="form" (ngSubmit)="handleSubmit()" class="form">
-    <input id="form-tag-title"  type="text" formControlName="title">
-    <input id="form-tag-views"  type="number" formControlName="views">
+    <input id="form-tag-title" type="text" formControlName="title" />
+    <input id="form-tag-views" type="number" formControlName="views" />
     <div class="form-tags" formArrayName="tags">
       @for (tag of tags.controls; track $index) {
         <div style="display: flex; gap: 3px">
-          <input [id]="'tag-input-' + $index" type="text" [formControl]="tag"/>
+          <input [id]="'tag-input-' + $index" type="text" [formControl]="tag" />
           <button [id]="'tag-btn-' + $index" (click)="removeTagControl($index)">Удалить тег</button>
         </div>
       }

@@ -11,5 +11,5 @@ import { AsyncPipe } from '@angular/common';
 export class LoaderComponent {
 
   loaderService: LoaderService = inject(LoaderService);
-  
+
 }

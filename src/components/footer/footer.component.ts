@@ -4,9 +4,7 @@ import { FaIconComponent, IconDefinition } from '@fortawesome/angular-fontawesom
 
 @Component({
   selector: 'app-footer',
-  imports: [
-    FaIconComponent
-  ],
+  imports: [FaIconComponent],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
 })

@@ -21,4 +21,5 @@ export class PluralizePipe implements PipeTransform {
         return `${ value } ${ many }`;
     }
   }
+
 }

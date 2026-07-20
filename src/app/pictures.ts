@@ -3,26 +3,26 @@ import { IPicture } from './interfaces/IPicture';
 export const pictures: IPicture[] = [
   {
     id: 1,
-    image: 'photographer'
+    image: 'photographer',
   },
   {
     id: 2,
-    image: 'camera'
+    image: 'camera',
   },
   {
     id: 3,
-    image: 'dubai'
+    image: 'dubai',
   },
   {
     id: 4,
-    image: 'shore-boats'
+    image: 'shore-boats',
   },
   {
     id: 5,
-    image: 'canyon-river'
+    image: 'canyon-river',
   },
   {
     id: 6,
-    image: 'pocketbook'
-  }
+    image: 'pocketbook',
+  },
 ];

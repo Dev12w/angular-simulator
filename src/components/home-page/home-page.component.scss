@@ -1,5 +1,5 @@
-@use "../../assets/styles" as *;
-@use "../../assets/mixin" as *;
+@use '../../assets/styles' as *;
+@use '../../assets/mixin' as *;
 
 .tour-content {
   display: flex;
@@ -78,7 +78,7 @@
 
   &:disabled {
     background: var(--primary-color);
-    color: var(--white-color)
+    color: var(--white-color);
   }
 }
 
@@ -174,7 +174,7 @@
 
   .trip-story {
     line-height: 150%;
-    color: var(--black-color)
+    color: var(--black-color);
   }
 
   .trip-tour-button {
@@ -430,7 +430,7 @@
 
     .travel-link-read {
       text-decoration: none;
-      color: var(--primary-color)
+      color: var(--primary-color);
     }
   }
 

@@ -1,12 +1,12 @@
-@use "../../assets/styles" as *;
-@use "../../assets/mixin" as *;
+@use '../../assets/styles' as *;
+@use '../../assets/mixin' as *;
 
 .header-nav-container {
   display: flex;
   align-items: center;
   flex-direction: column;
   width: 100%;
-  background: #18121E80;
+  background: #18121e80;
   position: absolute;
   z-index: 1;
 }
@@ -61,7 +61,7 @@
   @include button-base;
 
   background: var(--white-color);
-  color: #18121E;
+  color: #18121e;
   width: 157px;
   margin-left: 20px;
 }
@@ -77,7 +77,7 @@
     @include button-base;
 
     background: var(--white-color);
-    color: #18121E;
+    color: #18121e;
     width: 157px;
     margin-left: 20px;
   }

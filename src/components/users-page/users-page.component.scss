@@ -1,4 +1,4 @@
-@use "../../assets/styles" as *;
+@use '../../assets/styles' as *;
 
 .users-page {
   display: flex;
@@ -8,7 +8,6 @@
   padding-bottom: 160px;
   background: var(--blue-color);
   justify-content: center;
-
 }
 
 .users-card-container {
