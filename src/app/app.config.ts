@@ -20,6 +20,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { authInterceptor } from '../features/auth/interceptor/auth.interceptor';
 import { AuthService } from '../features/auth/services/auth.service';
 import { firstValueFrom } from 'rxjs';
+import { DATE_FORMAT } from './tokens/date-format.token';
+import { APP_CONFIG } from './tokens/app-config.token';
+import { configuration } from './configurations/configuration';
 
 function getCurrentThemePreset(): Preset {
   const themeName: string = localStorage.getItem('theme') ?? '';
@@ -39,6 +42,15 @@ export const appConfig: ApplicationConfig = {
       const authService: AuthService = inject(AuthService);
       return firstValueFrom(authService.initAuthToken());
     }),
+    {
+      provide: APP_CONFIG,
+      useValue: configuration,
+    },
+    {
+      provide: DATE_FORMAT,
+      useValue: 'dd.MM.yyyy HH:mm',
+    },
+
     provideAnimations(),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),

@@ -15,8 +15,8 @@ export const httpLoggingInterceptor: HttpInterceptorFn = (
   const startTime: number = Date.now();
 
   const logMessage = (status: number, isError: boolean = false): void => {
-    const message: string = `${ req.method } ${ req.url } ${ status } ${ Date.now() - startTime } мс`;
-    return isError ? console.error(`Ошибка запроса: ${ message }`) : console.warn(message);
+    const message: string = `${req.method} ${req.url} ${status} ${Date.now() - startTime} мс`;
+    return isError ? console.error(`Ошибка запроса: ${message}`) : console.warn(message);
   };
 
   return next(req).pipe(

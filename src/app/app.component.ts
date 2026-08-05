@@ -2,13 +2,14 @@ import { FormsModule } from '@angular/forms';
 import { Component, inject } from '@angular/core';
 import { Color } from '../enums/Color';
 import { Collection } from './collection';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { LocalStorageService } from './services/local-storage.service';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { MessageComponent } from '../components/message/message.component';
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from '../components/loader/loader.component';
+import { DATE_FORMAT } from './tokens/date-format.token';
 
 @Component({
   selector: 'app-root',
@@ -21,15 +22,17 @@ import { LoaderComponent } from '../components/loader/loader.component';
     RouterOutlet,
     LoaderComponent,
   ],
+  providers: [DatePipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-
   readonly LAST_VISIT_DATE_KEY: string = 'last-visit-date';
   readonly VISIT_COUNTER_KEY: string = 'visit-counter';
 
   private localStorageService: LocalStorageService = inject(LocalStorageService);
+  datePipe: DatePipe = inject(DatePipe);
+  dateFormat: string = inject(DATE_FORMAT);
 
   isLoading: boolean = true;
 
@@ -59,19 +62,18 @@ export class AppComponent {
   }
 
   saveLastVisitDate(): void {
-    const date: Date = new Date();
-    this.localStorageService.setItem<string>(this.LAST_VISIT_DATE_KEY, date.toISOString());
+    const formattedDate: string | null = this.datePipe.transform(new Date(), this.dateFormat);
+    this.localStorageService.setItem<string | null>(this.LAST_VISIT_DATE_KEY, formattedDate);
   }
 
   saveVisitCounter(): void {
     const visitCounter: number = Number(
       this.localStorageService.getItem<string>(this.VISIT_COUNTER_KEY) || 0,
     );
-    this.localStorageService.setItem<string>(this.VISIT_COUNTER_KEY, `${ visitCounter + 1 }`);
+    this.localStorageService.setItem<string>(this.VISIT_COUNTER_KEY, `${visitCounter + 1}`);
   }
 
   isMainColor(color: Color): boolean {
     return [Color.BLUE, Color.GREEN, Color.RED].includes(color);
   }
-
 }

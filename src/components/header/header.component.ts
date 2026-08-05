@@ -8,6 +8,9 @@ import { ToggleSwitch } from 'primeng/toggleswitch';
 import { ThemeService } from '../../app/services/theme.service';
 import { INavigationLink } from '../../app/interfaces/INavigationLink';
 import { ITheme } from '../../app/interfaces/ITheme';
+import { DATE_FORMAT} from '../../app/tokens/date-format.token';
+import { AppConfig } from '../../app/interfaces/AppConfig';
+import { APP_CONFIG } from '../../app/tokens/app-config.token';
 
 @Component({
   selector: 'app-header',
@@ -16,12 +19,13 @@ import { ITheme } from '../../app/interfaces/ITheme';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-
   themeService: ThemeService = inject(ThemeService);
+  dateFormat: string = inject(DATE_FORMAT);
+  appConfig: AppConfig = inject(APP_CONFIG);
 
   themeOptions: ITheme[] = this.themeService.themes;
 
-  companyName: string = 'Румтибет';
+  companyName: string = this.appConfig.companyName;
 
   count: number = 0;
   currentHeaderWidget: Widget = 'date';
@@ -61,5 +65,4 @@ export class HeaderComponent {
   private initCurrentDate(): void {
     setInterval(() => (this.currentDate = new Date()), 1000);
   }
-
 }
