@@ -1,9 +1,9 @@
-import { AppConfig } from '../interfaces/AppConfig';
+import { IAppConfig } from '../interfaces/IAppConfig';
 
-export const configuration: AppConfig = {
+export const configuration: IAppConfig = {
   companyName: 'Румтибет',
   enableLogs: true,
   enableNotifications: true,
-  enableTheming: false,
+  enableTheming: true,
   sessionTimeout: 3600,
 };

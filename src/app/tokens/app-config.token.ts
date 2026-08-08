@@ -1,4 +1,4 @@
 import { InjectionToken } from '@angular/core';
-import {AppConfig} from '../interfaces/AppConfig';
+import { IAppConfig } from '../interfaces/IAppConfig';
 
-export const APP_CONFIG = new InjectionToken<AppConfig>('APP_CONFIG');
+export const APP_CONFIG = new InjectionToken<IAppConfig>('APP_CONFIG');

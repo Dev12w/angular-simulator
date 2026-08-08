@@ -1,4 +1,4 @@
-export interface AppConfig {
+export interface IAppConfig {
   companyName: string;
   enableLogs: boolean;
   enableNotifications: boolean;

@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { AuthApiService } from './auth-api.service';
 import { IToken } from '../interfaces/IToken';
 import { UserRole } from '../enums/UserRole';
+import { APP_CONFIG } from '../../../app/tokens/app-config.token';
+import { IAppConfig } from '../../../app/interfaces/IAppConfig';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +17,7 @@ export class AuthService {
   private router: Router = inject(Router);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private authApiService: AuthApiService = inject(AuthApiService);
+  private config: IAppConfig = inject(APP_CONFIG);
 
   private readonly TOKEN_KEY: string = 'token';
 
@@ -44,7 +47,7 @@ export class AuthService {
   }
 
   login(name: string, password: string): Observable<IAuthUser> {
-    return this.authApiService.getLogin(name, password).pipe(
+    return this.authApiService.getLogin(name, password, this.config.sessionTimeout).pipe(
       tap((token: IToken) => {
         this.setToken(token.accessToken);
         this.setRefreshToken(token.refreshToken);
@@ -78,7 +81,7 @@ export class AuthService {
   refreshToken(): Observable<IToken> {
     const refreshToken: string | null = this.getRefreshToken();
     if (!refreshToken) return EMPTY;
-    return this.authApiService.refreshToken(refreshToken).pipe(
+    return this.authApiService.refreshToken(refreshToken, this.config.sessionTimeout).pipe(
       tap((token: IToken) => {
         this.setToken(token.accessToken);
         this.setRefreshToken(token.refreshToken);
