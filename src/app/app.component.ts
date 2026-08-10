@@ -9,7 +9,6 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { MessageComponent } from '../components/message/message.component';
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from '../components/loader/loader.component';
-import { DATE_FORMAT } from './tokens/date-format.token';
 
 @Component({
   selector: 'app-root',
@@ -22,18 +21,16 @@ import { DATE_FORMAT } from './tokens/date-format.token';
     RouterOutlet,
     LoaderComponent,
   ],
-  providers: [DatePipe],
+  providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-
   readonly LAST_VISIT_DATE_KEY: string = 'last-visit-date';
   readonly VISIT_COUNTER_KEY: string = 'visit-counter';
 
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-  datePipe: DatePipe = inject(DatePipe);
-  dateFormat: string = inject(DATE_FORMAT);
+  private datePipe: DatePipe = inject(DatePipe);
 
   isLoading: boolean = true;
 
@@ -63,7 +60,7 @@ export class AppComponent {
   }
 
   saveLastVisitDate(): void {
-    const formattedDate: string | null = this.datePipe.transform(new Date(), this.dateFormat);
+    const formattedDate: string | null = this.datePipe.transform(new Date());
     this.localStorageService.setItem<string | null>(this.LAST_VISIT_DATE_KEY, formattedDate);
   }
 
@@ -71,11 +68,10 @@ export class AppComponent {
     const visitCounter: number = Number(
       this.localStorageService.getItem<string>(this.VISIT_COUNTER_KEY) || 0,
     );
-    this.localStorageService.setItem<string>(this.VISIT_COUNTER_KEY, `${ visitCounter + 1 }`);
+    this.localStorageService.setItem<string>(this.VISIT_COUNTER_KEY, `${visitCounter + 1}`);
   }
 
   isMainColor(color: Color): boolean {
     return [Color.BLUE, Color.GREEN, Color.RED].includes(color);
   }
-
 }

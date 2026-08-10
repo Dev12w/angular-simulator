@@ -20,10 +20,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { authInterceptor } from '../features/auth/interceptor/auth.interceptor';
 import { AuthService } from '../features/auth/services/auth.service';
 import { firstValueFrom } from 'rxjs';
-import { DATE_FORMAT } from './tokens/date-format.token';
 import { APP_CONFIG } from './tokens/app-config.token';
 import { configuration } from './configurations/configuration';
-import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
+import { DATE_PIPE_DEFAULT_OPTIONS, DatePipe } from '@angular/common';
 
 function getCurrentThemePreset(): Preset {
   const themeName: string = localStorage.getItem('theme') ?? '';
@@ -39,6 +38,7 @@ function getCurrentThemePreset(): Preset {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    DatePipe,
     provideAppInitializer(() => {
       const authService: AuthService = inject(AuthService);
       return firstValueFrom(authService.initAuthToken());
@@ -48,15 +48,8 @@ export const appConfig: ApplicationConfig = {
       useValue: configuration,
     },
     {
-      provide: DATE_FORMAT,
-      useValue: 'dd.MM.yyyy HH:mm:ss',
-    },
-    {
       provide: DATE_PIPE_DEFAULT_OPTIONS,
-      useFactory: (dateFormat: string) => ({
-        dateFormat,
-      }),
-      deps: [DATE_FORMAT],
+      useValue: { dateFormat: 'dd.MM.yyyy HH:mm' },
     },
 
     provideAnimations(),

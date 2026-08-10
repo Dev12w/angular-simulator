@@ -8,6 +8,7 @@ import { IToken } from '../interfaces/IToken';
 import { UserRole } from '../enums/UserRole';
 import { APP_CONFIG } from '../../../app/tokens/app-config.token';
 import { IAppConfig } from '../../../app/interfaces/IAppConfig';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -18,13 +19,25 @@ export class AuthService {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private authApiService: AuthApiService = inject(AuthApiService);
   private config: IAppConfig = inject(APP_CONFIG);
+  private datePipe: DatePipe = inject(DatePipe);
 
   private readonly TOKEN_KEY: string = 'token';
+  private readonly LAST_LOGIN_KEY: string = 'lastLoginDate';
+  private currentLogin: Date = new Date();
 
   private currentUserSubject: BehaviorSubject<IAuthUser | null> =
     new BehaviorSubject<IAuthUser | null>(null);
 
   currentUser$: Observable<IAuthUser | null> = this.currentUserSubject.asObservable();
+
+  getLastLogin(): string | null {
+    return this.localStorageService.getItem(this.LAST_LOGIN_KEY);
+  }
+
+  setLastLogin(): void {
+    const formattedDate: string | null = this.datePipe.transform(this.currentLogin);
+    this.localStorageService.setItem(this.LAST_LOGIN_KEY, formattedDate);
+  }
 
   setToken(token: string): void {
     this.localStorageService.setItem(this.TOKEN_KEY, token);
@@ -54,6 +67,7 @@ export class AuthService {
       }),
       switchMap((): Observable<IAuthUser> => this.authApiService.getCurrentUser()),
       tap((user: IAuthUser) => this.currentUserSubject.next(user)),
+      tap(() => this.setLastLogin()),
     );
   }
 
@@ -88,5 +102,4 @@ export class AuthService {
       }),
     );
   }
-
 }
