@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Widget } from '../../types/Widget';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -8,23 +8,20 @@ import { ToggleSwitch } from 'primeng/toggleswitch';
 import { ThemeService } from '../../app/services/theme.service';
 import { INavigationLink } from '../../app/interfaces/INavigationLink';
 import { ITheme } from '../../app/interfaces/ITheme';
-import { DATE_FORMAT } from '../../app/tokens/date-format.token';
-import { IAppConfig } from '../../app/interfaces/IAppConfig';
 import { APP_CONFIG } from '../../app/tokens/app-config.token';
+import { IAppConfig } from '../../app/interfaces/IAppConfig';
 
 @Component({
   selector: 'app-header',
-  imports: [FormsModule, CommonModule, RouterLinkActive, RouterLink, SelectButton, ToggleSwitch],
+  imports: [FormsModule, CommonModule, RouterLinkActive, RouterLink, SelectButton, ToggleSwitch, DatePipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
 
   themeService: ThemeService = inject(ThemeService);
-  dateFormat: string = inject(DATE_FORMAT);
-  appConfig: IAppConfig = inject(APP_CONFIG);
-
   themeOptions: ITheme[] = this.themeService.themes;
+  appConfig: IAppConfig = inject(APP_CONFIG);
 
   count: number = 0;
   currentHeaderWidget: Widget = 'date';

@@ -23,6 +23,7 @@ import { firstValueFrom } from 'rxjs';
 import { DATE_FORMAT } from './tokens/date-format.token';
 import { APP_CONFIG } from './tokens/app-config.token';
 import { configuration } from './configurations/configuration';
+import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 
 function getCurrentThemePreset(): Preset {
   const themeName: string = localStorage.getItem('theme') ?? '';
@@ -48,7 +49,14 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide: DATE_FORMAT,
-      useValue: 'dd.MM.yyyy HH:mm',
+      useValue: 'dd.MM.yyyy HH:mm:ss',
+    },
+    {
+      provide: DATE_PIPE_DEFAULT_OPTIONS,
+      useFactory: (dateFormat: string) => ({
+        dateFormat,
+      }),
+      deps: [DATE_FORMAT],
     },
 
     provideAnimations(),

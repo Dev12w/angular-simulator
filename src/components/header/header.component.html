@@ -38,7 +38,7 @@
     <div class="header-date-counter">
       @if (currentHeaderWidget === 'date') {
         <div class="header-date">
-          <span>{{ currentDate | date: dateFormat }}</span>
+          <span>{{ currentDate | date }}</span>
         </div>
       }
       @if (currentHeaderWidget === 'counter') {
