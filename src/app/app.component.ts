@@ -26,6 +26,7 @@ import { LoaderComponent } from '../components/loader/loader.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+
   readonly LAST_VISIT_DATE_KEY: string = 'last-visit-date';
   readonly VISIT_COUNTER_KEY: string = 'visit-counter';
 
@@ -68,10 +69,11 @@ export class AppComponent {
     const visitCounter: number = Number(
       this.localStorageService.getItem<string>(this.VISIT_COUNTER_KEY) || 0,
     );
-    this.localStorageService.setItem<string>(this.VISIT_COUNTER_KEY, `${visitCounter + 1}`);
+    this.localStorageService.setItem<string>(this.VISIT_COUNTER_KEY, `${ visitCounter + 1 }`);
   }
 
   isMainColor(color: Color): boolean {
     return [Color.BLUE, Color.GREEN, Color.RED].includes(color);
   }
+
 }
