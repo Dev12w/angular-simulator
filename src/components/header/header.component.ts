@@ -14,21 +14,13 @@ import { AuthService } from '../../features/auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
-  imports: [
-    FormsModule,
-    CommonModule,
-    RouterLinkActive,
-    RouterLink,
-    SelectButton,
-    ToggleSwitch,
-    DatePipe,
-  ],
+  imports: [FormsModule, CommonModule, RouterLinkActive, RouterLink, SelectButton, ToggleSwitch, DatePipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
 
-  private themeService: ThemeService = inject(ThemeService);
+  themeService: ThemeService = inject(ThemeService);
   themeOptions: ITheme[] = this.themeService.themes;
   appConfig: IAppConfig = inject(APP_CONFIG);
   private authService: AuthService = inject(AuthService);
