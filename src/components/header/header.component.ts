@@ -28,7 +28,7 @@ import { AuthService } from '../../features/auth/services/auth.service';
 })
 export class HeaderComponent {
 
-  themeService: ThemeService = inject(ThemeService);
+  private themeService: ThemeService = inject(ThemeService);
   themeOptions: ITheme[] = this.themeService.themes;
   appConfig: IAppConfig = inject(APP_CONFIG);
   private authService: AuthService = inject(AuthService);
@@ -68,7 +68,7 @@ export class HeaderComponent {
     this.count = this.count > 0 ? this.count - 1 : 0;
   }
 
-  lastLoginDate(): string | null {
+  get lastLoginDate(): string | null {
     return this.authService.getLastLogin();
   }
 
