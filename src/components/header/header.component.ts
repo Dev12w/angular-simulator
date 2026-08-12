@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Widget } from '../../types/Widget';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -8,20 +8,22 @@ import { ToggleSwitch } from 'primeng/toggleswitch';
 import { ThemeService } from '../../app/services/theme.service';
 import { INavigationLink } from '../../app/interfaces/INavigationLink';
 import { ITheme } from '../../app/interfaces/ITheme';
+import { APP_CONFIG } from '../../app/tokens/app-config.token';
+import { IAppConfig } from '../../app/interfaces/IAppConfig';
+import { AuthService } from '../../features/auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
-  imports: [FormsModule, CommonModule, RouterLinkActive, RouterLink, SelectButton, ToggleSwitch],
+  imports: [FormsModule, CommonModule, RouterLinkActive, RouterLink, SelectButton, ToggleSwitch, DatePipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
 
   themeService: ThemeService = inject(ThemeService);
-
   themeOptions: ITheme[] = this.themeService.themes;
-
-  companyName: string = 'Румтибет';
+  appConfig: IAppConfig = inject(APP_CONFIG);
+  private authService: AuthService = inject(AuthService);
 
   count: number = 0;
   currentHeaderWidget: Widget = 'date';
@@ -56,6 +58,10 @@ export class HeaderComponent {
 
   decrementCount(): void {
     this.count = this.count > 0 ? this.count - 1 : 0;
+  }
+
+  get lastLoginDate(): string | null {
+    return this.authService.getLastLogin();
   }
 
   private initCurrentDate(): void {

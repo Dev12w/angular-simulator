@@ -6,6 +6,8 @@ import { ITheme } from '../interfaces/ITheme';
 import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara';
 import Nora from '@primeuix/themes/nora';
+import { APP_CONFIG } from '../tokens/app-config.token';
+import { IAppConfig } from '../interfaces/IAppConfig';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +18,7 @@ export class ThemeService {
   private THEME_MODE_KEY: string = 'theme-dark-mode';
 
   private localStorageService: LocalStorageService = inject(LocalStorageService);
+  private config: IAppConfig = inject(APP_CONFIG);
 
   themes: ITheme[] = [
     {
@@ -59,12 +62,16 @@ export class ThemeService {
   }
 
   setTheme(theme: ITheme): void {
+    if (!this.config.enableTheming) return;
+
     usePreset(theme.preset);
     this.themeSubject.next(theme);
     this.localStorageService.setItem(this.THEME_KEY, theme.name);
   }
 
   setDarkMode(isDarkMode: boolean): void {
+    if (!this.config.enableTheming) return;
+
     this.isDarkModeSubject.next(isDarkMode);
     this.localStorageService.setItem(this.THEME_MODE_KEY, isDarkMode);
 

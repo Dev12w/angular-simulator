@@ -20,6 +20,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { authInterceptor } from '../features/auth/interceptor/auth.interceptor';
 import { AuthService } from '../features/auth/services/auth.service';
 import { firstValueFrom } from 'rxjs';
+import { APP_CONFIG } from './tokens/app-config.token';
+import { configuration } from './configurations/configuration';
+import { DATE_PIPE_DEFAULT_OPTIONS, DatePipe } from '@angular/common';
 
 function getCurrentThemePreset(): Preset {
   const themeName: string = localStorage.getItem('theme') ?? '';
@@ -35,10 +38,20 @@ function getCurrentThemePreset(): Preset {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    DatePipe,
     provideAppInitializer(() => {
       const authService: AuthService = inject(AuthService);
       return firstValueFrom(authService.initAuthToken());
     }),
+    {
+      provide: APP_CONFIG,
+      useValue: configuration,
+    },
+    {
+      provide: DATE_PIPE_DEFAULT_OPTIONS,
+      useValue: { dateFormat: 'dd.MM.yyyy HH:mm' },
+    },
+
     provideAnimations(),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),

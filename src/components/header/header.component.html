@@ -3,8 +3,11 @@
     <div class="header-nav-wrapper">
       <div class="header-logo-container">
         <div class="logo"></div>
-        <span class="logo-text fs-16 bold">{{ companyName }}</span>
+        <span class="logo-text fs-16 bold">{{ appConfig.companyName }}</span>
       </div>
+      <span>
+        Последний вход: {{ lastLoginDate }}
+      </span>
       <div class="card flex justify-center">
         <p-selectButton
           [options]="themeOptions"
@@ -38,7 +41,7 @@
     <div class="header-date-counter">
       @if (currentHeaderWidget === 'date') {
         <div class="header-date">
-          <span>{{ currentDate.toLocaleString() }}</span>
+          <span>{{ currentDate | date }}</span>
         </div>
       }
       @if (currentHeaderWidget === 'counter') {

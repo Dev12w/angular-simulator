@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { AuthApiService } from './auth-api.service';
 import { IToken } from '../interfaces/IToken';
 import { UserRole } from '../enums/UserRole';
+import { APP_CONFIG } from '../../../app/tokens/app-config.token';
+import { IAppConfig } from '../../../app/interfaces/IAppConfig';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +18,26 @@ export class AuthService {
   private router: Router = inject(Router);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private authApiService: AuthApiService = inject(AuthApiService);
+  private config: IAppConfig = inject(APP_CONFIG);
+  private datePipe: DatePipe = inject(DatePipe);
 
   private readonly TOKEN_KEY: string = 'token';
+  private readonly LAST_LOGIN_KEY: string = 'lastLoginDate';
+  private currentLogin: Date = new Date();
 
   private currentUserSubject: BehaviorSubject<IAuthUser | null> =
     new BehaviorSubject<IAuthUser | null>(null);
 
   currentUser$: Observable<IAuthUser | null> = this.currentUserSubject.asObservable();
+
+  getLastLogin(): string | null {
+    return this.localStorageService.getItem(this.LAST_LOGIN_KEY);
+  }
+
+  setLastLogin(): void {
+    const formattedDate: string | null = this.datePipe.transform(this.currentLogin);
+    this.localStorageService.setItem(this.LAST_LOGIN_KEY, formattedDate);
+  }
 
   setToken(token: string): void {
     this.localStorageService.setItem(this.TOKEN_KEY, token);
@@ -44,13 +60,14 @@ export class AuthService {
   }
 
   login(name: string, password: string): Observable<IAuthUser> {
-    return this.authApiService.getLogin(name, password).pipe(
+    return this.authApiService.getLogin(name, password, this.config.sessionTimeout).pipe(
       tap((token: IToken) => {
         this.setToken(token.accessToken);
         this.setRefreshToken(token.refreshToken);
       }),
       switchMap((): Observable<IAuthUser> => this.authApiService.getCurrentUser()),
       tap((user: IAuthUser) => this.currentUserSubject.next(user)),
+      tap(() => this.setLastLogin()),
     );
   }
 
@@ -78,7 +95,7 @@ export class AuthService {
   refreshToken(): Observable<IToken> {
     const refreshToken: string | null = this.getRefreshToken();
     if (!refreshToken) return EMPTY;
-    return this.authApiService.refreshToken(refreshToken).pipe(
+    return this.authApiService.refreshToken(refreshToken, this.config.sessionTimeout).pipe(
       tap((token: IToken) => {
         this.setToken(token.accessToken);
         this.setRefreshToken(token.refreshToken);
