@@ -12,9 +12,7 @@
       @for (tag of tags.controls; track $index) {
         <div style="display: flex; gap: 3px">
           <input [id]="'input-tag-' + $index" type="text" [formControl]="tag" />
-          <button [id]="'remove-tag-' + $index" (click)="removeTagControl($index)">
-            Удалить тег
-          </button>
+          <button [id]="'remove-tag-' + $index" (click)="removeTagControl($index)">Удалить тег</button>
         </div>
       }
       <button id="form-tags-btn" type="button" (click)="addTagControl()">Добавить тег</button>

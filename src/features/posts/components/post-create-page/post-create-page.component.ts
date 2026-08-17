@@ -1,12 +1,5 @@
 import { Component, inject } from '@angular/core';
-import {
-  FormArray,
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostApiService } from '../../services/post-api.service';
 import { Router } from '@angular/router';
 import { MessageService } from '../../../../app/services/message.service';

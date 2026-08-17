@@ -23,9 +23,7 @@ export class MessageService {
   }
 
   closeMessage(message: IMessage): void {
-    const messages: IMessage[] = this.messagesSubject
-      .getValue()
-      .filter((currentMessage: IMessage) => currentMessage !== message);
+    const messages: IMessage[] = this.messagesSubject.getValue().filter((currentMessage: IMessage) => currentMessage !== message);
     this.messagesSubject.next(messages);
   }
 

@@ -23,12 +23,7 @@
         <span class="location-search-text">укажите диапазон</span>
       </div>
       <div class="tour-location-search">
-        <select
-          [(ngModel)]="participants"
-          name="participants"
-          class="tour-option-text"
-          id="option-participants"
-        >
+        <select [(ngModel)]="participants" name="participants" class="tour-option-text" id="option-participants">
           <option value="" disabled selected hidden>Участники</option>
           <option value="one-person">1 человек</option>
           <option value="two-people">2 человека</option>
@@ -36,24 +31,11 @@
         <span class="location-search-text">выберите из списка</span>
       </div>
       <div class="tour-location-search">
-        <button
-          [disabled]="!isFormValid()"
-          name="isFormComplete"
-          class="btn-program-find fs-18"
-          id="submit-form-btn"
-        >
-          Найти программу
-        </button>
+        <button [disabled]="!isFormValid()" name="isFormComplete" class="btn-program-find fs-18" id="submit-form-btn">Найти программу</button>
       </div>
     </div>
     <div>
-      <input
-        [(ngModel)]="liveInputValue"
-        type="text"
-        placeholder="Живой инпут"
-        class="live-input-value"
-        id="live-input-value"
-      />
+      <input [(ngModel)]="liveInputValue" type="text" placeholder="Живой инпут" class="live-input-value" id="live-input-value" />
       <span>{{ liveInputValue }}</span>
     </div>
   </div>
@@ -74,19 +56,8 @@
     <div class="trip-content">
       <span class="fs-24 yellow-color">о нашем походе</span>
       <h1 class="trip-title fs-32 bold">Исследуйте все горные массивы мира вместе с нами</h1>
-      <p class="trip-story fs-18">
-        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
-        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат
-        Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его
-        поисками в классической латинской литературе.
-      </p>
-      <button
-        class="trip-tour-button fs-16 bold"
-        id="submit-tour-btn"
-        (click)="messageService.showSuccess('Программа тура')"
-      >
-        Программа тура
-      </button>
+      <p class="trip-story fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
+      <button class="trip-tour-button fs-16 bold" id="submit-tour-btn" (click)="messageService.showSuccess('Программа тура')">Программа тура</button>
     </div>
   </div>
 </section>
@@ -96,10 +67,7 @@
     <div class="offers-content">
       <span class="fs-24 yellow-color">наше предложение</span>
       <h1 class="offers-title fs-32">Лучшие программы для тебя</h1>
-      <p class="offers-description fs-18">
-        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
-        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.
-      </p>
+      <p class="offers-description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
       <ul class="offers-features">
         @for (offer of offers; track offer.id) {
           <li class="offers-feature">
@@ -113,13 +81,7 @@
           </li>
         }
       </ul>
-      <button
-        class="offers-price-btn fs-16"
-        id="submit-price-btn"
-        (click)="messageService.showWarn('Стоимость программ')"
-      >
-        Стоимость программ
-      </button>
+      <button class="offers-price-btn fs-16" id="submit-price-btn" (click)="messageService.showWarn('Стоимость программ')">Стоимость программ</button>
     </div>
     <div class="offers-gallery">
       @for (picture of galleryImages; track picture.id) {
@@ -159,13 +121,7 @@
         </div>
       }
     </div>
-    <button
-      class="popular-rating-btn fs-16 bold"
-      id="submit-rating-btn"
-      (click)="messageService.showInfo('Рейтинг направлений')"
-    >
-      Рейтинг направлений
-    </button>
+    <button class="popular-rating-btn fs-16 bold" id="submit-rating-btn" (click)="messageService.showInfo('Рейтинг направлений')">Рейтинг направлений</button>
   </div>
 </section>
 
@@ -188,21 +144,13 @@
             </div>
             <div class="travel-card-date">
               <span class="travel-date yellow-color">{{ travel.date }}</span>
-              <a id="travel-link-read" class="travel-link-read fs-14 bold" href="#">{{
-                travel.link
-              }}</a>
+              <a id="travel-link-read" class="travel-link-read fs-14 bold" href="#">{{ travel.link }}</a>
             </div>
           </div>
         </div>
       }
     </div>
-    <button
-      class="travel-card-btn fs-16 bold"
-      id="submit-materials-btn"
-      (click)="messageService.showError('Другие материалы')"
-    >
-      Другие материалы
-    </button>
+    <button class="travel-card-btn fs-16 bold" id="submit-materials-btn" (click)="messageService.showError('Другие материалы')">Другие материалы</button>
   </div>
 </section>
 

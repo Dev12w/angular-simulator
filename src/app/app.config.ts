@@ -1,10 +1,4 @@
-import {
-  ApplicationConfig,
-  inject,
-  provideAppInitializer,
-  provideBrowserGlobalErrorListeners,
-  provideZoneChangeDetection,
-} from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
@@ -56,9 +50,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideZoneChangeDetection(),
-    provideHttpClient(
-      withInterceptors([authInterceptor, httpLoggingInterceptor, serverErrorInterceptor]),
-    ),
+    provideHttpClient(withInterceptors([authInterceptor, httpLoggingInterceptor, serverErrorInterceptor])),
     providePrimeNG({
       theme: {
         preset: getCurrentThemePreset(),

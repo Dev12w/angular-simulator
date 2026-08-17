@@ -50,14 +50,12 @@ export class ThemeService {
 
   loadTheme(): void {
     const themeName: string = this.localStorageService.getItem<string>(this.THEME_KEY) ?? '';
-    const theme: ITheme =
-      this.themes.find((theme: ITheme) => theme.name === themeName) ?? this.defaultTheme;
+    const theme: ITheme = this.themes.find((theme: ITheme) => theme.name === themeName) ?? this.defaultTheme;
     this.setTheme(theme);
   }
 
   loadDarkMode(): void {
-    const isDarkMode: boolean =
-      this.localStorageService.getItem<boolean>(this.THEME_MODE_KEY) ?? false;
+    const isDarkMode: boolean = this.localStorageService.getItem<boolean>(this.THEME_MODE_KEY) ?? false;
     this.setDarkMode(isDarkMode);
   }
 
@@ -75,9 +73,7 @@ export class ThemeService {
     this.isDarkModeSubject.next(isDarkMode);
     this.localStorageService.setItem(this.THEME_MODE_KEY, isDarkMode);
 
-    return isDarkMode
-      ? document.documentElement.classList.add('app-dark')
-      : document.documentElement.classList.remove('app-dark');
+    return isDarkMode ? document.documentElement.classList.add('app-dark') : document.documentElement.classList.remove('app-dark');
   }
 
 }

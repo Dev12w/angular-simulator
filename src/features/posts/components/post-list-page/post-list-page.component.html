@@ -1,29 +1,11 @@
 <div class="posts">
   <p-contextmenu #cm [model]="contextMenuItems" (onHide)="selectedPost = null" />
-  <p-table
-    [value]="(posts$ | async) ?? []"
-    [tableStyle]="{ 'min-width': '60rem' }"
-    [paginator]="true"
-    [rows]="limit"
-    [showCurrentPageReport]="true"
-    [first]="offset"
-    currentPageReportTemplate="{first} из {last}. Всего: {totalRecords}"
-    (onPage)="pageChange($event)"
-    [rowsPerPageOptions]="[10, 25, 50]"
-    [lazy]="true"
-    [lazyLoadOnInit]="true"
-    [totalRecords]="(totalCount$ | async) ?? 0"
-    [alwaysShowPaginator]="true"
-    [contextMenu]="cm"
-    [(contextMenuSelection)]="selectedPost"
-  >
+  <p-table [value]="(posts$ | async) ?? []" [tableStyle]="{ 'min-width': '60rem' }" [paginator]="true" [rows]="limit" [showCurrentPageReport]="true" [first]="offset" currentPageReportTemplate="{first} из {last}. Всего: {totalRecords}" (onPage)="pageChange($event)" [rowsPerPageOptions]="[10, 25, 50]" [lazy]="true" [lazyLoadOnInit]="true" [totalRecords]="(totalCount$ | async) ?? 0" [alwaysShowPaginator]="true" [contextMenu]="cm" [(contextMenuSelection)]="selectedPost">
     <ng-template #caption>
       <div class="posts-header">
         <span class="text-xl font-bold">Посты</span>
         <div class="posts-actions">
-          <p-button class="posts-add-btn" id="posts-add" (click)="createPost()" raised
-            >Создать</p-button
-          >
+          <p-button class="posts-add-btn" id="posts-add" (click)="createPost()" raised>Создать</p-button>
         </div>
       </div>
     </ng-template>

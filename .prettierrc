@@ -3,5 +3,13 @@
   "singleQuote": true,
   "semi": true,
   "useTabs": false,
-  "printWidth": 200
+  "printWidth": 1000,
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "parser": "angular"
+      }
+    }
+  ]
 }

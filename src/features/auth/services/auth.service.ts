@@ -25,8 +25,7 @@ export class AuthService {
   private readonly LAST_LOGIN_KEY: string = 'lastLoginDate';
   private currentLogin: Date = new Date();
 
-  private currentUserSubject: BehaviorSubject<IAuthUser | null> =
-    new BehaviorSubject<IAuthUser | null>(null);
+  private currentUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(null);
 
   currentUser$: Observable<IAuthUser | null> = this.currentUserSubject.asObservable();
 

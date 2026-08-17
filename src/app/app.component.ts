@@ -12,15 +12,7 @@ import { LoaderComponent } from '../components/loader/loader.component';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    FormsModule,
-    CommonModule,
-    HeaderComponent,
-    FooterComponent,
-    MessageComponent,
-    RouterOutlet,
-    LoaderComponent,
-  ],
+  imports: [FormsModule, CommonModule, HeaderComponent, FooterComponent, MessageComponent, RouterOutlet, LoaderComponent],
   providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -47,12 +39,7 @@ export class AppComponent {
   }
 
   completeCollection(): void {
-    const phoneBrands: Collection<string> = new Collection<string>([
-      'Apple',
-      'Samsung',
-      'Honor',
-      'Xiaomi',
-    ]);
+    const phoneBrands: Collection<string> = new Collection<string>(['Apple', 'Samsung', 'Honor', 'Xiaomi']);
 
     phoneBrands.getItem(0);
     phoneBrands.replace(2, 'Honor Replaced');
@@ -66,9 +53,7 @@ export class AppComponent {
   }
 
   saveVisitCounter(): void {
-    const visitCounter: number = Number(
-      this.localStorageService.getItem<string>(this.VISIT_COUNTER_KEY) || 0,
-    );
+    const visitCounter: number = Number(this.localStorageService.getItem<string>(this.VISIT_COUNTER_KEY) || 0);
     this.localStorageService.setItem<string>(this.VISIT_COUNTER_KEY, `${ visitCounter + 1 }`);
   }
 

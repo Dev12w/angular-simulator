@@ -1,9 +1,6 @@
 <div class="messages-container">
   @for (message of messageService.messages$ | async; track $index) {
-    <ng-container
-      [ngTemplateOutlet]="messageTemplate"
-      [ngTemplateOutletContext]="{ message: message }"
-    />
+    <ng-container [ngTemplateOutlet]="messageTemplate" [ngTemplateOutletContext]="{ message: message }" />
   }
 </div>
 
@@ -16,11 +13,7 @@
       <div class="fs-16 bold white-color">{{ message.type }}</div>
       <div class="fs-14 white-color">{{ message.content }}</div>
     </div>
-    <button
-      (click)="messageService.closeMessage(message)"
-      class="message-close-btn"
-      id="message-close-btn"
-    >
+    <button (click)="messageService.closeMessage(message)" class="message-close-btn" id="message-close-btn">
       <fa-icon [icon]="circleXmark" />
     </button>
   </div>

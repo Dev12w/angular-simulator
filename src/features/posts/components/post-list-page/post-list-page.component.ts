@@ -121,9 +121,7 @@ export class PostListPageComponent {
       .pipe(
         tap((post: IPost) => this.messageService.showSuccess(`Пост с id ${ post.id } удален`)),
         catchError((error: HttpErrorResponse) => {
-          this.messageService.showError(
-            `Ошибка при удаления поста ${ selectedPost.id }: ${ error.message }`,
-          );
+          this.messageService.showError(`Ошибка при удаления поста ${ selectedPost.id }: ${ error.message }`);
           return EMPTY;
         }),
         finalize(() => (this.isLoading = false)),
