@@ -4,8 +4,10 @@
   </div>
 } @else {
   <div class="loader-container">
+    <app-change-detection></app-change-detection>
     <app-header></app-header>
     <router-outlet></router-outlet>
+    <app-parent></app-parent>
     <app-footer></app-footer>
   </div>
   <app-message></app-message>

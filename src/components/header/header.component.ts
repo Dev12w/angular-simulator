@@ -65,7 +65,7 @@ export class HeaderComponent {
   }
 
   private initCurrentDate(): void {
-    setInterval(() => (this.currentDate = new Date()), 1000);
+    // setInterval(() => (this.currentDate = new Date()), 1000);
   }
 
 }
