@@ -9,6 +9,7 @@ import { tap } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChangeDetectionOnpushComponent implements DoCheck {
+
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
   private http: HttpClient = inject(HttpClient);
   count: number = 0;
@@ -24,7 +25,7 @@ export class ChangeDetectionOnpushComponent implements DoCheck {
   ChangeDetectionTwo(): void {
     setTimeout(() => {
       this.count++;
-      this.cdr.detach()
+      this.cdr.detach();
       this.cdr.reattach();
       this.cdr.detectChanges();
     }, 1000);
@@ -80,4 +81,5 @@ export class ChangeDetectionOnpushComponent implements DoCheck {
       this.cdr.detectChanges();
     });
   }
+
 }

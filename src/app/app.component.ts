@@ -11,9 +11,7 @@ import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from '../components/loader/loader.component';
 import { ParentComponent } from '../homework-28/parent/parent.component';
 import { ChangeDetectionComponent } from '../homework-28/change-detection/change-detection.component';
-import {
-  ChangeDetectionOnpushComponent
-} from '../homework-28/change-detection-onpush/change-detection-onpush.component';
+import { ChangeDetectionOnpushComponent } from '../homework-28/change-detection-onpush/change-detection-onpush.component';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +21,7 @@ import {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+
   readonly LAST_VISIT_DATE_KEY: string = 'last-visit-date';
   readonly VISIT_COUNTER_KEY: string = 'visit-counter';
 
@@ -58,10 +57,11 @@ export class AppComponent {
 
   saveVisitCounter(): void {
     const visitCounter: number = Number(this.localStorageService.getItem<string>(this.VISIT_COUNTER_KEY) || 0);
-    this.localStorageService.setItem<string>(this.VISIT_COUNTER_KEY, `${visitCounter + 1}`);
+    this.localStorageService.setItem<string>(this.VISIT_COUNTER_KEY, `${ visitCounter + 1 }`);
   }
 
   isMainColor(color: Color): boolean {
     return [Color.BLUE, Color.GREEN, Color.RED].includes(color);
   }
+
 }
