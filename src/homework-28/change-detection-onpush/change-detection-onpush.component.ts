@@ -24,15 +24,18 @@ export class ChangeDetectionOnpushComponent implements DoCheck {
   ChangeDetectionTwo(): void {
     setTimeout(() => {
       this.count++;
+      this.cdr.detach()
       this.cdr.reattach();
-      // this.cdr.detectChanges();
+      this.cdr.detectChanges();
     }, 1000);
   }
 
   ChangeDetectionThree(): void {
     Promise.resolve().then(() => {
       this.count++;
+      this.cdr.detach();
       this.cdr.reattach();
+      this.cdr.detectChanges();
     });
   }
 
@@ -41,7 +44,9 @@ export class ChangeDetectionOnpushComponent implements DoCheck {
       .get('https://jsonplaceholder.typicode.com/todos/1')
       .pipe(
         tap(() => this.count++),
+        tap(() => this.cdr.detach()),
         tap(() => this.cdr.reattach()),
+        tap(() => this.cdr.detectChanges()),
       )
       .subscribe();
   }
@@ -52,7 +57,9 @@ export class ChangeDetectionOnpushComponent implements DoCheck {
       if (this.count >= 5) {
         clearInterval(intervalId);
       }
+      this.cdr.detach();
       this.cdr.reattach();
+      this.cdr.detectChanges();
     }, 1000);
   }
 
@@ -61,12 +68,16 @@ export class ChangeDetectionOnpushComponent implements DoCheck {
 
     setTimeout(() => {
       this.count++;
+      this.cdr.detach();
       this.cdr.reattach();
+      this.cdr.detectChanges();
     }, 0);
 
     Promise.resolve().then(() => {
       this.count++;
+      this.cdr.detach();
       this.cdr.reattach();
+      this.cdr.detectChanges();
     });
   }
 }
