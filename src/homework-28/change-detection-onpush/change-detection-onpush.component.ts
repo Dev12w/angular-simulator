@@ -1,17 +1,16 @@
-import { ChangeDetectionStrategy, Component, DoCheck, inject, NgZone } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
 
 @Component({
-  selector: 'change-detection',
+  selector: 'change-detection-onpush',
   standalone: true,
-  templateUrl: './change-detection.component.html',
-  changeDetection: ChangeDetectionStrategy.Default,
+  templateUrl: './change-detection-onpush.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChangeDetectionComponent implements DoCheck {
-
+export class ChangeDetectionOnpushComponent implements DoCheck {
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
   private http: HttpClient = inject(HttpClient);
-  private zone: NgZone = inject(NgZone);
   count: number = 0;
 
   ngDoCheck(): void {
@@ -25,19 +24,25 @@ export class ChangeDetectionComponent implements DoCheck {
   ChangeDetectionTwo(): void {
     setTimeout(() => {
       this.count++;
+      this.cdr.reattach();
+      // this.cdr.detectChanges();
     }, 1000);
   }
 
   ChangeDetectionThree(): void {
     Promise.resolve().then(() => {
       this.count++;
+      this.cdr.reattach();
     });
   }
 
   ChangeDetectionFour(): void {
     this.http
       .get('https://jsonplaceholder.typicode.com/todos/1')
-      .pipe(tap(() => this.count++))
+      .pipe(
+        tap(() => this.count++),
+        tap(() => this.cdr.reattach()),
+      )
       .subscribe();
   }
 
@@ -47,6 +52,7 @@ export class ChangeDetectionComponent implements DoCheck {
       if (this.count >= 5) {
         clearInterval(intervalId);
       }
+      this.cdr.reattach();
     }, 1000);
   }
 
@@ -55,11 +61,12 @@ export class ChangeDetectionComponent implements DoCheck {
 
     setTimeout(() => {
       this.count++;
+      this.cdr.reattach();
     }, 0);
 
     Promise.resolve().then(() => {
       this.count++;
+      this.cdr.reattach();
     });
   }
-
 }
