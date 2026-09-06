@@ -9,10 +9,13 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { MessageComponent } from '../components/message/message.component';
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from '../components/loader/loader.component';
+import { ParentComponent } from '../homework-28/parent/parent.component';
+import { ChangeDetectionComponent } from '../homework-28/change-detection/change-detection.component';
+import { ChangeDetectionOnpushComponent } from '../homework-28/change-detection-onpush/change-detection-onpush.component';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, CommonModule, HeaderComponent, FooterComponent, MessageComponent, RouterOutlet, LoaderComponent],
+  imports: [FormsModule, CommonModule, HeaderComponent, FooterComponent, MessageComponent, RouterOutlet, LoaderComponent, ParentComponent, ChangeDetectionComponent, ChangeDetectionOnpushComponent],
   providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
